@@ -9,6 +9,26 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seiwon-yaehee/react-contribution-calendar.git"
+  },
+  "keywords": [
+    "react-contribution-calendar",
+    "react",
+    "contribution",
+    "calendar",
+    "heatmap"
+  ],
+  "authors": [
+    "Seiwon Park <psw7347@gmail.com>",
+    "Yaehee Choe <yaehee@kakao.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seiwon-yaehee/react-contribution-calendar/issues"
+  },
+  "homepage": "https://github.com/seiwon-yaehee/react-contribution-calendar#readme",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
