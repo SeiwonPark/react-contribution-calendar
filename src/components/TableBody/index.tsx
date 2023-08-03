@@ -23,7 +23,7 @@ export default function TableBody() {
                 style={{ width: '10px', height: '10px' }}
                 data-level={~~(Math.random() * 5)} // FIXME: from actual data
               >
-                <span>{day}</span>
+                {day}
               </Cell>
             ) : (
               <td key={colIndex}></td>
