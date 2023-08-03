@@ -10,7 +10,10 @@ interface LabelProps extends HTMLAttributes<HTMLTableCellElement> {
 export default function Label({ children, style, colSpan, ...otherProps }: LabelProps) {
   return (
     <td className="calendar-label" style={style} colSpan={colSpan} {...otherProps}>
-      <span>{children}</span>
+      <span className="sr-only">{children}</span>
+      <span className="calendar-label-text" aria-hidden="true">
+        {children}
+      </span>
     </td>
   )
 }
