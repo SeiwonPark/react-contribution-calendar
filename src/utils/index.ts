@@ -1,5 +1,16 @@
 /**
- * Get full time informations from the current date.
+ * Gets current date details.
+ * @returns An object containing the full year, month name, day of the month, and
+ * day of the week for the current date.
+ * @example
+ * Returns
+ * {
+ *  year: '2023',
+ *  month: 'Jul',
+ *  day: '08',
+ *  date: 'Sat'
+ * }
+ * getDate()
  */
 export const getDate = () => {
   const time = new Date().toString().split(' ')
@@ -65,9 +76,7 @@ export const getArraySum = (array: number[]): number => {
  */
 export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
   const daysInMonths = getDaysInMonths(year)
-  const firstDayOfYear = getFirstDayIndexOfYear(year)
-
-  let currentDay = firstDayOfYear
+  let currentDay = getFirstDayIndexOfYear(year)
   let colSpans = []
 
   for (let i = 0; i < 12; i++) {
@@ -75,13 +84,14 @@ export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
     let cols = 0
 
     for (let j = 0; j < daysInMonth; j++) {
+      // if `currentDay` is the beginning of a new column
       if (currentDay === 0) {
         cols++
       }
       currentDay = (currentDay + 1) % 7
     }
 
-    if (i === 0 && firstDayOfYear !== 0) {
+    if (i === 0) {
       cols++
     }
 
@@ -133,7 +143,7 @@ const fillDayArray = (dayArray: number[][], year: number = getCurrentYear()): nu
 }
 
 /**
- *
+ * Gets 2D number array filled with days from the given year depending on the column spans.
  * @param {number} year - Year to calculate from, defaults to the current year.
  * @returns A 2D array filled with actual days for the year.
  */
