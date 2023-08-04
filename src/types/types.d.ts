@@ -16,3 +16,7 @@ interface ThemeProps {
   level3: string
   level4: string
 }
+
+interface Theme {
+  [key: string]: ThemeProps
+}
