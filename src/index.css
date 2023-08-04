@@ -12,12 +12,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
-  --color-bg-level-0: #ebedf0;
-  --color-bg-level-1: #9be9a8;
-  --color-bg-level-2: #40c463;
-  --color-bg-level-3: #30a14e;
-  --color-bg-level-4: #216e39;
 }
 
 body {
