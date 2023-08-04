@@ -134,11 +134,11 @@ export const getArraySum = (array: number[]): number => {
 export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
   const daysInMonths = getDaysInMonths(year)
   const firstDayOfYear = getFirstDayIndexOfYear(year)
+  const colSpans = []
   let currentDay = firstDayOfYear
-  let colSpans = []
 
   for (let i = 0; i < 12; i++) {
-    let daysInMonth = daysInMonths[i]
+    const daysInMonth = daysInMonths[i]
     let cols = 0
 
     for (let j = 0; j < daysInMonth; j++) {
@@ -244,4 +244,21 @@ export const getDayArrayFromYear = (year: number = getCurrentYear()): number[][]
   const dayArray = createDayArray(sumOfSpans)
   const filledDayArray = fillDayArray(dayArray, year)
   return filledDayArray
+}
+
+/**
+ * Parses given `inputData` and returns the data in a `Map` structure.
+ * @param {InputData[]} inputData - JSON list format input data.
+ * @returns Parsed map from the given JSON list.
+ */
+export const parseInputData = (inputData: InputData[]): Map<string, InputDataProps> => {
+  const parsedData = new Map<string, InputDataProps>()
+
+  inputData.forEach((data) => {
+    Object.keys(data).forEach((date) => {
+      parsedData.set(date, data[date])
+    })
+  })
+
+  return parsedData
 }

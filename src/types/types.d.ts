@@ -4,7 +4,7 @@ interface KeyValuePair {
 
 interface InputDataProps {
   level: number
-  data?: any
+  data?: object
 }
 
 interface InputData {
