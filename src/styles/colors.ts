@@ -1,11 +1,3 @@
-export interface ThemeProps {
-  level0: string
-  level1: string
-  level2: string
-  level3: string
-  level4: string
-}
-
 export const THEMES = {
   // 테마명 : LeveledColorProps 로 테마 컬러 지정
   grass: {

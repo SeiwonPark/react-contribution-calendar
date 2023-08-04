@@ -1,4 +1,4 @@
-import { THEMES, ThemeProps } from '../../styles/colors'
+import { THEMES } from '../../styles/colors'
 import { getCurrentYear, getDateString, getDayArrayFromYear } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
