@@ -60,6 +60,21 @@ export const getDateTooltip = (year: number, colIndex: number, day: number) => {
 }
 
 /**
+ * Gets string representation of the date from the given year, month, and day.
+ * @param {number} year - Year to calculate from.
+ * @param {number} colIndex - An index of month to calculate from (0: January, 11: December).
+ * @param {number} day - Day of the month to calculate from.
+ * @returns A string representation of the date in 'YYYY-MM-DD' format.
+ * @example
+ * // Returns '2023-07-08'
+ * getDateString(2023, 6, 8)
+ */
+export const getDateString = (year: number, colIndex: number, day: number): string => {
+  const month = getMonthIndex(colIndex, day, year)
+  return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+}
+
+/**
  * Determines if the given `year` is a leap year or not.
  * @param {number} year - Year to calculate from, defaults to the current year.
  */
