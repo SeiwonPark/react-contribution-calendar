@@ -1,4 +1,4 @@
-import { getCurrentYear, getDayArrayFromYear } from '../../utils'
+import { getCurrentYear, getDateString, getDayArrayFromYear } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
 import './index.css'
@@ -23,7 +23,7 @@ export default function TableBody() {
                 style={{ width: '10px', height: '10px' }}
                 data-level={~~(Math.random() * 5)} // FIXME: from actual data
               >
-                <span>{day}</span>
+                {getDateString(year, colIndex, day)}
               </Cell>
             ) : (
               <td key={colIndex}></td>
