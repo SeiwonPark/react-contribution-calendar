@@ -8,7 +8,7 @@ export default function TableBody() {
   const year = getCurrentYear()
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArrayFromYear(year)
-  const themeName = 'pink'
+  const themeName = 'pink' //테마명 지정
 
   const setColorByTheme = (theme: ThemeProps) => {
     document.documentElement.style.setProperty('--color-bg-level-0', theme.level0)

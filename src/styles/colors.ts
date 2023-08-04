@@ -7,6 +7,7 @@ export interface ThemeProps {
 }
 
 export const THEMES = {
+  // 테마명 : LeveledColorProps 로 테마 컬러 지정
   grass: {
     level0: '#ebedf0',
     level1: '#9be9a8',
@@ -21,5 +22,11 @@ export const THEMES = {
     level3: '#f06595',
     level4: '#a61e4d',
   },
-  // 테마명 : LeveledColorProps 로 테마 컬러 지정
+  indigo: {
+    level0: '#edf2ff',
+    level1: '#bac8ff',
+    level2: '#748ffc',
+    level3: '#4263eb',
+    level4: '#364fc7',
+  },
 }
