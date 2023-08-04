@@ -6,7 +6,7 @@ export interface LeveledColorProps {
   level4: string
 }
 
-export const COLORS = {
+export const THEMES = {
   grass: {
     level0: '#ebedf0',
     level1: '#9be9a8',
