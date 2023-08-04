@@ -10,7 +10,7 @@ export default function TableBody() {
   const dayArray = getDayArrayFromYear(year)
   const themeName = 'pink'
 
-  const setColorByTheme = (theme: LeveledColorProps) => {
+  const setColorByTheme = (theme: ThemeProps) => {
     document.documentElement.style.setProperty('--color-bg-level-0', theme.level0)
     document.documentElement.style.setProperty('--color-bg-level-1', theme.level1)
     document.documentElement.style.setProperty('--color-bg-level-2', theme.level2)
