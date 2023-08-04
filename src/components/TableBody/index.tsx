@@ -8,14 +8,18 @@ export default function TableBody() {
   const year = getCurrentYear()
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArrayFromYear(year)
-  const themeName = 'pink' //테마명 지정
+  const themeName = 'indigo' //테마명 지정
 
   const setColorByTheme = (theme: ThemeProps) => {
-    document.documentElement.style.setProperty('--color-bg-level-0', theme.level0)
-    document.documentElement.style.setProperty('--color-bg-level-1', theme.level1)
-    document.documentElement.style.setProperty('--color-bg-level-2', theme.level2)
-    document.documentElement.style.setProperty('--color-bg-level-3', theme.level3)
-    document.documentElement.style.setProperty('--color-bg-level-4', theme.level4)
+    if (theme) {
+      document.documentElement.style.setProperty('--color-bg-level-0', theme.level0)
+      document.documentElement.style.setProperty('--color-bg-level-1', theme.level1)
+      document.documentElement.style.setProperty('--color-bg-level-2', theme.level2)
+      document.documentElement.style.setProperty('--color-bg-level-3', theme.level3)
+      document.documentElement.style.setProperty('--color-bg-level-4', theme.level4)
+    } else {
+      console.error('Invalid theme name')
+    }
   }
   setColorByTheme(THEMES[themeName])
 
