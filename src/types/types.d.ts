@@ -2,11 +2,13 @@ interface KeyValuePair {
   [key: string]: number | string
 }
 
+interface InputDataProps {
+  level: number
+  data?: any
+}
+
 interface InputData {
-  [key: string]: {
-    level: number
-    data?: any
-  }
+  [key: string]: InputDataProps
 }
 
 interface ThemeProps {
