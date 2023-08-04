@@ -1,3 +1,5 @@
+import { LeveledColorProps } from '../../styles/colors'
+import { THEMES } from '../../styles/themes'
 import { getCurrentYear, getDateString, getDayArrayFromYear } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
@@ -7,6 +9,16 @@ export default function TableBody() {
   const year = getCurrentYear()
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArrayFromYear(year)
+  const themeName = 'pink'
+
+  const setColorByTheme = (theme: LeveledColorProps) => {
+    document.documentElement.style.setProperty('--color-bg-level-0', theme.level0)
+    document.documentElement.style.setProperty('--color-bg-level-1', theme.level1)
+    document.documentElement.style.setProperty('--color-bg-level-2', theme.level2)
+    document.documentElement.style.setProperty('--color-bg-level-3', theme.level3)
+    document.documentElement.style.setProperty('--color-bg-level-4', theme.level4)
+  }
+  setColorByTheme(THEMES[themeName])
 
   return (
     <tbody>
