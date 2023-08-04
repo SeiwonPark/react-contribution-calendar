@@ -21,4 +21,5 @@ export const COLORS = {
     level3: '#f06595',
     level4: '#a61e4d',
   },
+  // 테마명 : LeveledColorProps 로 테마 컬러 지정
 }
