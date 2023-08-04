@@ -8,7 +8,7 @@ interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
 
 export default function Cell({ children, style, ...otherProps }: CellProps) {
   return (
-    <td className="calendar-cell" style={style} {...otherProps}>
+    <td className="calendar-cell top half-arrow" style={style} {...otherProps} data-tooltip={children}>
       <span className="sr-only">{children}</span>
     </td>
   )
