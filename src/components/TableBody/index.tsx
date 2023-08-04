@@ -1,4 +1,4 @@
-import { COLORS, LeveledColorProps } from '../../styles/colors'
+import { THEMES, ThemeProps } from '../../styles/colors'
 import { getCurrentYear, getDateString, getDayArrayFromYear } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
@@ -17,7 +17,7 @@ export default function TableBody() {
     document.documentElement.style.setProperty('--color-bg-level-3', theme.level3)
     document.documentElement.style.setProperty('--color-bg-level-4', theme.level4)
   }
-  setColorByTheme(COLORS[themeName])
+  setColorByTheme(THEMES[themeName])
 
   return (
     <tbody>

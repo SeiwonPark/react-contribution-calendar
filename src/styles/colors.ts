@@ -1,4 +1,4 @@
-export interface LeveledColorProps {
+export interface ThemeProps {
   level0: string
   level1: string
   level2: string
