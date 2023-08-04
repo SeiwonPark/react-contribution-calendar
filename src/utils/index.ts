@@ -40,7 +40,7 @@ export const getDateDetails = (_date: Date = new Date()) => {
   }
 
   const time = _date.toString().split(' ')
-  return { year: time[3], month: fullMonths[time[1]], day: time[2], date: fullDates[time[0]] }
+  return { year: time[3], month: fullMonths[time[1]], day: parseInt(time[2], 10), date: fullDates[time[0]] }
 }
 
 /**
