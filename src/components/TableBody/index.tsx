@@ -1,5 +1,5 @@
 import { THEMES } from '../../styles/colors'
-import { getCurrentYear, getDateString, getDayArrayFromYear } from '../../utils'
+import { getCurrentYear, getDateTooltip, getDayArrayFromYear } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
 import './index.css'
@@ -37,9 +37,8 @@ export default function TableBody() {
                 tabIndex={-1}
                 style={{ width: '10px', height: '10px' }}
                 data-level={~~(Math.random() * 5)} // FIXME: from actual data
-              >
-                {getDateString(year, colIndex, day)}
-              </Cell>
+                dataTooltip={getDateTooltip(year, colIndex, day)}
+              />
             ) : (
               <td key={colIndex}></td>
             )

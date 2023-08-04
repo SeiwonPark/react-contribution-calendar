@@ -51,9 +51,9 @@ export const getDateDetails = (_date: Date = new Date()) => {
  * @returns A string representation of the date.
  * @example
  * // Returns 'Saturday, July 8, 2023'
- * getDateString(2023, 6, 8)
+ * getDateTooltip(2023, 6, 8)
  */
-export const getDateString = (year: number, colIndex: number, day: number) => {
+export const getDateTooltip = (year: number, colIndex: number, day: number) => {
   const month = getMonthIndex(colIndex, day, year)
   const date = getDateDetails(new Date(year, month, day))
   return `${date.date}, ${date.month} ${date.day}, ${date.year}`
