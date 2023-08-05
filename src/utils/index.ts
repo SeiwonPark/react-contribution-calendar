@@ -51,12 +51,27 @@ export const getDateDetails = (_date: Date = new Date()) => {
  * @returns A string representation of the date.
  * @example
  * // Returns 'Saturday, July 8, 2023'
- * getDateString(2023, 6, 8)
+ * getDateTooltip(2023, 6, 8)
  */
-export const getDateString = (year: number, colIndex: number, day: number) => {
+export const getDateTooltip = (year: number, colIndex: number, day: number) => {
   const month = getMonthIndex(colIndex, day, year)
   const date = getDateDetails(new Date(year, month, day))
   return `${date.date}, ${date.month} ${date.day}, ${date.year}`
+}
+
+/**
+ * Gets string representation of the date from the given year, month, and day.
+ * @param {number} year - Year to calculate from.
+ * @param {number} colIndex - An index of month to calculate from (0: January, 11: December).
+ * @param {number} day - Day of the month to calculate from.
+ * @returns A string representation of the date in 'YYYY-MM-DD' format.
+ * @example
+ * // Returns '2023-07-08'
+ * getDateString(2023, 6, 8)
+ */
+export const getDateString = (year: number, colIndex: number, day: number): string => {
+  const month = getMonthIndex(colIndex, day, year)
+  return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
 }
 
 /**
@@ -119,11 +134,11 @@ export const getArraySum = (array: number[]): number => {
 export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
   const daysInMonths = getDaysInMonths(year)
   const firstDayOfYear = getFirstDayIndexOfYear(year)
+  const colSpans: number[] = []
   let currentDay = firstDayOfYear
-  let colSpans = []
 
   for (let i = 0; i < 12; i++) {
-    let daysInMonth = daysInMonths[i]
+    const daysInMonth = daysInMonths[i]
     let cols = 0
 
     for (let j = 0; j < daysInMonth; j++) {
@@ -229,4 +244,21 @@ export const getDayArrayFromYear = (year: number = getCurrentYear()): number[][]
   const dayArray = createDayArray(sumOfSpans)
   const filledDayArray = fillDayArray(dayArray, year)
   return filledDayArray
+}
+
+/**
+ * Parses given `inputData` and returns the data in a `Map` structure.
+ * @param {InputData[]} inputData - JSON list format input data.
+ * @returns Parsed map from the given JSON list.
+ */
+export const parseInputData = (inputData: InputData[]): Map<string, InputDataProps> => {
+  const parsedData = new Map<string, InputDataProps>()
+
+  inputData.forEach((data) => {
+    Object.keys(data).forEach((date) => {
+      parsedData.set(date, data[date])
+    })
+  })
+
+  return parsedData
 }

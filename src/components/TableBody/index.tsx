@@ -1,14 +1,18 @@
 import { THEMES } from '../../styles/colors'
-import { getCurrentYear, getDateString, getDayArrayFromYear } from '../../utils'
+import { getCurrentYear, getDateTooltip, getDayArrayFromYear, getDateString, parseInputData } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
 import './index.css'
 
-export default function TableBody() {
+interface TableBodyProps {
+  data?: InputData[]
+}
+
+export default function TableBody({ data: inputData = [] }: TableBodyProps) {
   const year = getCurrentYear()
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArrayFromYear(year)
-  const themeName = 'indigo' //테마명 지정
+  const themeName = 'indigo'
 
   const setColorByTheme = (theme: ThemeProps) => {
     if (theme) {
@@ -23,6 +27,8 @@ export default function TableBody() {
   }
   setColorByTheme(THEMES[themeName])
 
+  const parsedData = parseInputData(inputData)
+
   return (
     <tbody>
       {dates.map((date, rowIndex) => (
@@ -30,20 +36,22 @@ export default function TableBody() {
           <Label tabIndex={0} style={{ textAlign: 'inherit' }}>
             {date}
           </Label>
-          {dayArray[rowIndex].map((day, colIndex) =>
-            day ? (
+          {dayArray[rowIndex].map((day, colIndex) => {
+            const dateString = getDateString(year, colIndex, day)
+            const data = parsedData.get(dateString)
+            return day ? (
               <Cell
                 key={colIndex}
                 tabIndex={-1}
                 style={{ width: '10px', height: '10px' }}
-                data-level={~~(Math.random() * 5)} // FIXME: from actual data
-              >
-                {getDateString(year, colIndex, day)}
-              </Cell>
+                data-level={data !== undefined ? data.level : 0}
+                data-content={JSON.stringify(data?.data)}
+                dataTooltip={getDateTooltip(year, colIndex, day)}
+              />
             ) : (
               <td key={colIndex}></td>
             )
-          )}
+          })}
         </tr>
       ))}
     </tbody>

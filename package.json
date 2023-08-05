@@ -1,13 +1,20 @@
 {
   "name": "react-contribution-calendar",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.32",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/types/react-contribution-calendar.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
+  },
+  "files": [
+    "./dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -29,11 +36,12 @@
     "url": "https://github.com/seiwon-yaehee/react-contribution-calendar/issues"
   },
   "homepage": "https://github.com/seiwon-yaehee/react-contribution-calendar#readme",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/node": "^20.4.7",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -46,7 +54,12 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "prettier": "^2.8.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.0",
+    "vite-plugin-libcss": "^1.1.1",
+    "vite-tsconfig-paths": "^4.2.0"
   }
 }

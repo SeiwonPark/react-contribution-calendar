@@ -5,6 +5,8 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "declaration": true,
+    "outDir": "./dist",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -16,16 +18,13 @@
 
     /* Linting */
     "strict": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
-    "typeRoots": ["node_modules/@types", "src/types"],
-    "baseUrl": ".",
-    "paths": {
-      "*": ["src/*"]
-    }
+    "typeRoots": ["node_modules/@types", "src/types"]
   },
-  "include": ["src", "./vite.config.ts"],
+  "include": ["src", "./vite.config.ts", "src/types"],
+  "exclude": ["node_modules", "**/__tests__/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
