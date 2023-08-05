@@ -1,4 +1,3 @@
-import { THEMES } from '../../styles/colors'
 import {
   getCurrentYear,
   getDateTooltip,
