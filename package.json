@@ -1,9 +1,9 @@
 {
   "name": "react-contribution-calendar",
-  "version": "0.0.0",
+  "version": "0.0.31",
   "type": "module",
   "main": "./dist/index.js",
-  "types": "./dist/src/components/index.d.ts",
+  "types": "./dist/types/react-contribution-calendar.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

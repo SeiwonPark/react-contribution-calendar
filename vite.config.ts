@@ -7,7 +7,17 @@ import dts from 'vite-plugin-dts'
 import libCss from 'vite-plugin-libcss'
 
 export default defineConfig({
-  plugins: [react(), dts(), tsConfigPaths(), libCss()],
+  plugins: [
+    react(),
+    dts({
+      root: '.',
+      include: ['src', './types/**/*.d.ts'],
+      outDir: 'dist',
+      copyDtsFiles: true,
+    }),
+    tsConfigPaths(),
+    libCss(),
+  ],
   build: {
     lib: {
       entry: resolve('src', 'components/index.ts'),

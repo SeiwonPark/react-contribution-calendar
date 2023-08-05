@@ -1,9 +1,17 @@
 declare module 'react-contribution-calendar' {
   import { FunctionComponent } from 'react'
 
+  export interface KeyValuePair {
+    [key: string]: number | string
+  }
+
   export interface InputDataProps {
     level: number
     data?: object
+  }
+
+  export interface InputData {
+    [key: string]: InputDataProps
   }
 
   export interface ThemeProps {
@@ -14,12 +22,14 @@ declare module 'react-contribution-calendar' {
     level4: string
   }
 
+  export interface Theme {
+    [key: string]: ThemeProps
+  }
+
   export interface ContributionCalendarProps {
     data: InputDataProps[]
     theme?: ThemeProps
   }
 
-  const ContributionCalendar: FunctionComponent<ContributionCalendarProps>
-
-  export default ContributionCalendar
+  export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>
 }
