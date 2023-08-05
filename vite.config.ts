@@ -11,7 +11,7 @@ export default defineConfig({
     react(),
     dts({
       root: '.',
-      include: ['src', './types/**/*.d.ts'],
+      include: ['src/types/**/*.d.ts'],
       outDir: 'dist',
       copyDtsFiles: true,
     }),
