@@ -6,28 +6,30 @@ import './index.css'
 
 interface TableBodyProps {
   data?: InputData[]
+  theme?: string | ThemeProps
 }
 
-export default function TableBody({ data: inputData = [] }: TableBodyProps) {
+export default function TableBody({ data = [], theme = 'grass' }: TableBodyProps) {
   const year = getCurrentYear()
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArrayFromYear(year)
-  const themeName = 'cherry_blossom'
 
-  const setColorByTheme = (theme: ThemeProps) => {
-    if (theme) {
-      document.documentElement.style.setProperty('--color-bg-level-0', theme.level0)
-      document.documentElement.style.setProperty('--color-bg-level-1', theme.level1)
-      document.documentElement.style.setProperty('--color-bg-level-2', theme.level2)
-      document.documentElement.style.setProperty('--color-bg-level-3', theme.level3)
-      document.documentElement.style.setProperty('--color-bg-level-4', theme.level4)
+  const setColorByTheme = (inputTheme: string | ThemeProps) => {
+    const themeProps = typeof inputTheme === 'string' ? THEMES[inputTheme] : inputTheme
+
+    if (themeProps) {
+      document.documentElement.style.setProperty('--color-bg-level-0', themeProps.level0)
+      document.documentElement.style.setProperty('--color-bg-level-1', themeProps.level1)
+      document.documentElement.style.setProperty('--color-bg-level-2', themeProps.level2)
+      document.documentElement.style.setProperty('--color-bg-level-3', themeProps.level3)
+      document.documentElement.style.setProperty('--color-bg-level-4', themeProps.level4)
     } else {
       console.error('Invalid theme name')
     }
   }
-  setColorByTheme(THEMES[themeName])
+  setColorByTheme(theme)
 
-  const parsedData = parseInputData(inputData)
+  const parsedData = parseInputData(data)
 
   return (
     <tbody>
