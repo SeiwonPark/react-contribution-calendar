@@ -17,9 +17,10 @@ declare module 'react-contribution-calendar' {
      */
     data: InputDataProps[]
     /**
-     * The name of theme for the ContributionCalendar, defaults to `grass`.
+     * The name of theme for the ContributionCalendar, defaults to `grass`. Also
+     * `ThemeProps` could be added directly i.e. when trying to use custom theme.
      */
-    theme?: string
+    theme?: string | ThemeProps
   }
 
   export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>

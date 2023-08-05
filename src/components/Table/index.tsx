@@ -4,7 +4,7 @@ import './index.css'
 
 interface TableProps {
   data?: InputData[]
-  theme?: string
+  theme?: string | ThemeProps
 }
 
 export default function Table({ data = [], theme = 'grass' }: TableProps) {

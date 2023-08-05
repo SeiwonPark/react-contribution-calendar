@@ -6,7 +6,7 @@ import './index.css'
 
 interface TableBodyProps {
   data?: InputData[]
-  theme?: string
+  theme?: string | ThemeProps
 }
 
 export default function TableBody({ data = [], theme = 'grass' }: TableBodyProps) {
@@ -14,7 +14,9 @@ export default function TableBody({ data = [], theme = 'grass' }: TableBodyProps
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArrayFromYear(year)
 
-  const setColorByTheme = (themeProps: ThemeProps) => {
+  const setColorByTheme = (inputTheme: string | ThemeProps) => {
+    const themeProps = typeof inputTheme === 'string' ? THEMES[inputTheme] : inputTheme
+
     if (themeProps) {
       document.documentElement.style.setProperty('--color-bg-level-0', themeProps.level0)
       document.documentElement.style.setProperty('--color-bg-level-1', themeProps.level1)
@@ -25,7 +27,7 @@ export default function TableBody({ data = [], theme = 'grass' }: TableBodyProps
       console.error('Invalid theme name')
     }
   }
-  setColorByTheme(THEMES[theme])
+  setColorByTheme(theme)
 
   const parsedData = parseInputData(data)
 
