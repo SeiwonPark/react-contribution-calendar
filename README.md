@@ -47,7 +47,7 @@ const data = [
 ### `ContributionCalendar`
 `ContributionCalendar` is the main component of this library. It takes a data property, which is an array of objects representing the contribution data, and a theme property to customize its appearance.
 
-- `data`: An array of objects, where each object has a date string(`YYYY-MM-DD` format) as key, and an `InputDataProps` object as value.
+- `data`: An array of objects, where each object has a date string(`YYYY-MM-DD` format) as key, and an `InputDataProps` object as value. Defaults to `[]`.
 
   - An example data is as follows:
     ```javascript
@@ -67,7 +67,7 @@ const data = [
       },
     ]
     ```
-- `theme`: Optional. A string that represents a predefined theme name, or an object with custom theme colors.
+- `theme`: Optional. A string that represents a predefined theme name, or an object with custom theme colors. Defaults to `grass`.
 
 <br />   
 
