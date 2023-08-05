@@ -1,5 +1,12 @@
 import { THEMES } from '../../styles/colors'
-import { getCurrentYear, getDateTooltip, getDayArrayFromYear, getDateString, parseInputData } from '../../utils'
+import {
+  getCurrentYear,
+  getDateTooltip,
+  getDayArrayFromYear,
+  getDateString,
+  parseInputData,
+  createTheme,
+} from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
 import './index.css'
@@ -15,8 +22,7 @@ export default function TableBody({ data = [], theme = 'grass' }: TableBodyProps
   const dayArray = getDayArrayFromYear(year)
 
   const setColorByTheme = (inputTheme: string | ThemeProps) => {
-    const themeProps = typeof inputTheme === 'string' ? THEMES[inputTheme] : inputTheme
-
+    const themeProps = createTheme(inputTheme)
     if (themeProps) {
       document.documentElement.style.setProperty('--color-bg-level-0', themeProps.level0)
       document.documentElement.style.setProperty('--color-bg-level-1', themeProps.level1)

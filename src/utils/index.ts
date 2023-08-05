@@ -1,3 +1,5 @@
+import { THEMES } from '../styles/colors'
+
 /**
  * Gets date details.
  * @param {Date} _date - Date to calculate from, defaults to current date.
@@ -261,4 +263,13 @@ export const parseInputData = (inputData: InputData[]): Map<string, InputDataPro
   })
 
   return parsedData
+}
+
+/**
+ * Convert given data to a ThemeProps
+ * @param {string | ThemeProps} inputTheme - Predefined theme name string or custom color ThemeProps
+ * @returns Converted ThemeProps from theme name or user define color props
+ */
+export const createTheme = (inputTheme: string | ThemeProps): ThemeProps => {
+  return typeof inputTheme === 'string' ? THEMES[inputTheme] : inputTheme
 }
