@@ -1,4 +1,4 @@
-export const THEMES = {
+export const THEMES: Theme = {
   // 테마명 : LeveledColorProps 로 테마 컬러 지정
   grass: {
     level0: '#ebedf0',
