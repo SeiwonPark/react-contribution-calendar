@@ -28,7 +28,7 @@ declare module 'react-contribution-calendar' {
 
   export interface ContributionCalendarProps {
     data: InputDataProps[]
-    theme?: ThemeProps
+    theme?: string
   }
 
   export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>

@@ -4,14 +4,15 @@ import './index.css'
 
 interface TableProps {
   data?: InputData[]
+  theme?: string
 }
 
-export default function Table({ data = [] }: TableProps) {
+export default function Table({ data = [], theme = 'grass' }: TableProps) {
   return (
     <div className="container">
       <table>
         <TableHead />
-        <TableBody data={data} />
+        <TableBody data={data} theme={theme} />
       </table>
     </div>
   )
