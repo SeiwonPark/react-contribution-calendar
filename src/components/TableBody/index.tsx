@@ -12,7 +12,7 @@ export default function TableBody({ data: inputData = [] }: TableBodyProps) {
   const year = getCurrentYear()
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArrayFromYear(year)
-  const themeName = 'indigo'
+  const themeName = 'cherry_blossom'
 
   const setColorByTheme = (theme: ThemeProps) => {
     if (theme) {
