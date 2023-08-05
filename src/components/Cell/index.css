@@ -37,3 +37,48 @@
   clip: rect(0, 0, 0, 0);
   word-wrap: normal;
 }
+
+[data-tooltip].top {
+  position: relative;
+}
+
+[data-tooltip].top:before,
+[data-tooltip].top:after {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 999;
+  transition: visibility 0.3s, transform 0.3s;
+  pointer-events: none;
+}
+
+[data-tooltip].top:before {
+  content: '';
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: #323232;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+[data-tooltip].top:after {
+  content: attr(data-tooltip);
+  padding: 10px 16px;
+  font-size: 13px;
+  line-height: 11px;
+  background-color: #323232;
+  color: #ecf0f1;
+  border-radius: 5px;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+[data-tooltip].top:hover:before,
+[data-tooltip].top:hover:after {
+  visibility: visible;
+  opacity: 1;
+}

@@ -2,13 +2,14 @@ import { ReactNode, CSSProperties, HTMLAttributes } from 'react'
 import './index.css'
 
 interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
-  children: ReactNode
+  children?: ReactNode
   style?: CSSProperties
+  dataTooltip?: string
 }
 
-export default function Cell({ children, style, ...otherProps }: CellProps) {
+export default function Cell({ children, style, dataTooltip, ...otherProps }: CellProps) {
   return (
-    <td className="calendar-cell" style={style} {...otherProps}>
+    <td className="calendar-cell top half-arrow" style={style} {...otherProps} data-tooltip={dataTooltip}>
       <span className="sr-only">{children}</span>
     </td>
   )

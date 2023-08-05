@@ -1,20 +1,79 @@
+import { THEMES } from '../styles/colors'
+
 /**
- * Gets current date details.
+ * Gets date details.
+ * @param {Date} _date - Date to calculate from, defaults to current date.
  * @returns An object containing the full year, month name, day of the month, and
  * day of the week for the current date.
  * @example
  * Returns
  * {
  *  year: '2023',
- *  month: 'Jul',
+ *  month: 'July',
  *  day: '08',
- *  date: 'Sat'
+ *  date: 'Saturday'
  * }
- * getDate()
+ * getDateDetails()
  */
-export const getDate = () => {
-  const time = new Date().toString().split(' ')
-  return { year: time[3], month: time[1], day: time[2], date: time[0] }
+export const getDateDetails = (_date: Date = new Date()) => {
+  const fullDates: KeyValuePair = {
+    Sun: 'Sunday',
+    Mon: 'Monday',
+    Tue: 'Tuesday',
+    Wed: 'Wednesday',
+    Thu: 'Thursday',
+    Fri: 'Friday',
+    Sat: 'Saturday',
+  }
+
+  const fullMonths: KeyValuePair = {
+    Jan: 'January',
+    Feb: 'February',
+    Mar: 'March',
+    Apr: 'April',
+    May: 'May',
+    Jun: 'June',
+    Jul: 'July',
+    Aug: 'August',
+    Sep: 'September',
+    Oct: 'October',
+    Nov: 'November',
+    Dec: 'December',
+  }
+
+  const time = _date.toString().split(' ')
+  return { year: time[3], month: fullMonths[time[1]], day: parseInt(time[2], 10), date: fullDates[time[0]] }
+}
+
+/**
+ * Gets string representation of the date from the given `year`, `month`, and `day`.
+ * @param {number} year - Year to calculate from.
+ * @param {number} colIndex - An index of month to calculate from (`0`: January, `11`: December).
+ * @param {number} day - Day of the month to calculate from.
+ * @returns A string representation of the date.
+ * @example
+ * // Returns 'Saturday, July 8, 2023'
+ * getDateTooltip(2023, 6, 8)
+ */
+export const getDateTooltip = (year: number, colIndex: number, day: number) => {
+  const month = getMonthIndex(colIndex, day, year)
+  const date = getDateDetails(new Date(year, month, day))
+  return `${date.date}, ${date.month} ${date.day}, ${date.year}`
+}
+
+/**
+ * Gets string representation of the date from the given year, month, and day.
+ * @param {number} year - Year to calculate from.
+ * @param {number} colIndex - An index of month to calculate from (0: January, 11: December).
+ * @param {number} day - Day of the month to calculate from.
+ * @returns A string representation of the date in 'YYYY-MM-DD' format.
+ * @example
+ * // Returns '2023-07-08'
+ * getDateString(2023, 6, 8)
+ */
+export const getDateString = (year: number, colIndex: number, day: number): string => {
+  const month = getMonthIndex(colIndex, day, year)
+  return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
 }
 
 /**
@@ -76,11 +135,12 @@ export const getArraySum = (array: number[]): number => {
  */
 export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
   const daysInMonths = getDaysInMonths(year)
-  let currentDay = getFirstDayIndexOfYear(year)
-  let colSpans = []
+  const firstDayOfYear = getFirstDayIndexOfYear(year)
+  const colSpans: number[] = []
+  let currentDay = firstDayOfYear
 
   for (let i = 0; i < 12; i++) {
-    let daysInMonth = daysInMonths[i]
+    const daysInMonth = daysInMonths[i]
     let cols = 0
 
     for (let j = 0; j < daysInMonth; j++) {
@@ -91,7 +151,7 @@ export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
       currentDay = (currentDay + 1) % 7
     }
 
-    if (i === 0) {
+    if (i === 0 && firstDayOfYear !== 0) {
       cols++
     }
 
@@ -99,6 +159,38 @@ export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
   }
 
   return colSpans
+}
+
+/**
+ * Gets month index from the given column index and day.
+ * @param {number} colIndex - Column index to calculate from.
+ * @param {number} day - Day of the month.
+ * @param {number} year - Year to calculate from, defaults to the current year.
+ * @returns The month index for the given column index and day.
+ * @example
+ * // Returns 1 (for February)
+ * getMonthIndex(4, 1, 2023)
+ */
+export const getMonthIndex = (colIndex: number, day: number, year: number = getCurrentYear()): number => {
+  const colSpans = getColumnSpans(year)
+  const daysInMonths = getDaysInMonths(year)
+
+  let sumOfColumns = 0
+  let sumOfDays = 0
+  let i = 0
+
+  for (i = 0; i < colSpans.length; i++) {
+    sumOfColumns += colSpans[i]
+    sumOfDays += daysInMonths[i]
+
+    if (colIndex + 1 === sumOfColumns && day < 7) {
+      return i + 1
+    } else if (colIndex < sumOfColumns && day <= sumOfDays) {
+      return i
+    }
+  }
+
+  return i
 }
 
 /**
@@ -154,4 +246,30 @@ export const getDayArrayFromYear = (year: number = getCurrentYear()): number[][]
   const dayArray = createDayArray(sumOfSpans)
   const filledDayArray = fillDayArray(dayArray, year)
   return filledDayArray
+}
+
+/**
+ * Parses given `inputData` and returns the data in a `Map` structure.
+ * @param {InputData[]} inputData - JSON list format input data.
+ * @returns Parsed map from the given JSON list.
+ */
+export const parseInputData = (inputData: InputData[]): Map<string, InputDataProps> => {
+  const parsedData = new Map<string, InputDataProps>()
+
+  inputData.forEach((data) => {
+    Object.keys(data).forEach((date) => {
+      parsedData.set(date, data[date])
+    })
+  })
+
+  return parsedData
+}
+
+/**
+ * Convert given data to a ThemeProps
+ * @param {string | ThemeProps} inputTheme - Predefined theme name string or custom color ThemeProps
+ * @returns Converted ThemeProps from theme name or user define color props
+ */
+export const createTheme = (inputTheme: string | ThemeProps): ThemeProps => {
+  return typeof inputTheme === 'string' ? THEMES[inputTheme] : inputTheme
 }
