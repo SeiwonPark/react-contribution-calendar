@@ -2,11 +2,17 @@ import TableHead from '../TableHead'
 import TableBody from '../TableBody'
 import './index.css'
 
-export default function Table() {
+interface TableProps {
+  data?: InputData[]
+}
+
+export default function Table({ data = [] }: TableProps) {
   return (
-    <table>
-      <TableHead />
-      <TableBody />
-    </table>
+    <div className="container">
+      <table>
+        <TableHead />
+        <TableBody data={data} />
+      </table>
+    </div>
   )
 }

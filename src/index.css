@@ -19,14 +19,6 @@ body {
   padding: 0;
 }
 
-.container {
-  display: flex !important;
-  text-align: center !important;
-  max-width: 100%;
-  overflow-y: hidden;
-  overflow-x: auto;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

@@ -134,7 +134,7 @@ export const getArraySum = (array: number[]): number => {
 export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
   const daysInMonths = getDaysInMonths(year)
   const firstDayOfYear = getFirstDayIndexOfYear(year)
-  const colSpans = []
+  const colSpans: number[] = []
   let currentDay = firstDayOfYear
 
   for (let i = 0; i < 12; i++) {
