@@ -7,7 +7,7 @@
 
 declare module 'react-contribution-calendar' {
   import { FunctionComponent } from 'react'
-
+  export const createTheme = (themeProps: ThemeProps): ThemeProps => {}
   /**
    * This is for attributes of <ContributionCalendar /> function component.
    */
