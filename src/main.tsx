@@ -5,6 +5,6 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ContributionCalendar data={[]} theme={'grass'} />
+    <ContributionCalendar data={[]} textColor={'#000'} theme={'grass'} />
   </React.StrictMode>
 )

@@ -2,7 +2,11 @@ import Label from '../Label'
 import { getColumnSpans, getCurrentYear } from '../../utils'
 import './index.css'
 
-export default function TableHead() {
+interface TableHeadProps {
+  textColor: string
+}
+
+export default function TableHead({ textColor }: TableHeadProps) {
   const year = getCurrentYear()
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const colSpans = getColumnSpans(year)
@@ -10,11 +14,11 @@ export default function TableHead() {
   return (
     <thead>
       <tr>
-        <Label style={{ width: '40px' }} colSpan={1}>
+        <Label textColor={textColor} style={{ width: '40px' }} colSpan={1}>
           {' '}
         </Label>
         {months.map((month, index) => (
-          <Label key={month} colSpan={colSpans[index]}>
+          <Label textColor={textColor} key={month} colSpan={colSpans[index]}>
             {month}
           </Label>
         ))}

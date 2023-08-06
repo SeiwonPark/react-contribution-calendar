@@ -11,36 +11,32 @@ import Label from '../Label'
 import './index.css'
 
 interface TableBodyProps {
-  data?: InputData[]
-  theme?: string | ThemeProps
+  data: InputData[]
+  textColor: string
+  theme: string | ThemeProps
 }
 
-export default function TableBody({ data = [], theme = 'grass' }: TableBodyProps) {
+export default function TableBody({ data, textColor, theme }: TableBodyProps) {
   const year = getCurrentYear()
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArrayFromYear(year)
 
   const setColorByTheme = (inputTheme: string | ThemeProps) => {
     const themeProps = createTheme(inputTheme)
-    if (themeProps) {
-      document.documentElement.style.setProperty('--color-bg-level-0', themeProps.level0)
-      document.documentElement.style.setProperty('--color-bg-level-1', themeProps.level1)
-      document.documentElement.style.setProperty('--color-bg-level-2', themeProps.level2)
-      document.documentElement.style.setProperty('--color-bg-level-3', themeProps.level3)
-      document.documentElement.style.setProperty('--color-bg-level-4', themeProps.level4)
-    } else {
+    if (!themeProps) {
       console.error('Invalid theme name')
     }
+    return themeProps
   }
-  setColorByTheme(theme)
 
+  const themeProps = setColorByTheme(theme)
   const parsedData = parseInputData(data)
 
   return (
     <tbody>
       {dates.map((date, rowIndex) => (
         <tr key={date}>
-          <Label tabIndex={0} style={{ textAlign: 'inherit' }}>
+          <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'inherit' }}>
             {date}
           </Label>
           {dayArray[rowIndex].map((day, colIndex) => {
@@ -51,9 +47,10 @@ export default function TableBody({ data = [], theme = 'grass' }: TableBodyProps
                 key={colIndex}
                 tabIndex={-1}
                 style={{ width: '10px', height: '10px' }}
-                data-level={data !== undefined ? data.level : 0}
+                dataLevel={data !== undefined ? data.level : 0}
                 data-content={JSON.stringify(data?.data)}
                 dataTooltip={getDateTooltip(year, colIndex, day)}
+                themeProps={themeProps}
               />
             ) : (
               <td key={colIndex}></td>
