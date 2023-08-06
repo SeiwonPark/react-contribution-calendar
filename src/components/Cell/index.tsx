@@ -4,8 +4,8 @@ import './index.css'
 interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
   themeProps: ThemeProps
   dataLevel: number
+  style: CSSProperties
   children?: ReactNode
-  style?: CSSProperties
   dataTooltip?: string
 }
 

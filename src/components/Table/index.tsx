@@ -4,15 +4,16 @@ import './index.css'
 
 interface TableProps {
   data?: InputData[]
+  textColor?: string
   theme?: string | ThemeProps
 }
 
-export default function Table({ data = [], theme = 'grass' }: TableProps) {
+export default function Table({ data = [], textColor = '#000', theme = 'grass' }: TableProps) {
   return (
     <div className="container">
       <table>
-        <TableHead />
-        <TableBody data={data} theme={theme} />
+        <TableHead textColor={textColor} />
+        <TableBody data={data} textColor={textColor} theme={theme} />
       </table>
     </div>
   )
