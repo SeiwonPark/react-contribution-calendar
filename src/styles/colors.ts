@@ -1,3 +1,8 @@
+/**
+ * This is an object containing predefined themes for the ContributionCalendar
+ * component. Each theme has a string key as name and five color strings should
+ * be defined from `level0` to `level4`.
+ */
 export const THEMES: Theme = {
   grass: {
     level0: '#ebedf0',
