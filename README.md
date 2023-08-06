@@ -1,4 +1,7 @@
 # react-contribution-calendar
+![npm](https://img.shields.io/npm/v/react-contribution-calendar?logo=npm&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Freact-contribution-calendar) ![NPM](https://img.shields.io/npm/l/react-contribution-calendar)
+
+
 A GitHub-like contribution calendar component for React, built with Vite and TypeScript. This provides a visual representation of contribution activity, similar to the contribution graph seen on a GitHub profile.
 
 <br />   
