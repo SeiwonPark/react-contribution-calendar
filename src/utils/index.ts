@@ -48,7 +48,7 @@ export const getDateDetails = (_date: Date = new Date()) => {
 /**
  * Gets string representation of the date from the given `year`, `month`, and `day`.
  * @param {number} year - Year to calculate from.
- * @param {number} colIndex - An index of month to calculate from (`0`: January, `11`: December).
+ * @param {number} colIndex - An index of each colSpan for months. Range from 0 to 52.
  * @param {number} day - Day of the month to calculate from.
  * @returns A string representation of the date.
  * @example
@@ -64,7 +64,7 @@ export const getDateTooltip = (year: number, colIndex: number, day: number) => {
 /**
  * Gets string representation of the date from the given year, month, and day.
  * @param {number} year - Year to calculate from.
- * @param {number} colIndex - An index of month to calculate from (0: January, 11: December).
+ * @param {number} colIndex - An index of each colSpan for months. Range from 0 to 52.
  * @param {number} day - Day of the month to calculate from.
  * @returns A string representation of the date in 'YYYY-MM-DD' format.
  * @example
@@ -163,7 +163,7 @@ export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
 
 /**
  * Gets month index from the given column index and day.
- * @param {number} colIndex - Column index to calculate from.
+ * @param {number} colIndex - An index of each colSpan for months. Range from 0 to 52.
  * @param {number} day - Day of the month.
  * @param {number} year - Year to calculate from, defaults to the current year.
  * @returns The month index for the given column index and day.
