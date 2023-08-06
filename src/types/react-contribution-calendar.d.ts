@@ -1,4 +1,4 @@
-// Type definitions for react-contribution-calendar 0.0.36
+// Type definitions for react-contribution-calendar 1.0.1
 // Project: https://github.com/seiwon-yaehee/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
@@ -7,7 +7,13 @@
 
 declare module 'react-contribution-calendar' {
   import { FunctionComponent } from 'react'
+  /**
+   * Returns an object of ThemeProps which could be used as theme attribute of
+   * ContributionCalendarProps.
+   * @param {ThemeProps} themeProps - Theme color properties from level 0 to 4.
+   */
   export const createTheme = (themeProps: ThemeProps): ThemeProps => {}
+
   /**
    * This is for attributes of <ContributionCalendar /> function component.
    */
