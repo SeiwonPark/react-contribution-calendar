@@ -11,11 +11,12 @@ import Label from '../Label'
 import './index.css'
 
 interface TableBodyProps {
-  data?: InputData[]
-  theme?: string | ThemeProps
+  data: InputData[]
+  textColor: string
+  theme: string | ThemeProps
 }
 
-export default function TableBody({ data = [], theme = 'grass' }: TableBodyProps) {
+export default function TableBody({ data, textColor, theme }: TableBodyProps) {
   const year = getCurrentYear()
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArrayFromYear(year)
@@ -35,7 +36,7 @@ export default function TableBody({ data = [], theme = 'grass' }: TableBodyProps
     <tbody>
       {dates.map((date, rowIndex) => (
         <tr key={date}>
-          <Label tabIndex={0} style={{ textAlign: 'inherit' }}>
+          <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'inherit' }}>
             {date}
           </Label>
           {dayArray[rowIndex].map((day, colIndex) => {
