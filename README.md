@@ -91,23 +91,23 @@ You can customize the appearance of the `<ContributionCalendar />` with the them
 #### `grass`
 <img src="./images/grass.png" alt="grass" with=600 />
 
-#### `cherry`
-<img src="./images/cherry.png" alt="cherry" with=600 />
-
-#### `cherry_blossom`
-<img src="./images/cherry_blossom.png" alt="cherry_blossom" with=600 />
-
 #### `pink`
 <img src="./images/pink.png" alt="pink" with=600 />
-
-#### `sky`
-<img src="./images/sky.png" alt="sky" with=600 />
 
 #### `halloween`
 <img src="./images/halloween.png" alt="halloween" with=600 />
 
 #### `winter`
 <img src="./images/winter.png" alt="winter" with=600 />
+
+#### `cherry`
+<img src="./images/cherry.png" alt="cherry" with=600 />
+
+#### `cherry_blossom`
+<img src="./images/cherry_blossom.png" alt="cherry_blossom" with=600 />
+
+#### `sky`
+<img src="./images/sky.png" alt="sky" with=600 />
 
 #### `purquoise`
 <img src="./images/purquoise.png" alt="purquoise" with=600 />
@@ -121,11 +121,17 @@ You can customize the appearance of the `<ContributionCalendar />` with the them
 <br />   
 
 ### Dark Themes
-#### `dark_vomit`
-<img src="./images/dark_vomit.png" alt="dark_vomit" with=600 />
+#### `dark_grass`
+<img src="./images/dark_grass.png" alt="dark_grass" with=600 />
 
 #### `dark_pink`
 <img src="./images/dark_pink.png" alt="dark_pink" with=600 />
+
+#### `dark_halloween`
+<img src="./images/dark_halloween.png" alt="dark_halloween" with=600 />
+
+#### `dark_winter`
+<img src="./images/dark_winter.png" alt="dark_winter" with=600 />
 
 #### `dark_blue`
 <img src="./images/dark_blue.png" alt="dark_blue" with=600 />
@@ -133,14 +139,8 @@ You can customize the appearance of the `<ContributionCalendar />` with the them
 #### `dark_ocean`
 <img src="./images/dark_ocean.png" alt="dark_ocean" with=600 />
 
-#### `dark_grass`
-<img src="./images/dark_grass.png" alt="dark_grass" with=600 />
-
-#### `dark_halloween`
-<img src="./images/dark_halloween.png" alt="dark_halloween" with=600 />
-
-#### `dark_winter`
-<img src="./images/dark_winter.png" alt="dark_winter" with=600 />
+#### `dark_vomit`
+<img src="./images/dark_vomit.png" alt="dark_vomit" with=600 />
 
 <br />   
 
