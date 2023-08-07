@@ -4,6 +4,7 @@
  * be defined from `level0` to `level4`.
  */
 export const THEMES: Theme = {
+  //light themes
   grass: {
     level0: '#ebedf0',
     level1: '#9be9a8',
@@ -89,12 +90,12 @@ export const THEMES: Theme = {
     level4: '#660099',
   },
   //dark themes
-  dark_vomit: {
-    level0: '#261339',
-    level1: '#663399',
-    level2: '#666699',
-    level3: '#669999',
-    level4: '#66cc99',
+  dark_grass: {
+    level0: '#161b22',
+    level1: '#0e4429',
+    level2: '#006d32',
+    level3: '#26a641',
+    level4: '#39d353',
   },
   dark_cherry: {
     level0: '#1b1819',
@@ -117,13 +118,6 @@ export const THEMES: Theme = {
     level3: '#cc53ba',
     level4: '#ff68e9',
   },
-  dark_mustard: {
-    level0: '#2a2722',
-    level1: '#4d2e00',
-    level2: '#cc7b00',
-    level3: '#dca009',
-    level4: '#ffc905',
-  },
   dark_ocean: {
     level0: '#00004d',
     level1: '#0000b3',
@@ -131,12 +125,12 @@ export const THEMES: Theme = {
     level3: '#00bfff',
     level4: '#00ffff',
   },
-  dark_grass: {
-    level0: '#161b22',
-    level1: '#0e4429',
-    level2: '#006d32',
-    level3: '#26a641',
-    level4: '#39d353',
+  dark_sky: {
+    level0: '#303636',
+    level1: '#616b6b',
+    level2: '#99a3a3',
+    level3: '#86b6b6',
+    level4: '#54bebe',
   },
   dark_halloween: {
     level0: '#161b22',
@@ -152,6 +146,20 @@ export const THEMES: Theme = {
     level3: '#54aeff',
     level4: '#b6e3ff',
   },
+  dark_purquoise: {
+    level0: '#303636',
+    level1: '#7c8288',
+    level2: '#8d9caa',
+    level3: '#7c9bb9',
+    level4: '#5b82a8',
+  },
+  dark_mustard: {
+    level0: '#2a2722',
+    level1: '#4d2e00',
+    level2: '#cc7b00',
+    level3: '#dca009',
+    level4: '#ffc905',
+  },
   dark_gray: {
     level0: '#333333',
     level1: '#555555',
@@ -159,18 +167,11 @@ export const THEMES: Theme = {
     level3: '#999999',
     level4: '#D4D4D4',
   },
-  dark_sky: {
-    level0: '#303636',
-    level1: '#616b6b',
-    level2: '#99a3a3',
-    level3: '#86b6b6',
-    level4: '#54bebe',
-  },
-  dark_purquoise: {
-    level0: '#303636',
-    level1: '#7c8288',
-    level2: '#8d9caa',
-    level3: '#7c9bb9',
-    level4: '#5b82a8',
+  dark_vomit: {
+    level0: '#261339',
+    level1: '#663399',
+    level2: '#666699',
+    level3: '#669999',
+    level4: '#66cc99',
   },
 }
