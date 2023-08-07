@@ -102,6 +102,17 @@ export const parseYearFromDateString = (dateString: string): number => {
 }
 
 /**
+ * Parses integer value of month from `dateString`.
+ * @param {string} dateString - String date format `YYYY-MM-DD`.
+ * @example
+ * // Returns 7
+ * parseMonthFromDateString('2023-07-08')
+ */
+export const parseMonthFromDateString = (dateString: string): number => {
+  return +dateString.slice(5, 7)
+}
+
+/**
  * Determines if the given `year` is a leap year or not.
  * @param {number} year - Year to calculate from, defaults to the current year.
  */
