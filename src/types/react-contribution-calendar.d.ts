@@ -23,7 +23,15 @@ declare module 'react-contribution-calendar' {
      */
     data?: InputData[]
     /**
-     * The text color of calendar indexes for months and dates.
+     * Start date of calendar, defaults to 1st January of current year.
+     */
+    start?: string
+    /**
+     * End date of calendar, defaults to 31st December of current year.
+     */
+    end?: string
+    /**
+     * The text color of calendar indexes for months and dates, defaults to `#000`.
      */
     textColor?: string
     /**
