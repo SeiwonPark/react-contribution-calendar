@@ -345,3 +345,16 @@ export const parseInputData = (inputData: InputData[]): Map<string, InputDataPro
 export const createTheme = (inputTheme: string | ThemeProps): ThemeProps => {
   return typeof inputTheme === 'string' ? THEMES[inputTheme] : inputTheme
 }
+
+/**
+ * Returns date difference between two date strings.
+ * @param {string} dateString1 - Date string in 'YYYY-MM-DD' format.
+ * @param {string} dateString2 - Date string in 'YYYY-MM-DD' format.
+ */
+export const getDateDifference = (dateString1: string, dateString2: string): number => {
+  const date1 = new Date(dateString1)
+  const date2 = new Date(dateString2)
+  const diff = Math.abs(date2.getTime() - date1.getTime())
+  const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24))
+  return diffDays
+}
