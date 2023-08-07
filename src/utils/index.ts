@@ -69,11 +69,36 @@ export const getDateTooltip = (year: number, colIndex: number, day: number) => {
  * @returns A string representation of the date in 'YYYY-MM-DD' format.
  * @example
  * // Returns '2023-07-08'
- * getDateString(2023, 6, 8)
+ * getDateStringFromIndex(2023, 6, 8)
  */
-export const getDateString = (year: number, colIndex: number, day: number): string => {
+export const getDateStringFromIndex = (year: number, colIndex: number, day: number): string => {
   const month = getMonthIndex(colIndex, day, year)
   return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+}
+
+/**
+ * Gets string representation of the date from the given year, monthIndex, and day.
+ * @param {number} year - Year to calculate from.
+ * @param {number} monthIndex - An index of month to calculate from. Range from `0`(January) to `11`(December).
+ * @param {number} day - Day of the month to calculate from.
+ * @returns A string representation of the date in 'YYYY-MM-DD' format.
+ * @example
+ * // Returns '2023-07-08'
+ * getDateString(2023, 6, 8)
+ */
+export const getDateString = (year: number, monthIndex: number, day: number): string => {
+  return `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+}
+
+/**
+ * Parses integer value of year from `dateString`.
+ * @param {string} dateString - String date format `YYYY-MM-DD`.
+ * @example
+ * // Returns 2023
+ * parseYearFromDateString('2023-07-08')
+ */
+export const parseYearFromDateString = (dateString: string): number => {
+  return +dateString.slice(0, 4)
 }
 
 /**
@@ -232,6 +257,53 @@ const fillDayArray = (dayArray: number[][], year: number = getCurrentYear()): nu
   }
 
   return dayArray
+}
+
+// FIXME: whether to use or not
+export const getDayArrayUntilToday = (): number[][] => {
+  const currentYear = getCurrentYear()
+  let lastYearDayArray = getDayArrayFromYear(currentYear - 1)
+  let currentYearDayArray = getDayArrayFromYear(currentYear)
+
+  lastYearDayArray = lastYearDayArray.map((row) =>
+    row.filter((day, colIndex) => !(colIndex === row.length - 1 && day === 0))
+  )
+  currentYearDayArray = currentYearDayArray.map((row) => row.filter((day, colIndex) => !(colIndex === 0 && day === 0)))
+
+  const mergedDayArray: number[][] = lastYearDayArray.map((row, i) => row.concat(currentYearDayArray[i]))
+  return mergedDayArray
+}
+
+/**
+ * Gets 2D number array filled with days from the given year range.
+ * @param {number} startYear - Year to start creating day array.
+ * @param {number} endYear - Year to end creating day array.
+ * @returns A 2D array filled with actual days between startYear and endYear.
+ */
+export const getDayArray = (startYear: number, endYear: number): number[][] => {
+  let mergedDayArray: number[][] = []
+
+  for (let year = startYear; year <= endYear; ++year) {
+    let dayArray = getDayArrayFromYear(year)
+
+    // filter dayArray
+    if (year === startYear) {
+      dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === row.length - 1 && day === 0)))
+    }
+
+    // in case `startYear` and `endYear` are the same
+    if (year === endYear) {
+      dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === 0 && day === 0)))
+    }
+
+    if (mergedDayArray.length === 0) {
+      mergedDayArray = mergedDayArray.concat(dayArray)
+    } else {
+      mergedDayArray = mergedDayArray.map((row, i) => row.concat(dayArray[i]))
+    }
+  }
+
+  return mergedDayArray
 }
 
 /**
