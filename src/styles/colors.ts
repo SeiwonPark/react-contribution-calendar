@@ -4,7 +4,6 @@
  * be defined from `level0` to `level4`.
  */
 export const THEMES: Theme = {
-  //light themes
   grass: {
     level0: '#ebedf0',
     level1: '#9be9a8',
@@ -89,13 +88,34 @@ export const THEMES: Theme = {
     level3: '#663399',
     level4: '#660099',
   },
+  neonpunk: {
+    level0: '#FFFFFF',
+    level1: '#B6FFFE',
+    level2: '#48FDFE',
+    level3: '#F20BF8',
+    level4: '#EE018F',
+  },
+  citypop: {
+    level0: '#c2b3ff',
+    level1: '#5B33FE',
+    level2: '#b84dff',
+    level3: '#d52dff',
+    level4: '#FA43F9',
+  },
+  coral: {
+    level0: '#fef3e7',
+    level1: '#f7b267',
+    level2: '#f79d65',
+    level3: '#f4845f',
+    level4: '#f25c54',
+  },
   //dark themes
-  dark_grass: {
-    level0: '#161b22',
-    level1: '#0e4429',
-    level2: '#006d32',
-    level3: '#26a641',
-    level4: '#39d353',
+  dark_vomit: {
+    level0: '#261339',
+    level1: '#663399',
+    level2: '#666699',
+    level3: '#669999',
+    level4: '#66cc99',
   },
   dark_cherry: {
     level0: '#1b1819',
@@ -118,6 +138,13 @@ export const THEMES: Theme = {
     level3: '#cc53ba',
     level4: '#ff68e9',
   },
+  dark_mustard: {
+    level0: '#2a2722',
+    level1: '#4d2e00',
+    level2: '#cc7b00',
+    level3: '#dca009',
+    level4: '#ffc905',
+  },
   dark_ocean: {
     level0: '#00004d',
     level1: '#0000b3',
@@ -125,12 +152,12 @@ export const THEMES: Theme = {
     level3: '#00bfff',
     level4: '#00ffff',
   },
-  dark_sky: {
-    level0: '#303636',
-    level1: '#616b6b',
-    level2: '#99a3a3',
-    level3: '#86b6b6',
-    level4: '#54bebe',
+  dark_grass: {
+    level0: '#161b22',
+    level1: '#0e4429',
+    level2: '#006d32',
+    level3: '#26a641',
+    level4: '#39d353',
   },
   dark_halloween: {
     level0: '#161b22',
@@ -146,20 +173,6 @@ export const THEMES: Theme = {
     level3: '#54aeff',
     level4: '#b6e3ff',
   },
-  dark_purquoise: {
-    level0: '#303636',
-    level1: '#7c8288',
-    level2: '#8d9caa',
-    level3: '#7c9bb9',
-    level4: '#5b82a8',
-  },
-  dark_mustard: {
-    level0: '#2a2722',
-    level1: '#4d2e00',
-    level2: '#cc7b00',
-    level3: '#dca009',
-    level4: '#ffc905',
-  },
   dark_gray: {
     level0: '#333333',
     level1: '#555555',
@@ -167,11 +180,39 @@ export const THEMES: Theme = {
     level3: '#999999',
     level4: '#D4D4D4',
   },
-  dark_vomit: {
-    level0: '#261339',
-    level1: '#663399',
-    level2: '#666699',
-    level3: '#669999',
-    level4: '#66cc99',
+  dark_sky: {
+    level0: '#303636',
+    level1: '#616b6b',
+    level2: '#99a3a3',
+    level3: '#86b6b6',
+    level4: '#54bebe',
+  },
+  dark_purquoise: {
+    level0: '#303636',
+    level1: '#7c8288',
+    level2: '#8d9caa',
+    level3: '#7c9bb9',
+    level4: '#5b82a8',
+  },
+  dark_neonpunk: {
+    level0: '#3E1340',
+    level1: '#EE018F',
+    level2: '#FF00FE',
+    level3: '#41FEFF',
+    level4: '#BFFFFC',
+  },
+  dark_citypop: {
+    level0: '#514c67',
+    level1: '#5B33FE',
+    level2: '#B74FFB',
+    level3: '#D52DE5',
+    level4: '#FA43F9',
+  },
+  dark_coral: {
+    level0: '#504949',
+    level2: '#df6d68',
+    level3: '#f25c54',
+    level1: '#f79d65',
+    level4: '#f7b267',
   },
 }
