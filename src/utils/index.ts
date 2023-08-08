@@ -362,17 +362,19 @@ export const createTheme = (inputTheme: string | ThemeProps): ThemeProps => {
 }
 
 /**
- * Returns date difference between two date strings.
- * @param {string} dateString1 - Date string in 'YYYY-MM-DD' format.
- * @param {string} dateString2 - Date string in 'YYYY-MM-DD' format.
+ * Returns date difference between two date strings. This could return negative value.
+ * @param {string} fromDateString - Starting date string in 'YYYY-MM-DD' format.
+ * @param {string} toDateString - Ending date string in 'YYYY-MM-DD' format.
  * @example
  * // Returns 30
  * getDateDifference("2023-01-01", "2023-01-31")
+ *
+ * // Returns -30
+ * getDateDifference("2023-01-31", "2023-01-01")
  */
-export const getDateDifference = (dateString1: string, dateString2: string): number => {
-  const date1 = new Date(dateString1)
-  const date2 = new Date(dateString2)
-  const diff = Math.abs(date2.getTime() - date1.getTime())
-  const diffDays = Math.ceil(diff / 86400000)
-  return diffDays
+export const getDateDifference = (fromDateString: string, toDateString: string): number => {
+  const date1 = new Date(fromDateString)
+  const date2 = new Date(toDateString)
+  const diff = Math.ceil((date2.getTime() - date1.getTime()) / 86400000)
+  return diff
 }
