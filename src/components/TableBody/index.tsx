@@ -6,6 +6,7 @@ import {
   getDayArray,
   parseYearFromDateString,
   getColIndex,
+  parseDayFromDateString,
 } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
@@ -22,10 +23,11 @@ interface TableBodyProps {
 export default function TableBody({ data, start, end, textColor, theme }: TableBodyProps) {
   const startYear = parseYearFromDateString(start)
   const endYear = parseYearFromDateString(end)
+  const startDay = parseDayFromDateString(start)
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArray(startYear, endYear)
-  const startColIndex = getColIndex(start)
-  const endColIndex = getColIndex(end)
+  const startColIndex = getColIndex(start, startYear, endYear)
+  const endColIndex = getColIndex(end, startYear, endYear)
 
   const setColorByTheme = (inputTheme: string | ThemeProps) => {
     const themeProps = createTheme(inputTheme)
@@ -34,8 +36,6 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
 
   const themeProps = setColorByTheme(theme)
   const parsedData = parseInputData(data)
-
-  console.log('dayArray: ', dayArray)
 
   return (
     <tbody>
@@ -52,6 +52,19 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
 
             if (dateString < start) {
               if (colIndex === startColIndex) {
+                return (
+                  <td
+                    key={colIndex}
+                    style={{
+                      padding: 0,
+                      outline: '1px solid rgba(27, 31, 35, 0.06)',
+                      borderRadius: '2px',
+                      outlineOffset: '-1px',
+                      shapeRendering: 'geometricPrecision',
+                    }}
+                  ></td>
+                )
+              } else if (dateColIndex > startColIndex && day > startDay) {
                 return (
                   <td
                     key={colIndex}
