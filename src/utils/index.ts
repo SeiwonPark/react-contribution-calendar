@@ -112,6 +112,10 @@ export const parseMonthFromDateString = (dateString: string): number => {
   return +dateString.slice(5, 7)
 }
 
+export const parseDayFromDateString = (dateString: string): number => {
+  return +dateString.slice(8, 9)
+}
+
 /**
  * Determines if the given `year` is a leap year or not.
  * @param {number} year - Year to calculate from, defaults to the current year.
@@ -361,11 +365,14 @@ export const createTheme = (inputTheme: string | ThemeProps): ThemeProps => {
  * Returns date difference between two date strings.
  * @param {string} dateString1 - Date string in 'YYYY-MM-DD' format.
  * @param {string} dateString2 - Date string in 'YYYY-MM-DD' format.
+ * @example
+ * // Returns 30
+ * getDateDifference("2023-01-01", "2023-01-31")
  */
 export const getDateDifference = (dateString1: string, dateString2: string): number => {
   const date1 = new Date(dateString1)
   const date2 = new Date(dateString2)
   const diff = Math.abs(date2.getTime() - date1.getTime())
-  const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24))
+  const diffDays = Math.ceil(diff / 86400000)
   return diffDays
 }
