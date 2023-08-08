@@ -5,7 +5,7 @@ import {
   createTheme,
   getDayArray,
   parseYearFromDateString,
-  getDateDifference,
+  getColIndex,
 } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
@@ -24,6 +24,8 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
   const endYear = parseYearFromDateString(end)
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArray(startYear, endYear)
+  const startColIndex = getColIndex(start)
+  const endColIndex = getColIndex(end)
 
   const setColorByTheme = (inputTheme: string | ThemeProps) => {
     const themeProps = createTheme(inputTheme)
@@ -32,6 +34,8 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
 
   const themeProps = setColorByTheme(theme)
   const parsedData = parseInputData(data)
+
+  console.log('dayArray: ', dayArray)
 
   return (
     <tbody>
@@ -46,28 +50,43 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
             const dateString = getDateStringFromIndex(year, dateColIndex, day)
             const data = parsedData.get(dateString)
 
-            // // FIXME: seems like expensive to get all differences
-            // if (
-            //   (dateString < start || dateString > end) &&
-            //   (getDateDifference(dateString, start) < 7 || getDateDifference(dateString, end) < 7)
-            // ) {
-            //   return (
-            //     <Cell
-            //       key={colIndex}
-            //       tabIndex={-1}
-            //       themeProps={setColorByTheme('empty')}
-            //       dataLevel={0}
-            //       style={{ width: '10px', height: '10px' }}
-            //     />
-            //   )
-            // } else if (dateString < start || dateString > end) {
-            //   return <td key={colIndex}></td>
-            // }
-            if (dateString < start || dateString > end) {
-              return <td key={colIndex}></td>
+            if (dateString < start) {
+              if (colIndex === startColIndex) {
+                return (
+                  <td
+                    key={colIndex}
+                    style={{
+                      padding: 0,
+                      outline: '1px solid rgba(27, 31, 35, 0.06)',
+                      borderRadius: '2px',
+                      outlineOffset: '-1px',
+                      shapeRendering: 'geometricPrecision',
+                    }}
+                  ></td>
+                )
+              } else {
+                return <td key={colIndex} style={{ padding: 0, display: 'none' }}></td>
+              }
+            } else if (dateString > end) {
+              if (colIndex !== endColIndex) {
+                return (
+                  <td
+                    key={colIndex}
+                    style={{
+                      padding: 0,
+                      outline: '1px solid rgba(27, 31, 35, 0.06)',
+                      borderRadius: '2px',
+                      outlineOffset: '-1px',
+                      shapeRendering: 'geometricPrecision',
+                    }}
+                  ></td>
+                )
+              } else {
+                return <td key={colIndex} style={{ padding: 0, display: 'none' }}></td>
+              }
             }
 
-            return (
+            return day ? (
               <Cell
                 key={colIndex}
                 tabIndex={-1}
@@ -77,6 +96,8 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
                 dataTooltip={getDateTooltip(year, dateColIndex, day)}
                 themeProps={themeProps}
               />
+            ) : (
+              <td key={colIndex}></td>
             )
           })}
         </tr>

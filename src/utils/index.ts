@@ -341,14 +341,17 @@ export const getColIndex = (date: string) => {
   const dayArray = getDayArrayFromYear(year)
 
   let monthIndex = getArraySum(colSpans, month - 3)
+  let c = monthIndex
 
-  for (let c = monthIndex; c < dayArray[0].length; ++c) {
+  for (c = monthIndex; c < dayArray[0].length; ++c) {
     for (let r = 0; r < dayArray.length; ++r) {
       if (dayArray[r][c] === day) {
         return c
       }
     }
   }
+
+  return monthIndex
 }
 
 /**
