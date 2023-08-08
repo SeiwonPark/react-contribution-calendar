@@ -113,7 +113,7 @@ export const parseMonthFromDateString = (dateString: string): number => {
 }
 
 export const parseDayFromDateString = (dateString: string): number => {
-  return +dateString.slice(8, 9)
+  return +dateString.slice(8, 10)
 }
 
 /**
@@ -158,11 +158,22 @@ export const getCurrentYear = (): number => {
 }
 
 /**
- * Returns sum of numbers in the `array`.
- * @param {number[]} array - A number of array.
+ * Returns sum of numbers in the `array` up to the n-th index, or the whole array
+ * if n is not provided.
+ * @param {number[]} array - A number array.
+ * @param {number} [n] - Optional. Last index to sum up to.
  */
-export const getArraySum = (array: number[]): number => {
-  return array.reduce((x, y) => x + y, 0)
+export const getArraySum = (array: number[], n?: number): number => {
+  if (n !== undefined && n < 0) {
+    return 0
+  }
+
+  return array.reduce((accumulator, currentValue, index) => {
+    if (n !== undefined) {
+      return index <= n ? accumulator + currentValue : accumulator
+    }
+    return accumulator + currentValue
+  }, 0)
 }
 
 /**
@@ -319,6 +330,25 @@ export const getDayArray = (startYear: number, endYear: number): number[][] => {
   }
 
   return mergedDayArray
+}
+
+export const getColIndex = (date: string) => {
+  const year = parseYearFromDateString(date)
+  const month = parseMonthFromDateString(date)
+  const day = parseDayFromDateString(date)
+
+  const colSpans = getColumnSpans(year)
+  const dayArray = getDayArrayFromYear(year)
+
+  let monthIndex = getArraySum(colSpans, month - 3)
+
+  for (let c = monthIndex; c < dayArray[0].length; ++c) {
+    for (let r = 0; r < dayArray.length; ++r) {
+      if (dayArray[r][c] === day) {
+        return c
+      }
+    }
+  }
 }
 
 /**
