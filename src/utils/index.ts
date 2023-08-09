@@ -312,14 +312,14 @@ export const getDayArray = (startYear: number, endYear: number): number[][] => {
   for (let year = startYear; year <= endYear; ++year) {
     let dayArray = getDayArrayFromYear(year)
 
-    // filter dayArray
-    if (year === startYear) {
-      dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === row.length - 1 && day === 0)))
-    }
-
     // in case `startYear` and `endYear` are the same
     if (year === endYear) {
       dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === 0 && day === 0)))
+    }
+
+    // filter dayArray
+    if (year === startYear) {
+      dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === row.length - 1 && day === 0)))
     }
 
     if (mergedDayArray.length === 0) {
