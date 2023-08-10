@@ -1,5 +1,5 @@
 import Label from '../Label'
-import { getColumnSpans, parseYearFromDateString, parseMonthFromDateString } from '../../utils'
+import { getColumnSpans, parseYearFromDateString, parseMonthFromDateString, getColumnSpansForYears } from '../../utils'
 import './index.css'
 
 interface TableHeadProps {
@@ -18,7 +18,7 @@ export default function TableHead({ start, end, textColor }: TableHeadProps) {
   let months: string[] = []
 
   for (let year = startYear; year <= endYear; ++year) {
-    const colSpans = getColumnSpans(year)
+    const colSpans = getColumnSpansForYears(year, startYear, endYear)
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
     if (year === startYear) {
@@ -34,8 +34,6 @@ export default function TableHead({ start, end, textColor }: TableHeadProps) {
     allColSpans = allColSpans.concat(colSpans)
     months = months.concat(monthNames)
   }
-
-  console.log(months)
 
   return (
     <thead>
