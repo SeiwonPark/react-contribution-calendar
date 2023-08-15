@@ -2,7 +2,7 @@ import { THEMES } from '../styles/colors'
 
 /**
  * Gets date details.
- * @param {Date} _date - Date to calculate from, defaults to current date.
+ * @param {Date} _date - Date to calculate, defaults to current date.
  * @returns An object containing the full year, month name, day of the month, and
  * day of the week for the current date.
  * @example
@@ -51,37 +51,6 @@ export const getDateDetails = (_date: Date = new Date()) => {
 }
 
 /**
- * Gets string representation of the date from the given `year`, `month`, and `day`.
- * @param {number} year - Year to calculate from.
- * @param {number} colIndex - An index of each colSpan for months. Range from 0 to 52.
- * @param {number} day - Day of the month to calculate from.
- * @returns A string representation of the date.
- * @example
- * // Returns 'Saturday, July 8, 2023'
- * getDateTooltip(2023, 6, 8)
- */
-export const getDateTooltip = (year: number, colIndex: number, day: number) => {
-  const month = getMonthIndex(colIndex, day, year)
-  const date = getDateDetails(new Date(year, month, day))
-  return `${date.date}, ${date.month} ${date.day}, ${date.year}`
-}
-
-/**
- * Gets string representation of the date from the given year, month, and day.
- * @param {number} year - Year to calculate from.
- * @param {number} colIndex - An index of each colSpan for months. Range from 0 to 52.
- * @param {number} day - Day of the month to calculate from.
- * @returns A string representation of the date in 'YYYY-MM-DD' format.
- * @example
- * // Returns '2023-07-08'
- * getDateStringFromIndex(2023, 6, 8)
- */
-export const getDateStringFromIndex = (year: number, colIndex: number, day: number): string => {
-  const month = getMonthIndex(colIndex, day, year)
-  return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-}
-
-/**
  * Gets string representation of the date from the given year, monthIndex, and day.
  * @param {number} year - Year to calculate from.
  * @param {number} monthIndex - An index of month to calculate from. Range from `0`(January) to `11`(December).
@@ -93,6 +62,19 @@ export const getDateStringFromIndex = (year: number, colIndex: number, day: numb
  */
 export const getDateString = (year: number, monthIndex: number, day: number): string => {
   return `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+}
+
+/**
+ * Returns formatted date string.
+ * @param {number} year - Year to calculate from.
+ * @param {number} month - Month to calculate from.
+ * @param {number} day - Day to calculate from.
+ * @example
+ * // Returns '2023-07-08'
+ * formatDateString(2023, 7, 8)
+ */
+const formatDateString = (year: number, month: number, day: number) => {
+  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
 }
 
 /**
@@ -171,7 +153,7 @@ export const getFirstDayIndexOfYear = (year: number = getCurrentYear()): number 
  * - `4`: Thursday
  * - `5`: Friday
  * - `6`: Saturday
- * @param {string} date - Date string to calculate from.
+ * @param {string} date - Date string to calculate.
  * @returns An index of the day of the month.
  */
 export const getDayIndexOfMonth = (date: string): number => {
@@ -183,61 +165,6 @@ export const getDayIndexOfMonth = (date: string): number => {
  */
 export const getCurrentYear = (): number => {
   return new Date().getFullYear()
-}
-
-/**
- * Returns sum of numbers in the `array` up to the n-th index, or the whole array
- * if n is not provided.
- * @param {number[]} array - A number array.
- * @param {number} [n] - Optional. Last index to sum up to.
- */
-export const getArraySum = (array: number[], n?: number): number => {
-  if (n !== undefined && n < 0) {
-    return 0
-  }
-
-  return array.reduce((accumulator, currentValue, index) => {
-    if (n !== undefined) {
-      return index <= n ? accumulator + currentValue : accumulator
-    }
-    return accumulator + currentValue
-  }, 0)
-}
-
-/**
- * Calculates the number of columns required for each row from the given input `year`.
- * @param {number} year - Year to calculate from, defaults to the current year.
- * @returns An array containing the number of columns for each row.
- * @example
- * // Returns [5, 4, 5, 5, 4, 5, 5, 4, 5, 4, 5, 5]
- * getColumnSpans(2020)
- */
-export const getColumnSpans = (year: number = getCurrentYear()): number[] => {
-  const daysInMonths = getDaysInMonths(year)
-  const firstDayOfYear = getFirstDayIndexOfYear(year)
-  const colSpans: number[] = []
-  let currentDay = firstDayOfYear
-
-  for (let i = 0; i < 12; i++) {
-    const daysInMonth = daysInMonths[i]
-    let cols = 0
-
-    for (let j = 0; j < daysInMonth; j++) {
-      // if `currentDay` is the beginning of a new column
-      if (currentDay === 0) {
-        cols++
-      }
-      currentDay = (currentDay + 1) % 7
-    }
-
-    if (i === 0 && firstDayOfYear !== 0) {
-      cols++
-    }
-
-    colSpans.push(cols)
-  }
-
-  return colSpans
 }
 
 /**
@@ -286,171 +213,6 @@ export const getColumnSpansForYears = (
 }
 
 /**
- * Gets month index from the given column index and day.
- * @param {number} colIndex - An index of each colSpan for months. Range from 0 to 52.
- * @param {number} day - Day of the month.
- * @param {number} year - Year to calculate from, defaults to the current year.
- * @returns The month index for the given column index and day.
- * @example
- * // Returns 1 (for February)
- * getMonthIndex(4, 1, 2023)
- */
-export const getMonthIndex = (colIndex: number, day: number, year: number = getCurrentYear()): number => {
-  const colSpans = getColumnSpans(year)
-  const daysInMonths = getDaysInMonths(year)
-
-  let sumOfColumns = 0
-  let sumOfDays = 0
-  let i = 0
-
-  for (i = 0; i < colSpans.length; i++) {
-    sumOfColumns += colSpans[i]
-    sumOfDays += daysInMonths[i]
-
-    if (colIndex + 1 === sumOfColumns && day < 7) {
-      return i + 1
-    } else if (colIndex < sumOfColumns && day <= sumOfDays) {
-      return i
-    }
-  }
-
-  return i
-}
-
-/**
- * Creates an empty day array to store all days of the year.
- * @param {number} sumOfSpans - Sum of column spans for all months.
- * @returns A 2D number array as much as all days in a year filled with `0`.
- */
-const createDayArray = (sumOfSpans: number): number[][] => {
-  return new Array(7).fill(0).map(() => new Array(sumOfSpans).fill(0))
-}
-
-// /**
-//  * This actually handles filling the `dayArray` with days based on the current year.
-//  * @param {number[][]} dayArray - Sum of column spans for all months.
-//  * @param {number} year - Year to calculate from, defaults to the current year.
-//  * @returns Filled array from the given `dayArray` with days.
-//  */
-// export const fillDayArray = (dayArray: number[][], year: number = getCurrentYear()): number[][] => {
-//   const daysInMonths = getDaysInMonths(year)
-//   const firstDayIndexOfYear = getFirstDayIndexOfYear(year)
-
-//   let currentMonthIndex = 0
-//   let currentDay = 1
-//   let currentDateIndex = firstDayIndexOfYear
-
-//   while (currentMonthIndex < 12) {
-//     // fills days in the 2D `dayArray`
-//     for (let i = 0; i < daysInMonths[currentMonthIndex]; i++) {
-//       dayArray[currentDateIndex % 7][~~(currentDateIndex / 7)] = currentDay
-//       currentDateIndex++
-//       currentDay++
-//     }
-
-//     // reset `currentDay` for the next month
-//     if (currentDay > daysInMonths[currentMonthIndex]) {
-//       currentDay = 1
-//       currentMonthIndex++
-//     }
-//   }
-
-//   return dayArray
-// }
-
-// // FIXME: whether to use or not
-// export const getDayArrayUntilToday = (): number[][] => {
-//   const currentYear = getCurrentYear()
-//   let lastYearDayArray = getDayArrayFromYear(currentYear - 1)
-//   let currentYearDayArray = getDayArrayFromYear(currentYear)
-
-//   lastYearDayArray = lastYearDayArray.map((row) =>
-//     row.filter((day, colIndex) => !(colIndex === row.length - 1 && day === 0))
-//   )
-//   currentYearDayArray = currentYearDayArray.map((row) => row.filter((day, colIndex) => !(colIndex === 0 && day === 0)))
-
-//   const mergedDayArray: number[][] = lastYearDayArray.map((row, i) => row.concat(currentYearDayArray[i]))
-//   return mergedDayArray
-// }
-
-// /**
-//  * Gets 2D number array filled with days from the given year range.
-//  * @param {number} startYear - Year to start creating day array.
-//  * @param {number} endYear - Year to end creating day array.
-//  * @returns A 2D array filled with actual days between startYear and endYear.
-//  */
-// export const getDayArray = (startYear: number, endYear: number): number[][] => {
-//   let mergedDayArray: number[][] = []
-
-//   for (let year = startYear; year <= endYear; ++year) {
-//     let dayArray = getDayArrayFromYear(year, startYear, endYear)
-
-//     // filter dayArray
-//     if (year === startYear) {
-//       dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === row.length - 1 && day === 0)))
-//     }
-
-//     if (startYear !== endYear && year === endYear) {
-//       dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === 0 && day === 0)))
-//     }
-
-//     if (mergedDayArray.length === 0) {
-//       mergedDayArray = mergedDayArray.concat(dayArray)
-//     } else {
-//       mergedDayArray = mergedDayArray.map((row, i) => row.concat(dayArray[i]))
-//     }
-//   }
-
-//   const filteredMergedDayArray = mergedDayArray.map((array) => {
-//     return array.filter((value, index) => {
-//       return !(value === 0 && index !== 0)
-//     })
-//   })
-
-//   return filteredMergedDayArray
-// }
-
-// export const getColIndex = (date: string, startYear: number, endYear: number) => {
-//   const year = parseYearFromDateString(date)
-//   const month = parseMonthFromDateString(date)
-//   const day = parseDayFromDateString(date)
-
-//   const colSpans = getColumnSpansForYears(year, startYear, endYear)
-//   const dayArray = getDayArrayFromYear(year, startYear, endYear)
-
-//   let monthIndex = getArraySum(colSpans, month - 3)
-//   let c = monthIndex
-
-//   for (c = monthIndex; c < dayArray[0].length; ++c) {
-//     for (let r = 0; r < dayArray.length; ++r) {
-//       if (dayArray[r][c] === day) {
-//         return c
-//       }
-//     }
-//   }
-
-//   return monthIndex
-// }
-
-// /**
-//  * Gets 2D number array filled with days from the given year depending on the column spans.
-//  * @param {number} year - Year to calculate from, defaults to the current year.
-//  * @returns A 2D array filled with actual days for the year.
-//  */
-// export const getDayArrayFromYear = (
-//   year: number = getCurrentYear(),
-//   startYear: number,
-//   endYear: number
-// ): number[][] => {
-//   const colSpans = getColumnSpansForYears(year, startYear, endYear)
-//   const sumOfSpans = getArraySum(colSpans)
-
-//   const dayArray = createDayArray(sumOfSpans)
-//   const filledDayArray = fillDayArray(dayArray, year)
-//   return filledDayArray
-// }
-
-/**
  * Parses given `inputData` and returns the data in a `Map` structure.
  * @param {InputData[]} inputData - JSON list format input data.
  * @returns Parsed map from the given JSON list.
@@ -477,57 +239,56 @@ export const createTheme = (inputTheme: string | ThemeProps): ThemeProps => {
 }
 
 /**
- * Returns date difference between two date strings. This could return negative value.
- * @param {string} fromDateString - Starting date string in 'YYYY-MM-DD' format.
- * @param {string} toDateString - Ending date string in 'YYYY-MM-DD' format.
- * @example
- * // Returns 30
- * getDateDifference("2023-01-01", "2023-01-31")
- *
- * // Returns -30
- * getDateDifference("2023-01-31", "2023-01-01")
- */
-export const getDateDifference = (fromDateString: string, toDateString: string): number => {
-  const date1 = new Date(fromDateString)
-  const date2 = new Date(toDateString)
-  const diff = Math.ceil((date2.getTime() - date1.getTime()) / 86400000)
-  return diff
-}
-
-// -----------------------------------------------------------------------------------------------
-
-/**
- * Returns empty 2D array filled with zeros representing rows for each date and
+ * Returns empty 2D array filled with zeros representing indexes for rows and
  * columns for each week in a year.
  * @param {number} startYear - The starting year for 2D array.
  * @param {number} endYear - The ending year for 2D array.
  */
-const createArrays = (startYear: number, endYear: number): number[][] => {
+const createNumberArrays = (startYear: number, endYear: number): number[][] => {
   let columns = 0
   for (let year = startYear; year <= endYear; ++year) {
-    const firstDayIndex = getFirstDayIndexOfYear(year)
-
-    if (year === startYear || firstDayIndex === 0) {
-      columns += 53
-    } else {
-      columns += 52
-    }
+    columns += getColumnsForYear(startYear, year === startYear)
   }
 
   return new Array(7).fill(0).map(() => new Array(columns).fill(0))
 }
 
 /**
- *
+ * Returns empty 2D array filled with empty string representing rows for each date and
+ * columns for each week in a year.
+ * @param {number} startYear - The starting year for 2D array.
+ * @param {number} endYear - The ending year for 2D array.
+ */
+const createStringArrays = (startYear: number, endYear: number): string[][] => {
+  let columns = 0
+  for (let year = startYear; year <= endYear; ++year) {
+    columns += getColumnsForYear(startYear, year === startYear)
+  }
+
+  return new Array(7).fill('').map(() => new Array(columns).fill(''))
+}
+
+const getColumnsForYear = (year: number, isStartYear: boolean) => {
+  const firstDayIndex = getFirstDayIndexOfYear(year)
+
+  if (isStartYear || firstDayIndex === 0) {
+    return 53
+  } else {
+    return 52
+  }
+}
+
+/**
+ * Returns the 2D number array from 1st January of start year to 31st December of end year.
  * @param {string} start - The starting date for 2D array.
  * @param {string} end - The ending date for 2D array.
- * @returns
+ * @returns The 2D number array filled with indexes for all days between start and end year.
  */
 export const fillIndexArray = (start: string, end: string): number[][] => {
   const startYear = parseYearFromDateString(start)
   const endYear = parseYearFromDateString(end)
 
-  let indexArray: number[][] = createArrays(startYear, endYear)
+  const indexArray: number[][] = createNumberArrays(startYear, endYear)
   let lastColumn = 0
   let day = 1
 
@@ -561,18 +322,16 @@ export const fillIndexArray = (start: string, end: string): number[][] => {
 }
 
 /**
- *
+ * Returns the 2D string array from 1st January of start year to 31st December of end year.
  * @param {string} start - The starting date for 2D array.
  * @param {string} end - The ending date for 2D array.
- * @returns
+ * @returns The 2D string array filled with dates for all days between start and end year.
  */
-export const fillDayArray = (start: string, end: string): number[][] => {
+export const fillDayArray = (start: string, end: string): string[][] => {
   const startYear = parseYearFromDateString(start)
   const endYear = parseYearFromDateString(end)
-  console.log('startYear: ', startYear)
-  console.log('endYear: ', endYear)
 
-  let dayArray: number[][] = createArrays(startYear, endYear)
+  const dayArray: string[][] = createStringArrays(startYear, endYear)
   let lastColumn = 0
   let day = 1
 
@@ -586,7 +345,8 @@ export const fillDayArray = (start: string, end: string): number[][] => {
 
     while (currentMonthIndex < 12) {
       for (let i = 0; i < daysInMonths[currentMonthIndex]; ++i) {
-        dayArray[currentDateIndex % 7][~~(currentDateIndex / 7) + lastColumn] = currentDay
+        const dateString = formatDateString(year, currentMonthIndex + 1, currentDay)
+        dayArray[currentDateIndex % 7][~~(currentDateIndex / 7) + lastColumn] = dateString
 
         currentDateIndex++
         currentDay++
@@ -606,10 +366,11 @@ export const fillDayArray = (start: string, end: string): number[][] => {
 }
 
 /**
- *
+ * Calculates target date by date difference from the 1st January and returns its
+ * row and column index in an object.
  * @param {number} startYear - The starting year to calculate from.
  * @param {string} targetDate - The date to get row and column indexes from.
- * @returns
+ * @returns An object of row and column index that matches the target date.
  */
 export const getRowAndColumnIndexFromDate = (startYear: number, targetDate: string) => {
   const startDate = `${startYear}-01-01`
@@ -623,9 +384,16 @@ export const getRowAndColumnIndexFromDate = (startYear: number, targetDate: stri
       }
     }
   }
+  return { row: 0, col: 0 }
 }
 
-const getDaysBetween = (startDate: string, targetDate: string): number => {
+/**
+ * Gets date difference in days.
+ * @param {string} startDate - The start date to be calculated from.
+ * @param {string} targetDate - The target date to calculate.
+ * @returns The date difference between two dates.
+ */
+export const getDaysBetween = (startDate: string, targetDate: string): number => {
   const from = new Date(startDate)
   const to = new Date(targetDate)
   const timeDifference = to.getTime() - from.getTime()

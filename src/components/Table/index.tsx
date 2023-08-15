@@ -13,7 +13,7 @@ interface TableProps {
 
 export default function Table({
   data = [],
-  textColor = '#000',
+  textColor = '#fff',
   theme = 'grass',
   start = getDateString(getCurrentYear(), 0, 1),
   end = getDateString(getCurrentYear(), 11, 31),

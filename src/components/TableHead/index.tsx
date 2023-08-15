@@ -1,5 +1,10 @@
 import Label from '../Label'
-import { getColumnSpans, parseYearFromDateString, parseMonthFromDateString, getColumnSpansForYears } from '../../utils'
+import {
+  parseYearFromDateString,
+  parseMonthFromDateString,
+  fillDayArray,
+  getRowAndColumnIndexFromDate,
+} from '../../utils'
 import './index.css'
 
 interface TableHeadProps {
@@ -9,30 +14,32 @@ interface TableHeadProps {
 }
 
 export default function TableHead({ start, end, textColor }: TableHeadProps) {
-  const startYear = parseYearFromDateString(start)
-  const startMonth = parseMonthFromDateString(start) - 1
-  const endYear = parseYearFromDateString(end)
-  const endMonth = parseMonthFromDateString(end) - 1
+  const dayArray = fillDayArray(start, end)
 
-  let allColSpans: number[] = []
-  let months: string[] = []
+  const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(parseYearFromDateString(start), start)
+  const { col: endCol } = getRowAndColumnIndexFromDate(parseYearFromDateString(start), end)
 
-  for (let year = startYear; year <= endYear; ++year) {
-    const colSpans = getColumnSpansForYears(year, startYear, endYear)
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const allMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const months: string[] = []
+  const colSpans: number[] = []
 
-    if (year === startYear) {
-      colSpans.splice(0, startMonth)
-      monthNames.splice(0, startMonth)
+  let prevMonth = -1
+
+  for (let c = startCol; c <= endCol; ++c) {
+    let currentMonth = 0
+    if (c === startCol) {
+      currentMonth = parseMonthFromDateString(dayArray[startRow][c]) - 1
+    } else {
+      currentMonth = parseMonthFromDateString(dayArray[0][c]) - 1
     }
 
-    if (year === endYear) {
-      colSpans.splice(endMonth + 1)
-      monthNames.splice(endMonth + 1)
+    if (currentMonth !== prevMonth) {
+      months.push(allMonths[currentMonth])
+      prevMonth = currentMonth
+      colSpans.push(0)
     }
 
-    allColSpans = allColSpans.concat(colSpans)
-    months = months.concat(monthNames)
+    colSpans[colSpans.length - 1]++
   }
 
   return (
@@ -42,7 +49,7 @@ export default function TableHead({ start, end, textColor }: TableHeadProps) {
           {' '}
         </Label>
         {months.map((month, index) => (
-          <Label textColor={textColor} key={index} colSpan={allColSpans[index]}>
+          <Label textColor={textColor} key={index} colSpan={colSpans[index]}>
             {month}
           </Label>
         ))}
