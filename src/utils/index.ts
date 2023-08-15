@@ -117,6 +117,13 @@ export const parseMonthFromDateString = (dateString: string): number => {
   return +dateString.slice(5, 7)
 }
 
+/**
+ * Parses integer value of day from `dateString`.
+ * @param {string} dateString - String date format `YYYY-MM-DD`.
+ * @example
+ * // Returns 8
+ * parseDayFromDateString('2023-07-08')
+ */
 export const parseDayFromDateString = (dateString: string): number => {
   return +dateString.slice(8, 10)
 }
@@ -140,7 +147,7 @@ const getDaysInMonths = (year: number = getCurrentYear()): number[] => {
 }
 
 /**
- * Returns the index of the first day. Each index represents dates as follows:
+ * Returns the index of the first day of year. Each index represents dates as follows:
  * - `0`: Sunday
  * - `1`: Monday
  * - `2`: Tuesday
@@ -153,6 +160,22 @@ const getDaysInMonths = (year: number = getCurrentYear()): number[] => {
  */
 export const getFirstDayIndexOfYear = (year: number = getCurrentYear()): number => {
   return new Date(year, 0, 1).getDay()
+}
+
+/**
+ * Returns the index of day from the date. Each index represents dates as follows:
+ * - `0`: Sunday
+ * - `1`: Monday
+ * - `2`: Tuesday
+ * - `3`: Wednesday
+ * - `4`: Thursday
+ * - `5`: Friday
+ * - `6`: Saturday
+ * @param {string} date - Date string to calculate from.
+ * @returns An index of the day of the month.
+ */
+export const getDayIndexOfMonth = (date: string): number => {
+  return new Date(date).getDay()
 }
 
 /**
@@ -303,37 +326,37 @@ const createDayArray = (sumOfSpans: number): number[][] => {
   return new Array(7).fill(0).map(() => new Array(sumOfSpans).fill(0))
 }
 
-/**
- * This actually handles filling the `dayArray` with days based on the current year.
- * @param {number[][]} dayArray - Sum of column spans for all months.
- * @param {number} year - Year to calculate from, defaults to the current year.
- * @returns Filled array from the given `dayArray` with days.
- */
-export const fillDayArray = (dayArray: number[][], year: number = getCurrentYear()): number[][] => {
-  const daysInMonths = getDaysInMonths(year)
-  const firstDayIndexOfYear = getFirstDayIndexOfYear(year)
+// /**
+//  * This actually handles filling the `dayArray` with days based on the current year.
+//  * @param {number[][]} dayArray - Sum of column spans for all months.
+//  * @param {number} year - Year to calculate from, defaults to the current year.
+//  * @returns Filled array from the given `dayArray` with days.
+//  */
+// export const fillDayArray = (dayArray: number[][], year: number = getCurrentYear()): number[][] => {
+//   const daysInMonths = getDaysInMonths(year)
+//   const firstDayIndexOfYear = getFirstDayIndexOfYear(year)
 
-  let currentMonthIndex = 0
-  let currentDay = 1
-  let currentDateIndex = firstDayIndexOfYear
+//   let currentMonthIndex = 0
+//   let currentDay = 1
+//   let currentDateIndex = firstDayIndexOfYear
 
-  while (currentMonthIndex < 12) {
-    // fills days in the 2D `dayArray`
-    for (let i = 0; i < daysInMonths[currentMonthIndex]; i++) {
-      dayArray[currentDateIndex % 7][~~(currentDateIndex / 7)] = currentDay
-      currentDateIndex++
-      currentDay++
-    }
+//   while (currentMonthIndex < 12) {
+//     // fills days in the 2D `dayArray`
+//     for (let i = 0; i < daysInMonths[currentMonthIndex]; i++) {
+//       dayArray[currentDateIndex % 7][~~(currentDateIndex / 7)] = currentDay
+//       currentDateIndex++
+//       currentDay++
+//     }
 
-    // reset `currentDay` for the next month
-    if (currentDay > daysInMonths[currentMonthIndex]) {
-      currentDay = 1
-      currentMonthIndex++
-    }
-  }
+//     // reset `currentDay` for the next month
+//     if (currentDay > daysInMonths[currentMonthIndex]) {
+//       currentDay = 1
+//       currentMonthIndex++
+//     }
+//   }
 
-  return dayArray
-}
+//   return dayArray
+// }
 
 // // FIXME: whether to use or not
 // export const getDayArrayUntilToday = (): number[][] => {
@@ -350,82 +373,82 @@ export const fillDayArray = (dayArray: number[][], year: number = getCurrentYear
 //   return mergedDayArray
 // }
 
-/**
- * Gets 2D number array filled with days from the given year range.
- * @param {number} startYear - Year to start creating day array.
- * @param {number} endYear - Year to end creating day array.
- * @returns A 2D array filled with actual days between startYear and endYear.
- */
-export const getDayArray = (startYear: number, endYear: number): number[][] => {
-  let mergedDayArray: number[][] = []
+// /**
+//  * Gets 2D number array filled with days from the given year range.
+//  * @param {number} startYear - Year to start creating day array.
+//  * @param {number} endYear - Year to end creating day array.
+//  * @returns A 2D array filled with actual days between startYear and endYear.
+//  */
+// export const getDayArray = (startYear: number, endYear: number): number[][] => {
+//   let mergedDayArray: number[][] = []
 
-  for (let year = startYear; year <= endYear; ++year) {
-    let dayArray = getDayArrayFromYear(year, startYear, endYear)
+//   for (let year = startYear; year <= endYear; ++year) {
+//     let dayArray = getDayArrayFromYear(year, startYear, endYear)
 
-    // filter dayArray
-    if (year === startYear) {
-      dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === row.length - 1 && day === 0)))
-    }
+//     // filter dayArray
+//     if (year === startYear) {
+//       dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === row.length - 1 && day === 0)))
+//     }
 
-    if (startYear !== endYear && year === endYear) {
-      dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === 0 && day === 0)))
-    }
+//     if (startYear !== endYear && year === endYear) {
+//       dayArray = dayArray.map((row) => row.filter((day, colIndex) => !(colIndex === 0 && day === 0)))
+//     }
 
-    if (mergedDayArray.length === 0) {
-      mergedDayArray = mergedDayArray.concat(dayArray)
-    } else {
-      mergedDayArray = mergedDayArray.map((row, i) => row.concat(dayArray[i]))
-    }
-  }
+//     if (mergedDayArray.length === 0) {
+//       mergedDayArray = mergedDayArray.concat(dayArray)
+//     } else {
+//       mergedDayArray = mergedDayArray.map((row, i) => row.concat(dayArray[i]))
+//     }
+//   }
 
-  const filteredMergedDayArray = mergedDayArray.map((array) => {
-    return array.filter((value, index) => {
-      return !(value === 0 && index !== 0)
-    })
-  })
+//   const filteredMergedDayArray = mergedDayArray.map((array) => {
+//     return array.filter((value, index) => {
+//       return !(value === 0 && index !== 0)
+//     })
+//   })
 
-  return filteredMergedDayArray
-}
+//   return filteredMergedDayArray
+// }
 
-export const getColIndex = (date: string, startYear: number, endYear: number) => {
-  const year = parseYearFromDateString(date)
-  const month = parseMonthFromDateString(date)
-  const day = parseDayFromDateString(date)
+// export const getColIndex = (date: string, startYear: number, endYear: number) => {
+//   const year = parseYearFromDateString(date)
+//   const month = parseMonthFromDateString(date)
+//   const day = parseDayFromDateString(date)
 
-  const colSpans = getColumnSpansForYears(year, startYear, endYear)
-  const dayArray = getDayArrayFromYear(year, startYear, endYear)
+//   const colSpans = getColumnSpansForYears(year, startYear, endYear)
+//   const dayArray = getDayArrayFromYear(year, startYear, endYear)
 
-  let monthIndex = getArraySum(colSpans, month - 3)
-  let c = monthIndex
+//   let monthIndex = getArraySum(colSpans, month - 3)
+//   let c = monthIndex
 
-  for (c = monthIndex; c < dayArray[0].length; ++c) {
-    for (let r = 0; r < dayArray.length; ++r) {
-      if (dayArray[r][c] === day) {
-        return c
-      }
-    }
-  }
+//   for (c = monthIndex; c < dayArray[0].length; ++c) {
+//     for (let r = 0; r < dayArray.length; ++r) {
+//       if (dayArray[r][c] === day) {
+//         return c
+//       }
+//     }
+//   }
 
-  return monthIndex
-}
+//   return monthIndex
+// }
 
-/**
- * Gets 2D number array filled with days from the given year depending on the column spans.
- * @param {number} year - Year to calculate from, defaults to the current year.
- * @returns A 2D array filled with actual days for the year.
- */
-export const getDayArrayFromYear = (
-  year: number = getCurrentYear(),
-  startYear: number,
-  endYear: number
-): number[][] => {
-  const colSpans = getColumnSpansForYears(year, startYear, endYear)
-  const sumOfSpans = getArraySum(colSpans)
+// /**
+//  * Gets 2D number array filled with days from the given year depending on the column spans.
+//  * @param {number} year - Year to calculate from, defaults to the current year.
+//  * @returns A 2D array filled with actual days for the year.
+//  */
+// export const getDayArrayFromYear = (
+//   year: number = getCurrentYear(),
+//   startYear: number,
+//   endYear: number
+// ): number[][] => {
+//   const colSpans = getColumnSpansForYears(year, startYear, endYear)
+//   const sumOfSpans = getArraySum(colSpans)
 
-  const dayArray = createDayArray(sumOfSpans)
-  const filledDayArray = fillDayArray(dayArray, year)
-  return filledDayArray
-}
+//   const dayArray = createDayArray(sumOfSpans)
+//   const filledDayArray = fillDayArray(dayArray, year)
+//   return filledDayArray
+// }
 
 /**
  * Parses given `inputData` and returns the data in a `Map` structure.
@@ -469,4 +492,142 @@ export const getDateDifference = (fromDateString: string, toDateString: string):
   const date2 = new Date(toDateString)
   const diff = Math.ceil((date2.getTime() - date1.getTime()) / 86400000)
   return diff
+}
+
+// -----------------------------------------------------------------------------------------------
+
+/**
+ * Returns empty 2D array filled with zeros representing rows for each date and
+ * columns for each week in a year.
+ * @param {number} startYear - The starting year for 2D array.
+ * @param {number} endYear - The ending year for 2D array.
+ */
+const createArrays = (startYear: number, endYear: number): number[][] => {
+  let columns = 0
+  for (let year = startYear; year <= endYear; ++year) {
+    const firstDayIndex = getFirstDayIndexOfYear(year)
+
+    if (year === startYear || firstDayIndex === 0) {
+      columns += 53
+    } else {
+      columns += 52
+    }
+  }
+
+  return new Array(7).fill(0).map(() => new Array(columns).fill(0))
+}
+
+/**
+ *
+ * @param {string} start - The starting date for 2D array.
+ * @param {string} end - The ending date for 2D array.
+ * @returns
+ */
+export const fillIndexArray = (start: string, end: string): number[][] => {
+  const startYear = parseYearFromDateString(start)
+  const endYear = parseYearFromDateString(end)
+
+  let indexArray: number[][] = createArrays(startYear, endYear)
+  let lastColumn = 0
+  let day = 1
+
+  for (let year = startYear; year <= endYear; ++year) {
+    const firstDayIndex = getFirstDayIndexOfYear(year)
+    const daysInMonths = getDaysInMonths(year)
+
+    let currentMonthIndex = 0
+    let currentDay = 1
+    let currentDateIndex = firstDayIndex
+
+    while (currentMonthIndex < 12) {
+      for (let i = 0; i < daysInMonths[currentMonthIndex]; ++i) {
+        indexArray[currentDateIndex % 7][~~(currentDateIndex / 7) + lastColumn] = day
+
+        currentDateIndex++
+        currentDay++
+        day++
+      }
+
+      if (currentDay > daysInMonths[currentMonthIndex]) {
+        currentDay = 1
+        currentMonthIndex++
+      }
+    }
+
+    lastColumn += ~~(currentDateIndex / 7)
+  }
+
+  return indexArray
+}
+
+/**
+ *
+ * @param {string} start - The starting date for 2D array.
+ * @param {string} end - The ending date for 2D array.
+ * @returns
+ */
+export const fillDayArray = (start: string, end: string): number[][] => {
+  const startYear = parseYearFromDateString(start)
+  const endYear = parseYearFromDateString(end)
+  console.log('startYear: ', startYear)
+  console.log('endYear: ', endYear)
+
+  let dayArray: number[][] = createArrays(startYear, endYear)
+  let lastColumn = 0
+  let day = 1
+
+  for (let year = startYear; year <= endYear; ++year) {
+    const firstDayIndex = getFirstDayIndexOfYear(year)
+    const daysInMonths = getDaysInMonths(year)
+
+    let currentMonthIndex = 0
+    let currentDay = 1
+    let currentDateIndex = firstDayIndex
+
+    while (currentMonthIndex < 12) {
+      for (let i = 0; i < daysInMonths[currentMonthIndex]; ++i) {
+        dayArray[currentDateIndex % 7][~~(currentDateIndex / 7) + lastColumn] = currentDay
+
+        currentDateIndex++
+        currentDay++
+        day++
+      }
+
+      if (currentDay > daysInMonths[currentMonthIndex]) {
+        currentDay = 1
+        currentMonthIndex++
+      }
+    }
+
+    lastColumn += ~~(currentDateIndex / 7)
+  }
+
+  return dayArray
+}
+
+/**
+ *
+ * @param {number} startYear - The starting year to calculate from.
+ * @param {string} targetDate - The date to get row and column indexes from.
+ * @returns
+ */
+export const getRowAndColumnIndexFromDate = (startYear: number, targetDate: string) => {
+  const startDate = `${startYear}-01-01`
+  const targetDay = getDaysBetween(startDate, targetDate)
+  const indexArray = fillIndexArray(startDate, targetDate)
+
+  for (let r = 0; r < indexArray.length; ++r) {
+    for (let c = 0; c < indexArray[r].length; ++c) {
+      if (targetDay === indexArray[r][c]) {
+        return { row: r, col: c }
+      }
+    }
+  }
+}
+
+const getDaysBetween = (startDate: string, targetDate: string): number => {
+  const from = new Date(startDate)
+  const to = new Date(targetDate)
+  const timeDifference = to.getTime() - from.getTime()
+  return timeDifference / (1000 * 60 * 60 * 24) + 1
 }
