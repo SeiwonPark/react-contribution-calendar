@@ -72,7 +72,7 @@
   color: #ecf0f1;
   border-radius: 5px;
   bottom: calc(100% + 10px);
-  left: var(--tooltip-offset, -30px);
+  left: var(--tooltip-offset, -10px);
   white-space: nowrap;
 }
 
