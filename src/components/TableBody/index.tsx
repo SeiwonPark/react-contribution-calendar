@@ -17,9 +17,10 @@ interface TableBodyProps {
   textColor: string
   theme: string | ThemeProps
   includeBoundary: boolean
+  onClick?: MouseEventHandler
 }
 
-export default function TableBody({ data, start, end, textColor, theme, includeBoundary }: TableBodyProps) {
+export default function TableBody({ data, start, end, textColor, theme, includeBoundary, onClick }: TableBodyProps) {
   const startYear = parseYearFromDateString(start)
 
   const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(startYear, start)
@@ -73,6 +74,17 @@ export default function TableBody({ data, start, end, textColor, theme, includeB
             const data = parsedData.get(day)
             const dateTooltip = getDateTooltip(day)
 
+            const handleClick = (e: TableCellMouseEvent) => {
+              const cellData: CellData = {
+                date: day,
+                data: data?.data,
+              }
+
+              if (onClick) {
+                onClick(e, cellData)
+              }
+            }
+
             return (
               <Cell
                 key={colIndex}
@@ -82,6 +94,7 @@ export default function TableBody({ data, start, end, textColor, theme, includeB
                 data-content={JSON.stringify(data?.data)}
                 dataTooltip={dateTooltip}
                 themeProps={themeProps}
+                onClick={handleClick}
               />
             )
           })}

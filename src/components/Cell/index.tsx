@@ -7,6 +7,7 @@ interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
   style: CSSProperties
   children?: ReactNode
   dataTooltip?: string
+  onClick?: MouseEventHandler
 }
 
 export default function Cell({ children, style, dataTooltip, dataLevel, themeProps, ...otherProps }: CellProps) {

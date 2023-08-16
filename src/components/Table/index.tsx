@@ -10,6 +10,7 @@ interface TableProps {
   start?: string
   end?: string
   includeBoundary?: boolean
+  onClick?: MouseEventHandler
 }
 
 export default function Table({
@@ -19,6 +20,7 @@ export default function Table({
   start = getDateString(getCurrentYear(), 0, 1),
   end = getDateString(getCurrentYear(), 11, 31),
   includeBoundary = true,
+  onClick = () => {},
 }: TableProps) {
   return (
     <div className="container">
@@ -31,6 +33,7 @@ export default function Table({
           start={start}
           end={end}
           includeBoundary={includeBoundary}
+          onClick={onClick}
         />
       </table>
     </div>
