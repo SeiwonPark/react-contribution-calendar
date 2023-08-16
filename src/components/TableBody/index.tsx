@@ -23,12 +23,11 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
   const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(startYear, start)
   const { row: endRow, col: endCol } = getRowAndColumnIndexFromDate(startYear, end)
 
-  const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const DATES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const dayArray = getDayArray(start, end)
 
   const setColorByTheme = (inputTheme: string | ThemeProps) => {
-    const themeProps = createTheme(inputTheme)
-    return themeProps
+    return createTheme(inputTheme)
   }
 
   const themeProps = setColorByTheme(theme)
@@ -44,7 +43,7 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
 
   return (
     <tbody>
-      {dates.map((date, rowIndex) => (
+      {DATES.map((date, rowIndex) => (
         <tr key={date}>
           <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'inherit' }}>
             {date}
