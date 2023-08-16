@@ -5,6 +5,13 @@
  */
 export const THEMES: Theme = {
   //light themes
+  empty: {
+    level0: '#ffffff',
+    level1: '#ffffff',
+    level2: '#ffffff',
+    level3: '#ffffff',
+    level4: '#ffffff',
+  },
   grass: {
     level0: '#ebedf0',
     level1: '#9be9a8',
@@ -111,6 +118,13 @@ export const THEMES: Theme = {
     level4: '#f25c54',
   },
   //dark themes
+  dark_empty: {
+    level0: '#000000',
+    level1: '#000000',
+    level2: '#000000',
+    level3: '#000000',
+    level4: '#000000',
+  },
   dark_grass: {
     level0: '#161b22',
     level1: '#0e4429',

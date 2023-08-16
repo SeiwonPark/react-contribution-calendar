@@ -13,6 +13,7 @@ module.exports = {
   rules: {
     /* Offs */
     'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/triple-slash-reference': 'off',
     /* Warns */
     'prettier/prettier': 'warn',
     'no-unused-vars': 'warn',
