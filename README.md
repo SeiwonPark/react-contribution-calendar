@@ -21,6 +21,11 @@ import { ContributionCalendar } from 'react-contribution-calendar'
 
 const data = [
   {
+    '2020-04-20': {
+      level: 2,
+    }
+  },
+  {
     '2023-07-08': {
       level: 1,
     },
@@ -32,7 +37,7 @@ const data = [
     },
   },
   {
-    '2023-12-31': {
+    '2023-03-31': {
       level: 3,
       data: {
         myKey: 'my data',
@@ -41,7 +46,13 @@ const data = [
   },
 ]
 
-<ContributionCalendar data={data} />
+<ContributionCalendar 
+  data={data}
+  start="2020-04-04"
+  end="2023-05-19"
+  textColor="#000000"
+  theme="grass"
+/>
 ```
 
 <br />
@@ -70,6 +81,9 @@ const data = [
       },
     ]
     ```
+- `start`: Optional. The starting date for the calendar to start, defaults to current year's January 1st(`YYYY-MM-DD` format).
+- `end`: Optional. The ending date for the calendar to end, defaults to current year's December 31st(`YYYY-MM-DD` format).
+- `textColor`: Optional. The color of indexes. String color code format. 
 - `theme`: Optional. A string that represents a predefined theme name, or an object with custom theme colors. Defaults to `grass`.
 
 <br />   
@@ -180,7 +194,7 @@ function App() {
     <ContributionCalendar
       data={[]}
       theme={{
-        // Assign theme properties directly
+        /* Assign theme properties directly */
         level0: "#ebedf0",
         level1: "#9be9a8",
         level2: "#40c463",
