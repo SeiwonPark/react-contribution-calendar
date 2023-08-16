@@ -1,6 +1,6 @@
 /**
  * This is for handling the issue of storing the object data with string keys.
- *
+ * @interface
  * Note: Each object might need proper types rather than this.
  */
 interface KeyValuePair {
@@ -9,6 +9,7 @@ interface KeyValuePair {
 
 /**
  * Defines properties of each data from the input data list.
+ * @interface
  */
 interface InputDataProps {
   /**
@@ -20,6 +21,7 @@ interface InputDataProps {
    * This attribute is for containing any type of object data to embrace various usages.
    *
    * Note: Currently the type `object` might have flexibility but should be reconsidered.
+   * @type {object | undefined}
    */
   data?: object
 }
@@ -28,6 +30,7 @@ interface InputDataProps {
  * This is for holding a collection of data entries. Each key is the identifier of an entry
  * and the value of the key is an `InputDataProps` which contains information about the level
  * of data and any type of object data. The level is used to set the priority of the data.
+ * @interface
  */
 interface InputData {
   [key: string]: InputDataProps
@@ -59,7 +62,36 @@ interface ThemeProps {
 /**
  * This is for holding a set of themes. Each key is the identifier of a theme and the value
  * of the key is an `ThemeProps` which contains information about the level of color intensity.
+ * @interface
  */
 interface Theme {
   [key: string]: ThemeProps
 }
+
+/**
+ * Represents the data with a table cell.
+ * @interface
+ */
+interface CellData {
+  /**
+   * The date from the cell.
+   */
+  date: string
+  /**
+   * Contains an object data of the cell.
+   * @type {object | undefined}
+   */
+  data?: object
+}
+
+/**
+ * Type representing the mouse event specific to an HTML table cell.
+ */
+type TableCellMouseEvent = React.MouseEvent<HTMLTableCellElement, MouseEvent>
+
+/**
+ * Type representing a handler for mouse events on an HTML table cell.
+ * @param {TableCellMouseEvent} event - The mouse event triggered on the table cell.
+ * @param {CellData | undefined} cellData - Optional data of the table cell.
+ */
+type MouseEventHandler = (event: TableCellMouseEvent, cellData?: CellData) => void

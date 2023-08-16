@@ -1,4 +1,4 @@
-// Type definitions for react-contribution-calendar 1.1.2
+// Type definitions for react-contribution-calendar 1.2.0
 // Project: https://github.com/seiwon-yaehee/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
@@ -16,6 +16,7 @@ declare module 'react-contribution-calendar' {
 
   /**
    * This is for attributes of <ContributionCalendar /> functional component.
+   * @interface
    */
   export interface ContributionCalendarProps {
     /**
@@ -45,7 +46,14 @@ declare module 'react-contribution-calendar' {
      * `ThemeProps` could be added directly i.e. when trying to use custom theme.
      */
     theme?: string | ThemeProps
+    /**
+     * Click event handler for table cells. This takes `cellData` as optional value.
+     */
+    onClick?: MouseEventHandler
   }
 
+  /**
+   * Main component of the package which takes ContributionCalendarProps.
+   */
   export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>
 }
