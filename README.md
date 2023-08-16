@@ -15,6 +15,11 @@ $ npm i react-contribution-calendar
 
 <br />
 
+## Demo
+[Live Demo](https://codepen.io/yaeheechoe/pen/wvRwJbP)
+
+<br/>
+
 ## Usage
 ```js
 import { ContributionCalendar } from 'react-contribution-calendar'
