@@ -4,6 +4,7 @@ import {
   parseYearFromDateString,
   getDayArray,
   getRowAndColumnIndexFromDate,
+  getDateTooltip,
 } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
@@ -70,6 +71,7 @@ export default function TableBody({ data, start, end, textColor, theme, includeB
             }
 
             const data = parsedData.get(day)
+            const dateTooltip = getDateTooltip(day)
 
             return (
               <Cell
@@ -78,7 +80,7 @@ export default function TableBody({ data, start, end, textColor, theme, includeB
                 style={{ width: '10px', height: '10px' }}
                 dataLevel={data !== undefined ? data.level : 0}
                 data-content={JSON.stringify(data?.data)}
-                dataTooltip={day}
+                dataTooltip={dateTooltip}
                 themeProps={themeProps}
               />
             )
