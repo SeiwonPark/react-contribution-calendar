@@ -72,8 +72,7 @@
   color: #ecf0f1;
   border-radius: 5px;
   bottom: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%);
+  left: var(--tooltip-offset, -30px);
   white-space: nowrap;
 }
 
