@@ -23,11 +23,11 @@ declare module 'react-contribution-calendar' {
      */
     data?: InputData[]
     /**
-     * Start date of calendar, defaults to 1st January of current year.
+     * The starting date of calendar, defaults to 1st January of current year.
      */
     start?: string
     /**
-     * End date of calendar, defaults to 31st December of current year.
+     * The ending date of calendar, defaults to 31st December of current year.
      */
     end?: string
     /**
