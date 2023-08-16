@@ -2,7 +2,7 @@ import Label from '../Label'
 import {
   parseYearFromDateString,
   parseMonthFromDateString,
-  fillDayArray,
+  getDayArray,
   getRowAndColumnIndexFromDate,
 } from '../../utils'
 import './index.css'
@@ -14,7 +14,7 @@ interface TableHeadProps {
 }
 
 export default function TableHead({ start, end, textColor }: TableHeadProps) {
-  const dayArray = fillDayArray(start, end)
+  const dayArray = getDayArray(start, end)
 
   const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(parseYearFromDateString(start), start)
   const { col: endCol } = getRowAndColumnIndexFromDate(parseYearFromDateString(start), end)

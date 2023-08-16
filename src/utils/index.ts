@@ -284,7 +284,7 @@ const getColumnsForYear = (year: number, isStartYear: boolean) => {
  * @param {string} end - The ending date for 2D array.
  * @returns The 2D number array filled with indexes for all days between start and end year.
  */
-export const fillIndexArray = (start: string, end: string): number[][] => {
+const getIndexArray = (start: string, end: string): number[][] => {
   const startYear = parseYearFromDateString(start)
   const endYear = parseYearFromDateString(end)
 
@@ -327,7 +327,7 @@ export const fillIndexArray = (start: string, end: string): number[][] => {
  * @param {string} end - The ending date for 2D array.
  * @returns The 2D string array filled with dates for all days between start and end year.
  */
-export const fillDayArray = (start: string, end: string): string[][] => {
+export const getDayArray = (start: string, end: string): string[][] => {
   const startYear = parseYearFromDateString(start)
   const endYear = parseYearFromDateString(end)
 
@@ -375,7 +375,7 @@ export const fillDayArray = (start: string, end: string): string[][] => {
 export const getRowAndColumnIndexFromDate = (startYear: number, targetDate: string) => {
   const startDate = `${startYear}-01-01`
   const targetDay = getDaysBetween(startDate, targetDate)
-  const indexArray = fillIndexArray(startDate, targetDate)
+  const indexArray = getIndexArray(startDate, targetDate)
 
   for (let r = 0; r < indexArray.length; ++r) {
     for (let c = 0; c < indexArray[r].length; ++c) {

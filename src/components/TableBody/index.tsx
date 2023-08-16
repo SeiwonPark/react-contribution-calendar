@@ -2,7 +2,7 @@ import {
   parseInputData,
   createTheme,
   parseYearFromDateString,
-  fillDayArray,
+  getDayArray,
   getRowAndColumnIndexFromDate,
 } from '../../utils'
 import Cell from '../Cell'
@@ -24,7 +24,7 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
   const { row: endRow, col: endCol } = getRowAndColumnIndexFromDate(startYear, end)
 
   const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  const dayArray = fillDayArray(start, end)
+  const dayArray = getDayArray(start, end)
 
   const setColorByTheme = (inputTheme: string | ThemeProps) => {
     const themeProps = createTheme(inputTheme)
