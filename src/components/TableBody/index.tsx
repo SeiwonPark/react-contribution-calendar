@@ -34,6 +34,14 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
   const themeProps = setColorByTheme(theme)
   const parsedData = parseInputData(data)
 
+  const isOutRangedCell = (rowIndex: number, colIndex: number): boolean => {
+    return !dayArray[rowIndex][colIndex] || colIndex < startCol || colIndex > endCol
+  }
+
+  const isBoundaryCell = (rowIndex: number, colIndex: number): boolean => {
+    return (colIndex === startCol && rowIndex < startRow) || (colIndex === endCol && rowIndex > endRow)
+  }
+
   return (
     <tbody>
       {dates.map((date, rowIndex) => (
@@ -42,13 +50,11 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
             {date}
           </Label>
           {dayArray[rowIndex].map((day, colIndex) => {
-            if (!day) return <td style={{ padding: '0', display: 'none' }} key={colIndex}></td>
-
-            if (colIndex < startCol || colIndex > endCol) {
+            if (isOutRangedCell(rowIndex, colIndex)) {
               return <td style={{ padding: '0', display: 'none' }} key={colIndex}></td>
             }
 
-            if ((colIndex === startCol && rowIndex < startRow) || (colIndex === endCol && rowIndex > endRow)) {
+            if (isBoundaryCell(rowIndex, colIndex)) {
               return (
                 <td
                   key={colIndex}
@@ -63,8 +69,7 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
               )
             }
 
-            const dateString = dayArray[rowIndex][colIndex]
-            const data = parsedData.get(dateString)
+            const data = parsedData.get(day)
 
             return (
               <Cell
@@ -73,7 +78,7 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
                 style={{ width: '10px', height: '10px' }}
                 dataLevel={data !== undefined ? data.level : 0}
                 data-content={JSON.stringify(data?.data)}
-                dataTooltip={dateString}
+                dataTooltip={day}
                 themeProps={themeProps}
               />
             )
