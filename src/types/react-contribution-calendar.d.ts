@@ -1,4 +1,4 @@
-// Type definitions for react-contribution-calendar 1.1.0
+// Type definitions for react-contribution-calendar 1.1.1
 // Project: https://github.com/seiwon-yaehee/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
