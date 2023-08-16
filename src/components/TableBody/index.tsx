@@ -2,7 +2,7 @@ import {
   parseInputData,
   createTheme,
   parseYearFromDateString,
-  fillDayArray,
+  getDayArray,
   getRowAndColumnIndexFromDate,
 } from '../../utils'
 import Cell from '../Cell'
@@ -23,32 +23,37 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
   const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(startYear, start)
   const { row: endRow, col: endCol } = getRowAndColumnIndexFromDate(startYear, end)
 
-  const dates = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  const dayArray = fillDayArray(start, end)
+  const DATES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const dayArray = getDayArray(start, end)
 
   const setColorByTheme = (inputTheme: string | ThemeProps) => {
-    const themeProps = createTheme(inputTheme)
-    return themeProps
+    return createTheme(inputTheme)
   }
 
   const themeProps = setColorByTheme(theme)
   const parsedData = parseInputData(data)
 
+  const isOutRangedCell = (rowIndex: number, colIndex: number): boolean => {
+    return !dayArray[rowIndex][colIndex] || colIndex < startCol || colIndex > endCol
+  }
+
+  const isBoundaryCell = (rowIndex: number, colIndex: number): boolean => {
+    return (colIndex === startCol && rowIndex < startRow) || (colIndex === endCol && rowIndex > endRow)
+  }
+
   return (
     <tbody>
-      {dates.map((date, rowIndex) => (
+      {DATES.map((date, rowIndex) => (
         <tr key={date}>
           <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'inherit' }}>
             {date}
           </Label>
           {dayArray[rowIndex].map((day, colIndex) => {
-            if (!day) return <td style={{ padding: '0', display: 'none' }} key={colIndex}></td>
-
-            if (colIndex < startCol || colIndex > endCol) {
+            if (isOutRangedCell(rowIndex, colIndex)) {
               return <td style={{ padding: '0', display: 'none' }} key={colIndex}></td>
             }
 
-            if ((colIndex === startCol && rowIndex < startRow) || (colIndex === endCol && rowIndex > endRow)) {
+            if (isBoundaryCell(rowIndex, colIndex)) {
               return (
                 <td
                   key={colIndex}
@@ -63,8 +68,7 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
               )
             }
 
-            const dateString = dayArray[rowIndex][colIndex]
-            const data = parsedData.get(dateString)
+            const data = parsedData.get(day)
 
             return (
               <Cell
@@ -73,7 +77,7 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
                 style={{ width: '10px', height: '10px' }}
                 dataLevel={data !== undefined ? data.level : 0}
                 data-content={JSON.stringify(data?.data)}
-                dataTooltip={dateString}
+                dataTooltip={day}
                 themeProps={themeProps}
               />
             )

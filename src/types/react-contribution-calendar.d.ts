@@ -1,4 +1,4 @@
-// Type definitions for react-contribution-calendar 1.1.0
+// Type definitions for react-contribution-calendar 1.1.1
 // Project: https://github.com/seiwon-yaehee/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
@@ -15,7 +15,7 @@ declare module 'react-contribution-calendar' {
   export const createTheme = (themeProps: ThemeProps): ThemeProps => {}
 
   /**
-   * This is for attributes of <ContributionCalendar /> function component.
+   * This is for attributes of <ContributionCalendar /> functional component.
    */
   export interface ContributionCalendarProps {
     /**
@@ -23,11 +23,13 @@ declare module 'react-contribution-calendar' {
      */
     data?: InputData[]
     /**
-     * Start date of calendar, defaults to 1st January of current year.
+     * The starting date of calendar, defaults to 1st January of current year.
+     * To set `start` date, `end` date should be provided as well.
      */
     start?: string
     /**
-     * End date of calendar, defaults to 31st December of current year.
+     * The ending date of calendar, defaults to 31st December of current year.
+     * To set `end` date, `start` date should be provided as well.
      */
     end?: string
     /**

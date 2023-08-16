@@ -1,5 +1,7 @@
 import { THEMES } from '../styles/colors'
 
+const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
 /**
  * Gets date details.
  * @param {Date} _date - Date to calculate, defaults to current date.
@@ -284,7 +286,7 @@ const getColumnsForYear = (year: number, isStartYear: boolean) => {
  * @param {string} end - The ending date for 2D array.
  * @returns The 2D number array filled with indexes for all days between start and end year.
  */
-export const fillIndexArray = (start: string, end: string): number[][] => {
+const getIndexArray = (start: string, end: string): number[][] => {
   const startYear = parseYearFromDateString(start)
   const endYear = parseYearFromDateString(end)
 
@@ -327,7 +329,7 @@ export const fillIndexArray = (start: string, end: string): number[][] => {
  * @param {string} end - The ending date for 2D array.
  * @returns The 2D string array filled with dates for all days between start and end year.
  */
-export const fillDayArray = (start: string, end: string): string[][] => {
+export const getDayArray = (start: string, end: string): string[][] => {
   const startYear = parseYearFromDateString(start)
   const endYear = parseYearFromDateString(end)
 
@@ -375,7 +377,7 @@ export const fillDayArray = (start: string, end: string): string[][] => {
 export const getRowAndColumnIndexFromDate = (startYear: number, targetDate: string) => {
   const startDate = `${startYear}-01-01`
   const targetDay = getDaysBetween(startDate, targetDate)
-  const indexArray = fillIndexArray(startDate, targetDate)
+  const indexArray = getIndexArray(startDate, targetDate)
 
   for (let r = 0; r < indexArray.length; ++r) {
     for (let c = 0; c < indexArray[r].length; ++c) {
@@ -389,7 +391,7 @@ export const getRowAndColumnIndexFromDate = (startYear: number, targetDate: stri
 
 /**
  * Gets date difference in days.
- * @param {string} startDate - The start date to be calculated from.
+ * @param {string} startDate - The starting date to be calculated from.
  * @param {string} targetDate - The target date to calculate.
  * @returns The date difference between two dates.
  */
@@ -398,4 +400,44 @@ export const getDaysBetween = (startDate: string, targetDate: string): number =>
   const to = new Date(targetDate)
   const timeDifference = to.getTime() - from.getTime()
   return timeDifference / (1000 * 60 * 60 * 24) + 1
+}
+
+/**
+ * This function is for table head component to return indexes for month and column spans
+ * from the `dayArray` in a range between `start` and `end` date.
+ * @param {string} start - The starting date for the 2D array.
+ * @param {string} end - The ending date for the 2D array.
+ * @param {number[][]} dayArray - 2D string array filled with days in 'YYYY-MM-DD' format.
+ */
+export const getMonthsAndColSpans = (
+  start: string,
+  end: string,
+  dayArray: string[][]
+): { months: string[]; colSpans: number[] } => {
+  const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(parseYearFromDateString(start), start)
+  const { col: endCol } = getRowAndColumnIndexFromDate(parseYearFromDateString(start), end)
+
+  const months: string[] = []
+  const colSpans: number[] = []
+
+  let prevMonth = -1
+  let currentMonth = 0
+
+  for (let c = startCol; c <= endCol; ++c) {
+    if (c === startCol) {
+      currentMonth = parseMonthFromDateString(dayArray[startRow][c]) - 1
+    } else {
+      currentMonth = parseMonthFromDateString(dayArray[0][c]) - 1
+    }
+
+    if (currentMonth !== prevMonth) {
+      months.push(MONTH_NAMES[currentMonth])
+      prevMonth = currentMonth
+      colSpans.push(0)
+    }
+
+    colSpans[colSpans.length - 1]++
+  }
+
+  return { months, colSpans }
 }
