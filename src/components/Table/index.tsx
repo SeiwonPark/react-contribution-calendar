@@ -9,6 +9,7 @@ interface TableProps {
   theme?: string | ThemeProps
   start?: string
   end?: string
+  includeBoundary?: boolean
 }
 
 export default function Table({
@@ -17,12 +18,20 @@ export default function Table({
   theme = 'grass',
   start = getDateString(getCurrentYear(), 0, 1),
   end = getDateString(getCurrentYear(), 11, 31),
+  includeBoundary = true,
 }: TableProps) {
   return (
     <div className="container">
       <table>
         <TableHead textColor={textColor} start={start} end={end} />
-        <TableBody data={data} textColor={textColor} theme={theme} start={start} end={end} />
+        <TableBody
+          data={data}
+          textColor={textColor}
+          theme={theme}
+          start={start}
+          end={end}
+          includeBoundary={includeBoundary}
+        />
       </table>
     </div>
   )

@@ -15,9 +15,10 @@ interface TableBodyProps {
   end: string
   textColor: string
   theme: string | ThemeProps
+  includeBoundary: boolean
 }
 
-export default function TableBody({ data, start, end, textColor, theme }: TableBodyProps) {
+export default function TableBody({ data, start, end, textColor, theme, includeBoundary }: TableBodyProps) {
   const startYear = parseYearFromDateString(start)
 
   const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(startYear, start)
@@ -33,8 +34,8 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
   const themeProps = setColorByTheme(theme)
   const parsedData = parseInputData(data)
 
-  const isOutRangedCell = (rowIndex: number, colIndex: number): boolean => {
-    return !dayArray[rowIndex][colIndex] || colIndex < startCol || colIndex > endCol
+  const isOutRangedCell = (_: number, colIndex: number): boolean => {
+    return colIndex < startCol || colIndex > endCol
   }
 
   const isBoundaryCell = (rowIndex: number, colIndex: number): boolean => {
@@ -59,7 +60,7 @@ export default function TableBody({ data, start, end, textColor, theme }: TableB
                   key={colIndex}
                   style={{
                     padding: 0,
-                    outline: '1px solid rgba(27, 31, 35, 0.06)',
+                    outline: includeBoundary ? '1px solid rgba(27, 31, 35, 0.06)' : 'none',
                     borderRadius: '2px',
                     outlineOffset: '-1px',
                     shapeRendering: 'geometricPrecision',
