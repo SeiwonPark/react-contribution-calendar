@@ -53,6 +53,19 @@ export const getDateDetails = (_date: Date = new Date()) => {
 }
 
 /**
+ * Gets string representation of the date from the given `dateString`.
+ * @param {string} dateString - The date string to be converted.
+ * @returns A string representation of the date.
+ * @example
+ * // Returns 'Saturday, July 8, 2023'
+ * getDateTooltip('2023-07-08')
+ */
+export const getDateTooltip = (dateString: string) => {
+  const date = getDateDetails(new Date(dateString))
+  return `${date.date}, ${date.month} ${date.day}, ${date.year}`
+}
+
+/**
  * Gets string representation of the date from the given year, monthIndex, and day.
  * @param {number} year - Year to calculate from.
  * @param {number} monthIndex - An index of month to calculate from. Range from `0`(January) to `11`(December).
