@@ -61,7 +61,7 @@ export default function TableBody({ data, start, end, textColor, theme, includeB
                   key={colIndex}
                   style={{
                     padding: 0,
-                    outline: includeBoundary ? '1px solid rgba(27, 31, 35, 0.06)' : 'none',
+                    outline: includeBoundary ? `1px solid ${themeProps.level0}` : 'none',
                     borderRadius: '2px',
                     outlineOffset: '-1px',
                     shapeRendering: 'geometricPrecision',
