@@ -1,4 +1,4 @@
-// Type definitions for react-contribution-calendar 1.1.1
+// Type definitions for react-contribution-calendar 1.1.2
 // Project: https://github.com/seiwon-yaehee/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
@@ -36,6 +36,10 @@ declare module 'react-contribution-calendar' {
      * The text color of calendar indexes for months and dates, defaults to `#000`.
      */
     textColor?: string
+    /**
+     * Whether to include the boundary column or not, defaults to `true`.
+     */
+    includeBoundary?: boolean
     /**
      * The name of theme for the ContributionCalendar, defaults to `grass`. Also
      * `ThemeProps` could be added directly i.e. when trying to use custom theme.
