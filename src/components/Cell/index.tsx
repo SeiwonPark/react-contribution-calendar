@@ -10,7 +10,7 @@ interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
   onClick?: MouseEventHandler
 }
 
-export default function Cell({ children, style, dataTooltip, dataLevel, themeProps, ...otherProps }: CellProps) {
+export default function Cell({ themeProps, dataLevel, style, children, dataTooltip, ...otherProps }: CellProps) {
   const cellRef = useRef<HTMLTableCellElement>(null)
   const [tooltipOffset, setTooltipOffset] = useState<number>(-10)
 

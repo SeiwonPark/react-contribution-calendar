@@ -15,7 +15,7 @@ export default function TableHead({ start, end, textColor }: TableHeadProps) {
   return (
     <thead>
       <tr>
-        <Label textColor={textColor} style={{ width: '40px' }} colSpan={1}>
+        <Label textColor={textColor} style={{ width: '3.5em' }} colSpan={1}>
           &nbsp;
         </Label>
         {months.map((month, index) => (
