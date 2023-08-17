@@ -12,11 +12,10 @@ declare module 'react-contribution-calendar' {
    * ContributionCalendarProps.
    * @param {ThemeProps} themeProps - Theme color properties from level 0 to 4.
    */
-  export const createTheme = (themeProps: ThemeProps): ThemeProps => {}
+  export const createTheme: (themeProps: ThemeProps) => ThemeProps
 
   /**
    * This is for attributes of <ContributionCalendar /> functional component.
-   * @interface
    */
   export interface ContributionCalendarProps {
     /**
@@ -42,6 +41,18 @@ declare module 'react-contribution-calendar' {
      */
     includeBoundary?: boolean
     /**
+     * The size of width of each cell, defaults to `10`px.
+     */
+    cx?: number
+    /**
+     * The size of height of each cell, defaults to `10`px.
+     */
+    cy?: number
+    /**
+     * The border radius of each cell, defaults to `2`px.
+     */
+    cr?: number
+    /**
      * The name of theme for the ContributionCalendar, defaults to `grass`. Also
      * `ThemeProps` could be added directly i.e. when trying to use custom theme.
      */
@@ -49,11 +60,50 @@ declare module 'react-contribution-calendar' {
     /**
      * Click event handler for table cells. This takes `cellData` as optional value.
      */
-    onClick?: MouseEventHandler
+    onCellClick?: MouseEventHandler
   }
 
   /**
-   * Main component of the package which takes ContributionCalendarProps.
+   * `ContributionCalendar` is a React component that renders data contributions over time, 
+   * similar to the contribution graph seen on GitHub profiles.
+   *
+   * This calendar displays data in cells, with varying color intensities based on the value 
+   * of each data point. The appearance and behavior of the calendar can be customized using
+   * the provided props.
+   *
+   * @example
+   * ```tsx
+   * import { ContributionCalendar } from 'react-contribution-calendar';
+   *
+   * const data = [
+   *  {
+   *     '2023-07-08': {
+   *       level: 1,
+   *     }
+   *   },
+   *  {
+   *     '2023-07-09': {
+   *       level: 4,
+   *       data: {},            // data with any kinds of keys can be set
+   *     }
+   *   },
+   *  {
+   *     '2023-03-31': {
+   *       level: 3,
+   *       data: {
+   *         myKey: 'my data'  // data with any kinds of keys can be set
+   *       },
+   *     }
+   *   },
+   *   // ...
+   * ];
+   *
+   *
+   * <ContributionCalendar data={data} theme="grass" />
+   * ```
+   *
+   * @version 1.2.0
+   * @see {@link https://github.com/seiwon-yaehee/react-contribution-calendar#apis}
    */
   export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>
 }

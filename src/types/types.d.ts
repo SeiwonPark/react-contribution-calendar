@@ -1,6 +1,5 @@
 /**
  * This is for handling the issue of storing the object data with string keys.
- * @interface
  * Note: Each object might need proper types rather than this.
  */
 interface KeyValuePair {
@@ -9,7 +8,6 @@ interface KeyValuePair {
 
 /**
  * Defines properties of each data from the input data list.
- * @interface
  */
 interface InputDataProps {
   /**
@@ -30,7 +28,6 @@ interface InputDataProps {
  * This is for holding a collection of data entries. Each key is the identifier of an entry
  * and the value of the key is an `InputDataProps` which contains information about the level
  * of data and any type of object data. The level is used to set the priority of the data.
- * @interface
  */
 interface InputData {
   [key: string]: InputDataProps
@@ -62,7 +59,6 @@ interface ThemeProps {
 /**
  * This is for holding a set of themes. Each key is the identifier of a theme and the value
  * of the key is an `ThemeProps` which contains information about the level of color intensity.
- * @interface
  */
 interface Theme {
   [key: string]: ThemeProps
@@ -70,7 +66,6 @@ interface Theme {
 
 /**
  * Represents the data with a table cell.
- * @interface
  */
 interface CellData {
   /**

@@ -62,7 +62,7 @@ const data = [
   textColor="#000000"
   includeBoundary={true}
   theme="grass"
-  onClick={(e, data) => console.log(data)}
+  onCellClick={(e, data) => console.log(data)}
 />
 ```
 
@@ -100,7 +100,7 @@ const data = [
 - **`textColor`**: Optional. The color of indexes. String color code format.
 - **`includeBoundary`**: Optional. Whethere to include the boundary cells in the starting or ending date column, defaults to `true`.
 - **`theme`**: Optional. A string that represents a predefined theme name, or an object with custom theme colors. Defaults to `grass`.
-- **`onClick`**: Optional. An onClick mouse event on each table cell.
+- **`onCellClick`**: Optional. An onClick mouse event on each table cell.
 
 <br />
 
