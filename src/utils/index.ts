@@ -297,9 +297,10 @@ const getColumnsForYear = (year: number, isStartYear: boolean) => {
  * Returns the 2D number array from 1st January of start year to 31st December of end year.
  * @param {string} start - The starting date for 2D array.
  * @param {string} end - The ending date for 2D array.
+ * @param {boolean} startsOnSunday - Whether to start the calendar from Sunday or not.
  * @returns The 2D number array filled with indexes for all days between start and end year.
  */
-const getIndexArray = (start: string, end: string): number[][] => {
+const getIndexArray = (start: string, end: string, startsOnSunday: boolean): number[][] => {
   const startYear = parseYearFromDateString(start)
   const endYear = parseYearFromDateString(end)
 
@@ -308,7 +309,7 @@ const getIndexArray = (start: string, end: string): number[][] => {
   let day = 1
 
   for (let year = startYear; year <= endYear; ++year) {
-    const firstDayIndex = getFirstDayIndexOfYear(year)
+    const firstDayIndex = startsOnSunday ? getFirstDayIndexOfYear(year) : (getFirstDayIndexOfYear(year) + 6) % 7
     const daysInMonths = getDaysInMonths(year)
 
     let currentMonthIndex = 0
@@ -340,9 +341,10 @@ const getIndexArray = (start: string, end: string): number[][] => {
  * Returns the 2D string array from 1st January of start year to 31st December of end year.
  * @param {string} start - The starting date for 2D array.
  * @param {string} end - The ending date for 2D array.
+ * @param {boolean} startsOnSunday - Whether to start the calendar from Sunday or not.
  * @returns The 2D string array filled with dates for all days between start and end year.
  */
-export const getDayArray = (start: string, end: string): string[][] => {
+export const getDayArray = (start: string, end: string, startsOnSunday: boolean): string[][] => {
   const startYear = parseYearFromDateString(start)
   const endYear = parseYearFromDateString(end)
 
@@ -351,7 +353,7 @@ export const getDayArray = (start: string, end: string): string[][] => {
   let day = 1
 
   for (let year = startYear; year <= endYear; ++year) {
-    const firstDayIndex = getFirstDayIndexOfYear(year)
+    const firstDayIndex = startsOnSunday ? getFirstDayIndexOfYear(year) : (getFirstDayIndexOfYear(year) + 6) % 7
     const daysInMonths = getDaysInMonths(year)
 
     let currentMonthIndex = 0
@@ -385,12 +387,13 @@ export const getDayArray = (start: string, end: string): string[][] => {
  * row and column index in an object.
  * @param {number} startYear - The starting year to calculate from.
  * @param {string} targetDate - The date to get row and column indexes from.
+ * @param {boolean} startsOnSunday - Whether to start the calendar from Sunday or not.
  * @returns An object of row and column index that matches the target date.
  */
-export const getRowAndColumnIndexFromDate = (startYear: number, targetDate: string) => {
+export const getRowAndColumnIndexFromDate = (startYear: number, targetDate: string, startsOnSunday: boolean) => {
   const startDate = `${startYear}-01-01`
   const targetDay = getDaysBetween(startDate, targetDate)
-  const indexArray = getIndexArray(startDate, targetDate)
+  const indexArray = getIndexArray(startDate, targetDate, startsOnSunday)
 
   for (let r = 0; r < indexArray.length; ++r) {
     for (let c = 0; c < indexArray[r].length; ++c) {
@@ -420,15 +423,21 @@ export const getDaysBetween = (startDate: string, targetDate: string): number =>
  * from the `dayArray` in a range between `start` and `end` date.
  * @param {string} start - The starting date for the 2D array.
  * @param {string} end - The ending date for the 2D array.
+ * @param {boolean} startsOnSunday - Whether to start the calendar from Sunday or not.
  * @param {number[][]} dayArray - 2D string array filled with days in 'YYYY-MM-DD' format.
  */
 export const getMonthsAndColSpans = (
   start: string,
   end: string,
-  dayArray: string[][]
+  dayArray: string[][],
+  startsOnSunday: boolean
 ): { months: string[]; colSpans: number[] } => {
-  const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(parseYearFromDateString(start), start)
-  const { col: endCol } = getRowAndColumnIndexFromDate(parseYearFromDateString(start), end)
+  const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(
+    parseYearFromDateString(start),
+    start,
+    startsOnSunday
+  )
+  const { col: endCol } = getRowAndColumnIndexFromDate(parseYearFromDateString(start), end, startsOnSunday)
 
   const months: string[] = []
   const colSpans: number[] = []
