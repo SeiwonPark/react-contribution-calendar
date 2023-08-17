@@ -6,11 +6,12 @@ interface TableHeadProps {
   start: string
   end: string
   textColor: string
+  startsOnSunday: boolean
 }
 
-export default function TableHead({ start, end, textColor }: TableHeadProps) {
-  const dayArray = getDayArray(start, end)
-  const { months, colSpans } = getMonthsAndColSpans(start, end, dayArray)
+export default function TableHead({ start, end, textColor, startsOnSunday }: TableHeadProps) {
+  const dayArray = getDayArray(start, end, startsOnSunday)
+  const { months, colSpans } = getMonthsAndColSpans(start, end, dayArray, startsOnSunday)
 
   return (
     <thead>

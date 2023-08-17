@@ -57,7 +57,7 @@ export default function Cell({ themeProps, dataLevel, style, children, dataToolt
           const ratio = cellIndex / totalLength
 
           if (ratio > 0.9) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -150) / totalLength, -160)
+            offset = Math.max(~~(cellRef.current.cellIndex * -140) / totalLength, -160)
           } else if (ratio > 0.8) {
             offset = Math.max(~~(cellRef.current.cellIndex * -130) / totalLength, -130)
           } else if (ratio > 0.66) {

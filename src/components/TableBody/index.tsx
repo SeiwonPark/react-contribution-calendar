@@ -15,11 +15,12 @@ interface TableBodyProps {
   start: string
   end: string
   textColor: string
-  theme: string | ThemeProps
+  startsOnSunday: boolean
   includeBoundary: boolean
   cx?: number
   cy?: number
   cr?: number
+  theme: string | ThemeProps
   onClick?: MouseEventHandler
 }
 
@@ -28,20 +29,24 @@ export default function TableBody({
   start,
   end,
   textColor,
-  theme,
+  startsOnSunday,
   includeBoundary,
   cx,
   cy,
   cr,
+  theme,
   onClick,
 }: TableBodyProps) {
   const startYear = parseYearFromDateString(start)
 
-  const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(startYear, start)
-  const { row: endRow, col: endCol } = getRowAndColumnIndexFromDate(startYear, end)
+  const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(startYear, start, startsOnSunday)
+  const { row: endRow, col: endCol } = getRowAndColumnIndexFromDate(startYear, end, startsOnSunday)
 
-  const DATES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  const dayArray = getDayArray(start, end)
+  const DATES = startsOnSunday
+    ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
+  const dayArray = getDayArray(start, end, startsOnSunday)
 
   const setColorByTheme = (inputTheme: string | ThemeProps) => {
     return createTheme(inputTheme)

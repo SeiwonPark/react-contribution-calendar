@@ -1,4 +1,4 @@
-// Type definitions for react-contribution-calendar 1.2.0
+// Type definitions for react-contribution-calendar 1.2.1
 // Project: https://github.com/seiwon-yaehee/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
@@ -37,6 +37,11 @@ declare module 'react-contribution-calendar' {
      */
     textColor?: string
     /**
+     * Whether to set calendar start on Sunday or not, defaults to `true`.
+     * If set to false, the week will start on Monday.
+     */
+    startsOnSunday?: boolean
+    /**
      * Whether to include the boundary column or not, defaults to `true`.
      */
     includeBoundary?: boolean
@@ -64,10 +69,10 @@ declare module 'react-contribution-calendar' {
   }
 
   /**
-   * `ContributionCalendar` is a React component that renders data contributions over time, 
+   * `ContributionCalendar` is a React component that renders data contributions over time,
    * similar to the contribution graph seen on GitHub profiles.
    *
-   * This calendar displays data in cells, with varying color intensities based on the value 
+   * This calendar displays data in cells, with varying color intensities based on the value
    * of each data point. The appearance and behavior of the calendar can be customized using
    * the provided props.
    *
@@ -102,7 +107,7 @@ declare module 'react-contribution-calendar' {
    * <ContributionCalendar data={data} theme="grass" />
    * ```
    *
-   * @version 1.2.0
+   * @version 1.2.1
    * @see {@link https://github.com/seiwon-yaehee/react-contribution-calendar#apis}
    */
   export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>
