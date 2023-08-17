@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       cx={10}
       cy={10}
       cr={2}
-      onCellClick={(e, data) => console.log(data)}
+      onCellClick={(_, data) => console.log(data)}
     />
   </React.StrictMode>
 )
