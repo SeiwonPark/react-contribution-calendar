@@ -5,6 +5,7 @@
   border-radius: 2px;
   outline-offset: -1px;
   shape-rendering: geometricPrecision;
+  cursor: pointer;
 }
 
 .calendar-cell[data-level='0'] {

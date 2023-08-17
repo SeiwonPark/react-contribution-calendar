@@ -1,6 +1,5 @@
 /**
  * This is for handling the issue of storing the object data with string keys.
- *
  * Note: Each object might need proper types rather than this.
  */
 interface KeyValuePair {
@@ -20,6 +19,7 @@ interface InputDataProps {
    * This attribute is for containing any type of object data to embrace various usages.
    *
    * Note: Currently the type `object` might have flexibility but should be reconsidered.
+   * @type {object | undefined}
    */
   data?: object
 }
@@ -63,3 +63,30 @@ interface ThemeProps {
 interface Theme {
   [key: string]: ThemeProps
 }
+
+/**
+ * Represents the data with a table cell.
+ */
+interface CellData {
+  /**
+   * The date from the cell.
+   */
+  date: string
+  /**
+   * Contains an object data of the cell.
+   * @type {object | undefined}
+   */
+  data?: object
+}
+
+/**
+ * Type representing the mouse event specific to an HTML table cell.
+ */
+type TableCellMouseEvent = React.MouseEvent<HTMLTableCellElement, MouseEvent>
+
+/**
+ * Type representing a handler for mouse events on an HTML table cell.
+ * @param {TableCellMouseEvent} event - The mouse event triggered on the table cell.
+ * @param {CellData | undefined} cellData - Optional data of the table cell.
+ */
+type MouseEventHandler = (event: TableCellMouseEvent, cellData?: CellData) => void

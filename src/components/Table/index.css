@@ -1,13 +1,16 @@
-table {
-  display: table;
-  border-spacing: 3px;
-  border-color: gray;
-}
-
 .container {
+  padding: 1.618em 0.5em 1.618em 0.5em;
   display: flex !important;
   text-align: center !important;
   max-width: 100%;
   overflow-y: hidden;
   overflow-x: auto;
+}
+
+table {
+  margin: 0;
+  padding: 0;
+  display: table;
+  border-spacing: 3px;
+  border-color: gray;
 }

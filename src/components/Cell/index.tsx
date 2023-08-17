@@ -7,9 +7,10 @@ interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
   style: CSSProperties
   children?: ReactNode
   dataTooltip?: string
+  onClick?: MouseEventHandler
 }
 
-export default function Cell({ children, style, dataTooltip, dataLevel, themeProps, ...otherProps }: CellProps) {
+export default function Cell({ themeProps, dataLevel, style, children, dataTooltip, ...otherProps }: CellProps) {
   const cellRef = useRef<HTMLTableCellElement>(null)
   const [tooltipOffset, setTooltipOffset] = useState<number>(-10)
 
@@ -53,12 +54,22 @@ export default function Cell({ children, style, dataTooltip, dataLevel, themePro
 
         if (totalLength) {
           let offset = -10
-          if (cellIndex / totalLength > 0.66) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -150) / totalLength, -130)
-          } else if (cellIndex / totalLength > 0.33) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -100) / totalLength, -120)
+          const ratio = cellIndex / totalLength
+
+          if (ratio > 0.9) {
+            offset = Math.max(~~(cellRef.current.cellIndex * -150) / totalLength, -160)
+          } else if (ratio > 0.8) {
+            offset = Math.max(~~(cellRef.current.cellIndex * -130) / totalLength, -130)
+          } else if (ratio > 0.66) {
+            offset = Math.max(~~(cellRef.current.cellIndex * -110) / totalLength, -120)
+          } else if (ratio > 0.5) {
+            offset = Math.max(~~(cellRef.current.cellIndex * -90) / totalLength, -110)
+          } else if (ratio > 0.33) {
+            offset = Math.max(~~(cellRef.current.cellIndex * -40) / totalLength, -90)
+          } else if (ratio > 0.2) {
+            offset = Math.min(~~(cellRef.current.cellIndex * -15) / totalLength, -40)
           } else {
-            offset = Math.min(~~(cellRef.current.cellIndex * -50) / totalLength, -10)
+            offset = Math.min(~~(cellRef.current.cellIndex * -7) / totalLength, -10)
           }
           setTooltipOffset(offset)
         }
