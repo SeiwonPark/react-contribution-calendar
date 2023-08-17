@@ -6,45 +6,48 @@ import './index.css'
 
 interface TableProps {
   data?: InputData[]
-  textColor?: string
-  theme?: string | ThemeProps
   start?: string
   end?: string
+  textColor?: string
+  startsOnSunday?: boolean
   includeBoundary?: boolean
   cx?: number
   cy?: number
   cr?: number
+  theme?: string | ThemeProps
   onCellClick?: MouseEventHandler
   style?: CSSProperties
 }
 
 export default function Table({
   data = [],
-  textColor = '#000',
-  theme = 'grass',
   start = getDateString(getCurrentYear(), 0, 1),
   end = getDateString(getCurrentYear(), 11, 31),
+  textColor = '#000',
+  startsOnSunday = true,
   includeBoundary = true,
   cx = 10,
   cy = 10,
   cr = 2,
+  theme = 'grass',
   onCellClick = () => {},
   style,
 }: TableProps) {
   return (
     <div className="container" style={style}>
       <table>
-        <TableHead textColor={textColor} start={start} end={end} />
+        <TableHead start={start} end={end} textColor={textColor} startsOnSunday={startsOnSunday} />
         <TableBody
           data={data}
-          textColor={textColor}
-          theme={theme}
           start={start}
           end={end}
+          textColor={textColor}
+          startsOnSunday={startsOnSunday}
           includeBoundary={includeBoundary}
           cx={cx}
           cy={cy}
           cr={cr}
+          theme={theme}
           onClick={onCellClick}
         />
       </table>
