@@ -4,20 +4,8 @@
   text-align: left;
 }
 
-.sr-only {
-  position: absolute;
-  overflow: hidden;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  word-wrap: normal;
-}
-
 .calendar-label-text {
   position: absolute;
-  clip-path: None;
   top: -4px;
   font-size: 12px;
 }
