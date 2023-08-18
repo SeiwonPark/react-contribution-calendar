@@ -1,4 +1,4 @@
-// Type definitions for react-contribution-calendar 1.2.1
+// Type definitions for react-contribution-calendar 1.2.2
 // Project: https://github.com/seiwon-yaehee/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
@@ -107,7 +107,7 @@ declare module 'react-contribution-calendar' {
    * <ContributionCalendar data={data} theme="grass" />
    * ```
    *
-   * @version 1.2.1
+   * @version 1.2.2
    * @see {@link https://github.com/seiwon-yaehee/react-contribution-calendar#apis}
    */
   export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>

@@ -101,8 +101,6 @@ export default function Cell({ themeProps, dataLevel, style, children, dataToolt
       data-tooltip={dataTooltip}
       data-level={dataLevel}
       {...otherProps}
-    >
-      <span className="sr-only">{children}</span>
-    </td>
+    />
   )
 }
