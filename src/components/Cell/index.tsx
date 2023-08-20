@@ -1,16 +1,15 @@
-import { useState, useRef, useEffect, ReactNode, CSSProperties, HTMLAttributes } from 'react'
+import { useState, useRef, useEffect, CSSProperties, HTMLAttributes } from 'react'
 import './index.css'
 
 interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
   themeProps: ThemeProps
   dataLevel: number
   style: CSSProperties
-  children?: ReactNode
-  dataTooltip?: string
-  onClick?: MouseEventHandler
+  dataTooltip: string
+  tooltipSize: number
 }
 
-export default function Cell({ themeProps, dataLevel, style, children, dataTooltip, ...otherProps }: CellProps) {
+export default function Cell({ themeProps, dataLevel, style, dataTooltip, tooltipSize, ...otherProps }: CellProps) {
   const cellRef = useRef<HTMLTableCellElement>(null)
   const [tooltipOffset, setTooltipOffset] = useState<number>(-10)
 
@@ -96,6 +95,7 @@ export default function Cell({ themeProps, dataLevel, style, children, dataToolt
           ...style,
           backgroundColor: themeProps[`level${dataLevel}`],
           '--tooltip-offset': `${tooltipOffset}px`,
+          fontSize: tooltipSize,
         } as React.CSSProperties
       }
       data-tooltip={dataTooltip}

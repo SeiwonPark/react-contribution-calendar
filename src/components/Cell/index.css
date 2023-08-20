@@ -56,8 +56,6 @@
 .top:after {
   content: attr(data-tooltip);
   padding: 10px 16px;
-  font-size: 13px;
-  line-height: 11px;
   background-color: #323232;
   color: #ecf0f1;
   border-radius: 5px;

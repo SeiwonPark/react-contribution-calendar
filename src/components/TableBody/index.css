@@ -3,3 +3,7 @@ tr {
   vertical-align: inherit;
   border-color: inherit;
 }
+
+td {
+  padding: 0;
+}

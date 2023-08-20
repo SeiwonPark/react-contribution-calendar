@@ -17,11 +17,11 @@ interface TableBodyProps {
   textColor: string
   startsOnSunday: boolean
   includeBoundary: boolean
-  cx?: number
-  cy?: number
-  cr?: number
+  cx: number
+  cy: number
+  cr: number
   theme: string | ThemeProps
-  onClick?: MouseEventHandler
+  onClick: MouseEventHandler
 }
 
 export default function TableBody({
@@ -67,7 +67,7 @@ export default function TableBody({
     <tbody>
       {DATES.map((date, rowIndex) => (
         <tr key={date}>
-          <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'inherit' }}>
+          <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'right', fontSize: cy, lineHeight: 0 }}>
             {date}
           </Label>
           {dayArray[rowIndex].map((day, colIndex) => {
@@ -112,6 +112,7 @@ export default function TableBody({
                 dataLevel={data !== undefined ? data.level : 0}
                 data-content={JSON.stringify(data?.data)}
                 dataTooltip={dateTooltip}
+                tooltipSize={cy}
                 themeProps={themeProps}
                 onClick={handleClick}
               />
