@@ -53,6 +53,14 @@ export const getDateDetails = (_date: Date = new Date()) => {
 }
 
 /**
+ * Returns sum of numbers in the `array`.
+ * @param {number[]} array - A number of array.
+ */
+export const getArraySum = (array: number[]): number => {
+  return array.reduce((x, y) => x + y, 0)
+}
+
+/**
  * Gets string representation of the date from the given `dateString`.
  * @param {string} dateString - The date string to be converted.
  * @returns A string representation of the date.
@@ -141,6 +149,22 @@ export const isLeapYear = (year: number = getCurrentYear()): boolean => {
  */
 const getDaysInMonths = (year: number = getCurrentYear()): number[] => {
   return [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+}
+
+/**
+ * Returns the index of the day from the date string. Each index represents dates as follows:
+ * - `0`: Sunday
+ * - `1`: Monday
+ * - `2`: Tuesday
+ * - `3`: Wednesday
+ * - `4`: Thursday
+ * - `5`: Friday
+ * - `6`: Saturday
+ * @param {string} date - Date string to get day index from.
+ * @returns An index of the day of the date string.
+ */
+export const getDayIndexFromDateString = (date: string): number => {
+  return new Date(date).getDay()
 }
 
 /**
