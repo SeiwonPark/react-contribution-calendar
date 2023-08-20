@@ -16,7 +16,7 @@ export default function TableHead({ start, end, textColor, startsOnSunday }: Tab
   return (
     <thead>
       <tr>
-        <Label textColor={textColor} style={{ width: '3.5em' }} colSpan={1}>
+        <Label textColor={textColor} style={{ width: '5em' }} colSpan={1}>
           &nbsp;
         </Label>
         {months.map((month, index) => (
