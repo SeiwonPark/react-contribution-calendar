@@ -76,6 +76,23 @@ export default function TableBody({
             {date}
           </Label>
           {dayArray[rowIndex].map((day, colIndex) => {
+            if (endCol === 0 && colIndex === 1) {
+              return (
+                <td
+                  key={colIndex}
+                  style={{
+                    padding: 0,
+                    width: isWithin7Days() ? cx : 0,
+                    height: isWithin7Days() ? cy : 0,
+                    outline: 'none',
+                    borderRadius: cr,
+                    outlineOffset: '-1px',
+                    shapeRendering: 'geometricPrecision',
+                  }}
+                ></td>
+              )
+            }
+
             if (isOutRangedCell(rowIndex, colIndex)) {
               return <td style={{ padding: '0', display: 'none' }} key={colIndex}></td>
             }

@@ -25,7 +25,9 @@ export default function TableHead({ start, end, textColor, startsOnSunday, cy }:
         {months.map((month, index) => {
           let colSpan = colSpans[index]
 
-          if (months.length > 1 && endDay < 10 && endDayOfMonth !== 0 && index === months.length - 2) {
+          if (colSpans.length === 1 && colSpans[0] === 1) {
+            colSpan++
+          } else if (months.length > 1 && endDay < 10 && endDayOfMonth !== 0 && index === months.length - 2) {
             colSpan--
           } else if (months.length > 1 && endDay < 10 && endDayOfMonth !== 0 && index === months.length - 1) {
             colSpan++
