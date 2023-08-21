@@ -101,6 +101,17 @@ const formatDateString = (year: number, month: number, day: number) => {
 }
 
 /**
+ * Parses date info from `dateString`.
+ * @param {string} dateString - String date format `YYYY-MM-DD`.
+ * @example
+ * // Returns { year: 2023, month: 7, day: 8 }
+ * parseDateFromDateString('2023-07-08')
+ */
+export const parseDateFromDateString = (dateString: string) => {
+  return { year: +dateString.slice(0, 4), month: +dateString.slice(5, 7), day: +dateString.slice(8, 10) }
+}
+
+/**
  * Parses integer value of year from `dateString`.
  * @param {string} dateString - String date format `YYYY-MM-DD`.
  * @example

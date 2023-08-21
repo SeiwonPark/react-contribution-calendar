@@ -1,12 +1,5 @@
 import Label from '../Label'
-import {
-  getDayArray,
-  getDayIndexFromDateString,
-  getMonthsAndColSpans,
-  parseYearFromDateString,
-  parseMonthFromDateString,
-  parseDayFromDateString,
-} from '../../utils'
+import { getDayArray, getDayIndexFromDateString, getMonthsAndColSpans, parseDateFromDateString } from '../../utils'
 import './index.css'
 
 interface TableHeadProps {
@@ -19,10 +12,8 @@ interface TableHeadProps {
 
 export default function TableHead({ start, end, textColor, startsOnSunday, cy }: TableHeadProps) {
   const dayArray = getDayArray(start, end, startsOnSunday)
-  const lastYear = parseYearFromDateString(end)
-  const lastMonth = parseMonthFromDateString(end)
-  const lastDay = parseDayFromDateString(end)
-  const lastDayOfMonth = getDayIndexFromDateString(`${lastYear}-${lastMonth}-01`)
+  const { year: endYear, month: endMonth, day: endDay } = parseDateFromDateString(end)
+  const endDayOfMonth = getDayIndexFromDateString(`${endYear}-${endMonth}-01`)
   const { months, colSpans } = getMonthsAndColSpans(start, end, dayArray, startsOnSunday)
 
   return (
@@ -34,9 +25,9 @@ export default function TableHead({ start, end, textColor, startsOnSunday, cy }:
         {months.map((month, index) => {
           let colSpan = colSpans[index]
 
-          if (months.length > 1 && lastDay < 10 && lastDayOfMonth !== 0 && index === months.length - 2) {
+          if (months.length > 1 && endDay < 10 && endDayOfMonth !== 0 && index === months.length - 2) {
             colSpan--
-          } else if (months.length > 1 && lastDay < 10 && lastDayOfMonth !== 0 && index === months.length - 1) {
+          } else if (months.length > 1 && endDay < 10 && endDayOfMonth !== 0 && index === months.length - 1) {
             colSpan++
           }
 
