@@ -1,10 +1,10 @@
 import {
   parseInputData,
   createTheme,
-  parseYearFromDateString,
   getDayArray,
   getRowAndColumnIndexFromDate,
   getDateTooltip,
+  parseDateFromDateString,
 } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
@@ -37,7 +37,8 @@ export default function TableBody({
   theme,
   onClick,
 }: TableBodyProps) {
-  const startYear = parseYearFromDateString(start)
+  const { year: startYear, day: startDay } = parseDateFromDateString(start)
+  const { day: endDay } = parseDateFromDateString(end)
 
   const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(startYear, start, startsOnSunday)
   const { row: endRow, col: endCol } = getRowAndColumnIndexFromDate(startYear, end, startsOnSunday)
@@ -63,6 +64,10 @@ export default function TableBody({
     return (colIndex === startCol && rowIndex < startRow) || (colIndex === endCol && rowIndex > endRow)
   }
 
+  const isWithin7Days = (): boolean => {
+    return startCol === endCol || endDay - startDay <= 7
+  }
+
   return (
     <tbody>
       {DATES.map((date, rowIndex) => (
@@ -81,8 +86,8 @@ export default function TableBody({
                   key={colIndex}
                   style={{
                     padding: 0,
-                    width: startCol === endCol ? cx : 0,
-                    height: startCol === endCol ? cy : 0,
+                    width: isWithin7Days() ? cx : 0,
+                    height: isWithin7Days() ? cy : 0,
                     outline: includeBoundary ? `1px solid ${themeProps.level0}` : 'none',
                     borderRadius: cr,
                     outlineOffset: '-1px',
