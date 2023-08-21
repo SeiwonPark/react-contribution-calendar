@@ -81,6 +81,8 @@ export default function TableBody({
                   key={colIndex}
                   style={{
                     padding: 0,
+                    width: startCol === endCol ? cx : 0,
+                    height: startCol === endCol ? cy : 0,
                     outline: includeBoundary ? `1px solid ${themeProps.level0}` : 'none',
                     borderRadius: cr,
                     outlineOffset: '-1px',
