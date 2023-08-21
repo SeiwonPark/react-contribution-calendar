@@ -36,7 +36,7 @@ export default function Table({
   return (
     <div className="container" style={style}>
       <table>
-        <TableHead start={start} end={end} textColor={textColor} startsOnSunday={startsOnSunday} />
+        <TableHead start={start} end={end} textColor={textColor} startsOnSunday={startsOnSunday} cy={cy} />
         <TableBody
           data={data}
           start={start}

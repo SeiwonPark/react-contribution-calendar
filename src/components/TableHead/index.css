@@ -2,12 +2,5 @@ thead {
   display: table-header-group;
   vertical-align: middle;
   border-color: inherit;
-  height: 12px;
   top: 0;
-}
-
-tr {
-  display: table-row;
-  vertical-align: inherit;
-  border-color: inherit;
 }

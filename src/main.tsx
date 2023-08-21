@@ -8,10 +8,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ContributionCalendar
       data={[]}
       textColor="#000"
-      theme="grass"
+      startsOnSunday={true}
+      includeBoundary={true}
       cx={10}
       cy={10}
       cr={2}
+      theme="grass"
       onCellClick={(_, data) => console.log(data)}
     />
   </React.StrictMode>
