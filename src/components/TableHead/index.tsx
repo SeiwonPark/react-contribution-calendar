@@ -12,6 +12,7 @@ interface TableHeadProps {
 
 export default function TableHead({ start, end, textColor, startsOnSunday, cy }: TableHeadProps) {
   const dayArray = getDayArray(start, end, startsOnSunday)
+  const { day: startDay } = parseDateFromDateString(start)
   const { year: endYear, month: endMonth, day: endDay } = parseDateFromDateString(end)
   const endDayOfMonth = getDayIndexFromDateString(`${endYear}-${endMonth}-01`)
   const { months, colSpans } = getMonthsAndColSpans(start, end, dayArray, startsOnSunday)
@@ -33,8 +34,16 @@ export default function TableHead({ start, end, textColor, startsOnSunday, cy }:
             colSpan++
           }
 
+          const isLastColumnOfStartMonth = index === 0 && months.length > 1 && colSpan === 1 && startDay >= 19
+
           return (
-            <Label textColor={textColor} style={{ fontSize: cy }} key={index} colSpan={colSpan}>
+            <Label
+              textColor={textColor}
+              style={{ fontSize: cy }}
+              key={index}
+              colSpan={colSpan}
+              hide={isLastColumnOfStartMonth}
+            >
               {month}
             </Label>
           )
