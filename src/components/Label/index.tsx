@@ -6,14 +6,17 @@ interface LabelProps extends HTMLAttributes<HTMLTableCellElement> {
   textColor: string
   style?: CSSProperties
   colSpan?: number
+  hide?: boolean
 }
 
-export default function Label({ children, textColor, style, colSpan, ...otherProps }: LabelProps) {
+export default function Label({ children, textColor, style, colSpan, hide, ...otherProps }: LabelProps) {
   return (
     <td className="calendar-label" style={style} colSpan={colSpan} {...otherProps}>
-      <span className="calendar-label-text" aria-hidden="true" style={{ color: textColor }}>
-        {children}
-      </span>
+      {hide ? undefined : (
+        <span className="calendar-label-text" aria-hidden="true" style={{ color: textColor }}>
+          {children}
+        </span>
+      )}
     </td>
   )
 }
