@@ -61,14 +61,12 @@ export default function Cell({ themeProps, dataLevel, style, dataTooltip, toolti
             offset = Math.max(~~(cellRef.current.cellIndex * -130) / totalLength, -140)
           } else if (ratio > 0.66) {
             offset = Math.max(~~(cellRef.current.cellIndex * -120) / totalLength, -120)
-          } else if (ratio > 0.5) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -100) / totalLength, -100)
           } else if (ratio > 0.33) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -50) / totalLength, -50)
+            offset = Math.max(~~(cellRef.current.cellIndex * -100) / totalLength, -100)
           } else if (ratio > 0.2) {
-            offset = Math.min(~~(cellRef.current.cellIndex * -20) / totalLength, -30)
+            offset = Math.max(~~(cellRef.current.cellIndex * -70) / totalLength, -70)
           } else {
-            offset = Math.min(~~(cellRef.current.cellIndex * -7) / totalLength, -10)
+            offset = Math.max((~~(cellRef.current.cellIndex * -50) * 5) / totalLength, -50)
           }
           setTooltipOffset(offset)
         }

@@ -60,7 +60,7 @@
   color: #ecf0f1;
   border-radius: 5px;
   bottom: calc(100% + 10px);
-  left: var(--tooltip-offset, -10px);
+  left: var(--tooltip-offset, -20px);
   white-space: nowrap;
 }
 
