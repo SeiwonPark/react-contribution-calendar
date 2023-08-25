@@ -124,26 +124,18 @@ You can customize the appearance of the `<ContributionCalendar />` with the them
 
 ```javascript
 // Replace `theme` attribute with belows
-<ContributionCalendar data={[]} theme={'grass'} />
+<ContributionCalendar theme={'grass'} />
 ```
 
 ### Light Themes
 
+#### `empty`
+
+<img src="./images/empty.png" alt="empty" with=600 />
+
 #### `grass`
 
 <img src="./images/grass.png" alt="grass" with=600 />
-
-#### `pink`
-
-<img src="./images/pink.png" alt="pink" with=600 />
-
-#### `halloween`
-
-<img src="./images/halloween.png" alt="halloween" with=600 />
-
-#### `winter`
-
-<img src="./images/winter.png" alt="winter" with=600 />
 
 #### `cherry`
 
@@ -153,33 +145,113 @@ You can customize the appearance of the `<ContributionCalendar />` with the them
 
 <img src="./images/cherry_blossom.png" alt="cherry_blossom" with=600 />
 
+#### `pink`
+
+<img src="./images/pink.png" alt="pink" with=600 />
+
+#### `ocean`
+
+<img src="./images/ocean.png" alt="ocean" with=600 />
+
 #### `sky`
 
 <img src="./images/sky.png" alt="sky" with=600 />
+
+#### `halloween`
+
+<img src="./images/halloween.png" alt="halloween" with=600 />
+
+#### `winter`
+
+<img src="./images/winter.png" alt="winter" with=600 />
 
 #### `purquoise`
 
 <img src="./images/purquoise.png" alt="purquoise" with=600 />
 
-#### `blue_pop`
-
-<img src="./images/blue_pop.png" alt="blue_pop" with=600 />
-
 #### `mustard`
 
 <img src="./images/mustard.png" alt="mustard" with=600 />
+
+#### `gray`
+
+<img src="./images/gray.png" alt="gray" with=600 />
+
+#### `vomit`
+
+<img src="./images/vomit.png" alt="vomit" with=600 />
+
+#### `neonpunk`
+
+<img src="./images/neonpunk.png" alt="neonpunk" with=600 />
+
+#### `citypop`
+
+<img src="./images/citypop.png" alt="citypop" with=600 />
+
+#### `coral`
+
+<img src="./images/coral.png" alt="coral" with=600 />
+
+#### `emoji_positive`
+
+<img src="./images/emoji_positive.png" alt="emoji_positive" with=600 />
+
+```tsx
+emoji_positive: {
+  level0: '🫥',
+  level1: '😢',
+  level2: '😞',
+  level3: '🙂',
+  level4: '😃',
+},
+```
+
+#### `emoji_negative`
+
+<img src="./images/emoji_negative.png" alt="emoji_negative" with=600 />
+
+```tsx
+emoji_negative: {
+  level0: '😃',
+  level1: '🙂',
+  level2: '😕',
+  level3: '😢',
+  level4: '🫥',
+},
+```
 
 <br />
 
 ### Dark Themes
 
+#### `dark_empty`
+
+<img src="./images/dark_empty.png" alt="dark_empty" with=600 />
+
 #### `dark_grass`
 
 <img src="./images/dark_grass.png" alt="dark_grass" with=600 />
 
+#### `dark_cherry`
+
+<img src="./images/dark_cherry.png" alt="dark_cherry" with=600 />
+
+#### `dark_cherry_blossom`
+
+<img src="./images/dark_cherry_blossom.png" alt="dark_cherry_blossom" with=600 />
+
 #### `dark_pink`
 
 <img src="./images/dark_pink.png" alt="dark_pink" with=600 />
+
+#### `dark_ocean`
+
+<img src="./images/dark_ocean.png" alt="dark_ocean" with=600 />
+
+#### `dark_sky`
+
+<img src="./images/dark_sky.png" alt="dark_sky" with=600 />
 
 #### `dark_halloween`
 
@@ -189,17 +261,33 @@ You can customize the appearance of the `<ContributionCalendar />` with the them
 
 <img src="./images/dark_winter.png" alt="dark_winter" with=600 />
 
-#### `dark_blue`
+#### `dark_purquoise`
 
-<img src="./images/dark_blue.png" alt="dark_blue" with=600 />
+<img src="./images/dark_purquoise.png" alt="dark_purquoise" with=600 />
 
-#### `dark_ocean`
+#### `dark_mustard`
 
-<img src="./images/dark_ocean.png" alt="dark_ocean" with=600 />
+<img src="./images/dark_mustard.png" alt="dark_mustard" with=600 />
+
+#### `dark_gray`
+
+<img src="./images/dark_gray.png" alt="dark_gray" with=600 />
 
 #### `dark_vomit`
 
 <img src="./images/dark_vomit.png" alt="dark_vomit" with=600 />
+
+#### `dark_neonpunk`
+
+<img src="./images/dark_neonpunk.png" alt="dark_neonpunk" with=600 />
+
+#### `dark_citypop`
+
+<img src="./images/dark_citypop.png" alt="dark_citypop" with=600 />
+
+#### `dark_coral`
+
+<img src="./images/dark_coral.png" alt="dark_coral" with=600 />
 
 <br />
 
@@ -218,7 +306,7 @@ function App() {
     level4: '#216e39',
   })
 
-  return <ContributionCalendar data={[]} theme={customTheme} />
+  return <ContributionCalendar theme={customTheme} />
 }
 ```
 
@@ -230,7 +318,6 @@ import { ContributionCalendar } from 'react-contribution-calendar'
 function App() {
   return (
     <ContributionCalendar
-      data={[]}
       theme={{
         /* Assign theme properties directly */
         level0: '#ebedf0',

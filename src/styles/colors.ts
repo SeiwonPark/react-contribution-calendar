@@ -4,7 +4,7 @@
  * be defined from `level0` to `level4`.
  */
 export const THEMES: Theme = {
-  //light themes
+  // light themes
   empty: {
     level0: '#ffffff',
     level1: '#ffffff',
@@ -117,7 +117,21 @@ export const THEMES: Theme = {
     level3: '#f4845f',
     level4: '#f25c54',
   },
-  //dark themes
+  emoji_positive: {
+    level0: '🫥',
+    level1: '😢',
+    level2: '😞',
+    level3: '🙂',
+    level4: '😃',
+  },
+  emoji_negative: {
+    level0: '😃',
+    level1: '🙂',
+    level2: '😕',
+    level3: '😢',
+    level4: '🫥',
+  },
+  // dark themes
   dark_empty: {
     level0: '#000000',
     level1: '#000000',

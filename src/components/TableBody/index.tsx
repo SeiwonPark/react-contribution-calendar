@@ -89,7 +89,7 @@ export default function TableBody({
                     outlineOffset: '-1px',
                     shapeRendering: 'geometricPrecision',
                   }}
-                ></td>
+                />
               )
             }
 
@@ -110,7 +110,7 @@ export default function TableBody({
                     outlineOffset: '-1px',
                     shapeRendering: 'geometricPrecision',
                   }}
-                ></td>
+                />
               )
             }
 
@@ -137,6 +137,7 @@ export default function TableBody({
                 data-content={JSON.stringify(data?.data)}
                 dataTooltip={dateTooltip}
                 tooltipSize={cy}
+                theme={theme}
                 themeProps={themeProps}
                 onClick={handleClick}
               />

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, CSSProperties, HTMLAttributes } from 'reac
 import './index.css'
 
 interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
+  theme: string | ThemeProps
   themeProps: ThemeProps
   dataLevel: number
   style: CSSProperties
@@ -9,7 +10,15 @@ interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
   tooltipSize: number
 }
 
-export default function Cell({ themeProps, dataLevel, style, dataTooltip, tooltipSize, ...otherProps }: CellProps) {
+export default function Cell({
+  theme,
+  themeProps,
+  dataLevel,
+  style,
+  dataTooltip,
+  tooltipSize,
+  ...otherProps
+}: CellProps) {
   const cellRef = useRef<HTMLTableCellElement>(null)
   const [tooltipOffset, setTooltipOffset] = useState<number>(-10)
 
@@ -84,6 +93,10 @@ export default function Cell({ themeProps, dataLevel, style, dataTooltip, toolti
     }
   }, [])
 
+  const isEmojiTheme = (theme: string | ThemeProps): boolean => {
+    return theme === 'emoji_positive' || theme === 'emoji_negative'
+  }
+
   return (
     <td
       ref={cellRef}
@@ -91,7 +104,7 @@ export default function Cell({ themeProps, dataLevel, style, dataTooltip, toolti
       style={
         {
           ...style,
-          backgroundColor: themeProps[`level${dataLevel}`],
+          backgroundColor: isEmojiTheme(theme) ? 'transparent' : themeProps[`level${dataLevel}`],
           '--tooltip-offset': `${tooltipOffset}px`,
           fontSize: tooltipSize,
         } as React.CSSProperties
@@ -99,6 +112,8 @@ export default function Cell({ themeProps, dataLevel, style, dataTooltip, toolti
       data-tooltip={dataTooltip}
       data-level={dataLevel}
       {...otherProps}
-    />
+    >
+      {isEmojiTheme(theme) ? themeProps[`level${dataLevel}`] : undefined}
+    </td>
   )
 }
