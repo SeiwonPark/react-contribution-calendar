@@ -33,7 +33,7 @@ declare module 'react-contribution-calendar' {
      */
     end?: string
     /**
-     * The text color of calendar indexes for months and dates, defaults to `#000`.
+     * The text color of calendar indexes for months and dates, defaults to `#1f2328`.
      */
     textColor?: string
     /**
