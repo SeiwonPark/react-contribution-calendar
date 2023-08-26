@@ -59,7 +59,7 @@ const data = [
   data={data}
   start="2020-04-04"
   end="2023-05-19"
-  textColor="#000000"
+  textColor="#1F2328"
   startsOnSunday={true}
   includeBoundary={true}
   theme="grass"
@@ -101,7 +101,7 @@ const data = [
 
 - **`start`**: Optional. The starting date for the calendar to start, defaults to current year's January 1st(`YYYY-MM-DD` format).
 - **`end`**: Optional. The ending date for the calendar to end, defaults to current year's December 31st(`YYYY-MM-DD` format).
-- **`textColor`**: Optional. The color of indexes. String color code format.
+- **`textColor`**: Optional. The color of indexes. String color code format, defaults to `#1F2328`.
 - **`startsOnSunday`**: Optional. Whether to start the calendar on Sunday or not, defaults to `true`. If set to false, calendar will start on Monday.
 - **`includeBoundary`**: Optional. Whether to include the boundary cells in the starting or ending date column, defaults to `true`.
 - **`theme`**: Optional. A string that represents a predefined theme name, or an object with custom theme colors. Defaults to `grass`.

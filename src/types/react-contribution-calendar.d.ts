@@ -1,4 +1,4 @@
-// Type definitions for react-contribution-calendar 1.2.5
+// Type definitions for react-contribution-calendar 1.2.6
 // Project: https://github.com/seiwon-yaehee/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
@@ -33,7 +33,7 @@ declare module 'react-contribution-calendar' {
      */
     end?: string
     /**
-     * The text color of calendar indexes for months and dates, defaults to `#000`.
+     * The text color of calendar indexes for months and dates, defaults to `#1F2328`.
      */
     textColor?: string
     /**
@@ -107,7 +107,7 @@ declare module 'react-contribution-calendar' {
    * <ContributionCalendar data={data} theme="grass" />
    * ```
    *
-   * @version 1.2.5
+   * @version 1.2.6
    * @see {@link https://github.com/seiwon-yaehee/react-contribution-calendar#apis}
    */
   export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>

@@ -1,3 +1,8 @@
+tbody {
+  width: fit-content;
+  overflow: visible;
+}
+
 tr {
   display: table-row;
   vertical-align: inherit;
