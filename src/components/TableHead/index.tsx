@@ -14,13 +14,13 @@ export default function TableHead({ start, end, textColor, startsOnSunday, cy }:
   const dayArray = getDayArray(start, end, startsOnSunday)
   const { day: startDay } = parseDateFromDateString(start)
   const { year: endYear, month: endMonth, day: endDay } = parseDateFromDateString(end)
-  const endDayOfMonth = getDayIndexFromDateString(`${endYear}-${endMonth}-01`)
+  const monthIndexOfEndDay = getDayIndexFromDateString(`${endYear}-${endMonth}-01`)
   const { months, colSpans } = getMonthsAndColSpans(start, end, dayArray, startsOnSunday)
 
   return (
     <thead>
       <tr>
-        <Label textColor={textColor} style={{ width: '4em', fontSize: cy }} colSpan={1}>
+        <Label textColor={textColor} style={{ fontSize: cy }} colSpan={1}>
           &nbsp;
         </Label>
         {months.map((month, index) => {
@@ -28,13 +28,13 @@ export default function TableHead({ start, end, textColor, startsOnSunday, cy }:
 
           if (colSpans.length === 1 && colSpans[0] === 1) {
             colSpan++
-          } else if (months.length > 1 && endDay < 10 && endDayOfMonth !== 0 && index === months.length - 2) {
+          } else if (months.length > 1 && endDay < 10 && monthIndexOfEndDay !== 0 && index === months.length - 2) {
             colSpan--
-          } else if (months.length > 1 && endDay < 10 && endDayOfMonth !== 0 && index === months.length - 1) {
+          } else if (months.length > 1 && endDay < 10 && monthIndexOfEndDay !== 0 && index === months.length - 1) {
             colSpan++
           }
 
-          const isLastColumnOfStartMonth = index === 0 && months.length > 1 && colSpan === 1 && startDay >= 19
+          const isLastColumnOfStartMonth = index === 0 && months.length > 1 && colSpan <= 1 && startDay >= 21
 
           return (
             <Label

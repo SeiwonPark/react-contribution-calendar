@@ -8,26 +8,6 @@
   cursor: pointer;
 }
 
-.calendar-cell[data-level='0'] {
-  background-color: var(--color-bg-level-0);
-}
-
-.calendar-cell[data-level='1'] {
-  background-color: var(--color-bg-level-1);
-}
-
-.calendar-cell[data-level='2'] {
-  background-color: var(--color-bg-level-2);
-}
-
-.calendar-cell[data-level='3'] {
-  background-color: var(--color-bg-level-3);
-}
-
-.calendar-cell[data-level='4'] {
-  background-color: var(--color-bg-level-4);
-}
-
 .top {
   position: relative;
 }

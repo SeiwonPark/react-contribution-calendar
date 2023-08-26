@@ -3,6 +3,7 @@ import TableHead from '../TableHead'
 import TableBody from '../TableBody'
 import { getCurrentYear, getDateString } from '../../utils'
 import './index.css'
+import Description from '../Description'
 
 interface TableProps {
   data?: InputData[]
@@ -23,7 +24,7 @@ export default function Table({
   data = [],
   start = getDateString(getCurrentYear(), 0, 1),
   end = getDateString(getCurrentYear(), 11, 31),
-  textColor = '#000',
+  textColor = '#1f2328',
   startsOnSunday = true,
   includeBoundary = true,
   cx = 10,
@@ -35,22 +36,25 @@ export default function Table({
 }: TableProps) {
   return (
     <div className="container" style={style}>
-      <table>
-        <TableHead start={start} end={end} textColor={textColor} startsOnSunday={startsOnSunday} cy={cy} />
-        <TableBody
-          data={data}
-          start={start}
-          end={end}
-          textColor={textColor}
-          startsOnSunday={startsOnSunday}
-          includeBoundary={includeBoundary}
-          cx={cx}
-          cy={cy}
-          cr={cr}
-          theme={theme}
-          onClick={onCellClick}
-        />
-      </table>
+      <div className="calendar" style={style}>
+        <table>
+          <TableHead start={start} end={end} textColor={textColor} startsOnSunday={startsOnSunday} cy={cy} />
+          <TableBody
+            data={data}
+            start={start}
+            end={end}
+            textColor={textColor}
+            startsOnSunday={startsOnSunday}
+            includeBoundary={includeBoundary}
+            cx={cx}
+            cy={cy}
+            cr={cr}
+            theme={theme}
+            onClick={onCellClick}
+          />
+        </table>
+      </div>
+      <Description textColor={textColor} cx={cx} theme={theme} />
     </div>
   )
 }

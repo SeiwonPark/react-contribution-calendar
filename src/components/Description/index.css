@@ -1,0 +1,21 @@
+.description {
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.themes {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  outline: 1px solid #1b1f230f;
+}

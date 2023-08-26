@@ -5,6 +5,7 @@ import {
   getRowAndColumnIndexFromDate,
   getDateTooltip,
   parseDateFromDateString,
+  getMonthsAndColSpans,
 } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
@@ -43,18 +44,19 @@ export default function TableBody({
   const { row: startRow, col: startCol } = getRowAndColumnIndexFromDate(startYear, start, startsOnSunday)
   const { row: endRow, col: endCol } = getRowAndColumnIndexFromDate(startYear, end, startsOnSunday)
 
+  const dayArray = getDayArray(start, end, startsOnSunday)
+  const { colSpans } = getMonthsAndColSpans(start, end, dayArray, startsOnSunday)
+
   const DATES = startsOnSunday
     ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-  const dayArray = getDayArray(start, end, startsOnSunday)
-
-  const setColorByTheme = (inputTheme: string | ThemeProps) => {
-    return createTheme(inputTheme)
-  }
-
-  const themeProps = setColorByTheme(theme)
+  const themeProps = createTheme(theme)
   const parsedData = parseInputData(data)
+
+  const isAdditionalCellRequired = (_: number, colIndex: number): boolean => {
+    return colIndex == endCol + 1 && colSpans[colSpans.length - 1] === 1
+  }
 
   const isOutRangedCell = (_: number, colIndex: number): boolean => {
     return colIndex < startCol || colIndex > endCol
@@ -72,7 +74,7 @@ export default function TableBody({
     <tbody>
       {DATES.map((date, rowIndex) => (
         <tr key={date}>
-          <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'right', fontSize: cy, lineHeight: 0 }}>
+          <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'left', fontSize: cy, lineHeight: 0 }}>
             {date}
           </Label>
           {dayArray[rowIndex].map((day, colIndex) => {
@@ -93,8 +95,8 @@ export default function TableBody({
               )
             }
 
-            if (isOutRangedCell(rowIndex, colIndex)) {
-              return <td style={{ padding: '0', display: 'none' }} key={colIndex}></td>
+            if (isAdditionalCellRequired(rowIndex, colIndex)) {
+              return <td style={{ padding: '0', display: 'block' }} key={colIndex}></td>
             }
 
             if (isBoundaryCell(rowIndex, colIndex)) {
@@ -112,6 +114,10 @@ export default function TableBody({
                   }}
                 />
               )
+            }
+
+            if (isOutRangedCell(rowIndex, colIndex)) {
+              return <td style={{ padding: '0', display: 'none' }} key={colIndex}></td>
             }
 
             const data = parsedData.get(day)

@@ -104,6 +104,7 @@ export default function Cell({
       style={
         {
           ...style,
+          outline: isEmojiTheme(theme) ? 'transparent' : '1px solid rgba(27, 31, 35, 0.06)',
           backgroundColor: isEmojiTheme(theme) ? 'transparent' : themeProps[`level${dataLevel}`],
           '--tooltip-offset': `${tooltipOffset}px`,
           fontSize: tooltipSize,
