@@ -3,4 +3,5 @@ thead {
   vertical-align: middle;
   border-color: inherit;
   top: 0;
+  width: fit-content;
 }

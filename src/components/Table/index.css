@@ -3,17 +3,18 @@
 }
 
 .calendar {
-  padding-top: 1.618em;
-  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  white-space: nowrap;
+  overflow-x: clip;
 }
 
 table {
   min-width: max-content;
   margin: 0;
   padding: 0;
-  display: table;
   border-spacing: 3px;
   border-color: gray;
-  overflow-y: hidden;
-  overflow-x: auto;
+  overflow: visible;
 }

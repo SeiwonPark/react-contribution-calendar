@@ -15,7 +15,6 @@
 .top:before,
 .top:after {
   position: absolute;
-  visibility: hidden;
   opacity: 0;
   z-index: 999;
   transition: visibility 0.3s, transform 0.3s;
