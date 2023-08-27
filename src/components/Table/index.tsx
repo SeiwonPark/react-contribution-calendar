@@ -34,9 +34,11 @@ export default function Table({
   onCellClick = () => {},
   style,
 }: TableProps) {
+  const padding = `0 ${cx + 70}px 0 ${cx + 10}px`
+
   return (
     <div className="container" style={style}>
-      <div className="calendar" style={style}>
+      <div className="calendar" style={{ padding: padding }}>
         <table>
           <TableHead start={start} end={end} textColor={textColor} startsOnSunday={startsOnSunday} cy={cy} />
           <TableBody
@@ -54,7 +56,7 @@ export default function Table({
           />
         </table>
       </div>
-      <Description textColor={textColor} cx={cx} theme={theme} />
+      <Description textColor={textColor} cx={cx} cy={cy} theme={theme} />
     </div>
   )
 }

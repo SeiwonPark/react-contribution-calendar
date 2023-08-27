@@ -14,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       cr={2}
       theme="grass"
       onCellClick={(_, data) => console.log(data)}
+      style={{}}
     />
   </React.StrictMode>
 )

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, CSSProperties, HTMLAttributes } from 'reac
 import './index.css'
 
 interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
+  cx: number
   theme: string | ThemeProps
   themeProps: ThemeProps
   dataLevel: number
@@ -11,6 +12,7 @@ interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
 }
 
 export default function Cell({
+  cx,
   theme,
   themeProps,
   dataLevel,
@@ -65,17 +67,17 @@ export default function Cell({
           const ratio = cellIndex / totalLength
 
           if (ratio > 0.9) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -150) / totalLength, -150)
+            offset = Math.max(~~(cellRef.current.cellIndex * -11 * cx) / totalLength, -10 * cx)
           } else if (ratio > 0.8) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -130) / totalLength, -140)
+            offset = Math.max(~~(cellRef.current.cellIndex * -10 * cx) / totalLength, -9 * cx)
           } else if (ratio > 0.66) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -120) / totalLength, -120)
+            offset = Math.max(~~(cellRef.current.cellIndex * -8 * cx) / totalLength, -8 * cx)
           } else if (ratio > 0.33) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -100) / totalLength, -100)
+            offset = Math.max(~~(cellRef.current.cellIndex * -6 * cx) / totalLength, -6 * cx)
           } else if (ratio > 0.2) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -70) / totalLength, -70)
+            offset = Math.max(~~(cellRef.current.cellIndex * -4 * cx) / totalLength, -4 * cx)
           } else {
-            offset = Math.max((~~(cellRef.current.cellIndex * -50) * 5) / totalLength, -50)
+            offset = Math.max((~~cellRef.current.cellIndex * -2 * cx) / totalLength, -2 * cx)
           }
           setTooltipOffset(offset)
         }

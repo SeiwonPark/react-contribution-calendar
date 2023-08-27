@@ -1,4 +1,4 @@
-// Type definitions for react-contribution-calendar 1.2.6
+// Type definitions for react-contribution-calendar 1.2.7
 // Project: https://github.com/seiwon-yaehee/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
@@ -66,6 +66,10 @@ declare module 'react-contribution-calendar' {
      * Click event handler for table cells. This takes `cellData` as optional value.
      */
     onCellClick?: MouseEventHandler
+    /**
+     * Root styles for the ContributionCalendar.
+     */
+    style?: CSSProperties
   }
 
   /**
@@ -107,7 +111,7 @@ declare module 'react-contribution-calendar' {
    * <ContributionCalendar data={data} theme="grass" />
    * ```
    *
-   * @version 1.2.6
+   * @version 1.2.7
    * @see {@link https://github.com/seiwon-yaehee/react-contribution-calendar#apis}
    */
   export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>

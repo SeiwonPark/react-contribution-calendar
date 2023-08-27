@@ -1,5 +1,4 @@
 .description {
-  padding: 4px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -17,5 +16,8 @@
   width: 10px;
   height: 10px;
   border-radius: 2px;
-  outline: 1px solid #1b1f230f;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
