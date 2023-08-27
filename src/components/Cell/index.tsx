@@ -65,13 +65,13 @@ export default function Cell({
           const ratio = cellIndex / totalLength
 
           if (ratio > 0.9) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -150) / totalLength, -150)
+            offset = Math.max(~~(cellRef.current.cellIndex * -130) / totalLength, -130)
           } else if (ratio > 0.8) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -130) / totalLength, -140)
+            offset = Math.max(~~(cellRef.current.cellIndex * -110) / totalLength, -110)
           } else if (ratio > 0.66) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -120) / totalLength, -120)
-          } else if (ratio > 0.33) {
             offset = Math.max(~~(cellRef.current.cellIndex * -100) / totalLength, -100)
+          } else if (ratio > 0.33) {
+            offset = Math.max(~~(cellRef.current.cellIndex * -90) / totalLength, -90)
           } else if (ratio > 0.2) {
             offset = Math.max(~~(cellRef.current.cellIndex * -70) / totalLength, -70)
           } else {

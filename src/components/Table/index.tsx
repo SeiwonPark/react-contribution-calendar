@@ -36,7 +36,7 @@ export default function Table({
 }: TableProps) {
   return (
     <div className="container" style={style}>
-      <div className="calendar" style={style}>
+      <div className="calendar">
         <table>
           <TableHead start={start} end={end} textColor={textColor} startsOnSunday={startsOnSunday} cy={cy} />
           <TableBody
