@@ -125,11 +125,11 @@ export const THEMES: Theme = {
     level4: '😃',
   },
   emoji_negative: {
-    level0: '😃',
-    level1: '🙂',
-    level2: '😕',
-    level3: '😢',
-    level4: '🫥',
+    level0: '🫥',
+    level1: '😃',
+    level2: '🙂',
+    level3: '😕',
+    level4: '😢',
   },
   // dark themes
   dark_empty: {
