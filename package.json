@@ -1,7 +1,7 @@
 {
   "name": "react-contribution-calendar",
   "description": "A GitHub-like contribution calendar component for React",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/types/react-contribution-calendar.d.ts",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/seiwon-yaehee/react-contribution-calendar.git"
+    "url": "git+https://github.com/encaffeine/react-contribution-calendar.git"
   },
   "keywords": [
     "react-contribution-calendar",
@@ -34,9 +34,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/seiwon-yaehee/react-contribution-calendar/issues"
+    "url": "https://github.com/encaffeine/react-contribution-calendar/issues"
   },
-  "homepage": "https://github.com/seiwon-yaehee/react-contribution-calendar#readme",
+  "homepage": "https://github.com/encaffeine/react-contribution-calendar#readme",
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
