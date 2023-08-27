@@ -10,6 +10,7 @@ interface DescriptionProps {
 
 export default function Description({ textColor, cx, cy, theme }: DescriptionProps) {
   const themeProps = createTheme(theme)
+  const padding = `4px ${cx + 72}px 0 0`
 
   const isEmojiTheme = (theme: string | ThemeProps): boolean => {
     return theme === 'emoji_positive' || theme === 'emoji_negative'
@@ -24,7 +25,7 @@ export default function Description({ textColor, cx, cy, theme }: DescriptionPro
   }
 
   return (
-    <div className="description">
+    <div className="description" style={{ padding: padding }}>
       <div className="themes">
         <span style={{ color: textColor, fontSize: cx }}>Less</span>
         <div className="cell" style={{ ...cellStyle(theme, 0) }}>
