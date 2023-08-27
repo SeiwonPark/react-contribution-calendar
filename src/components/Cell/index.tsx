@@ -66,18 +66,10 @@ export default function Cell({
           let offset = -10
           const ratio = cellIndex / totalLength
 
-          if (ratio > 0.9) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -11 * cx) / totalLength, -10 * cx)
-          } else if (ratio > 0.8) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -10 * cx) / totalLength, -9 * cx)
-          } else if (ratio > 0.66) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -8 * cx) / totalLength, -8 * cx)
-          } else if (ratio > 0.33) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -6 * cx) / totalLength, -6 * cx)
-          } else if (ratio > 0.2) {
-            offset = Math.max(~~(cellRef.current.cellIndex * -4 * cx) / totalLength, -4 * cx)
+          if (ratio > 0.33) {
+            offset = Math.max(~~(cellRef.current.cellIndex * -9 * cx) / totalLength, -9 * cx)
           } else {
-            offset = Math.max((~~cellRef.current.cellIndex * -10 * cx) / totalLength, -10)
+            offset = Math.max((~~cellRef.current.cellIndex * -30 * cx) / totalLength, -10)
           }
           setTooltipOffset(offset)
         }
