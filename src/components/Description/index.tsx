@@ -4,10 +4,11 @@ import './index.css'
 interface DescriptionProps {
   textColor: string
   cx: number
+  cy: number
   theme: string | ThemeProps
 }
 
-export default function Description({ textColor, cx, theme }: DescriptionProps) {
+export default function Description({ textColor, cx, cy, theme }: DescriptionProps) {
   const themeProps = createTheme(theme)
 
   const isEmojiTheme = (theme: string | ThemeProps): boolean => {
@@ -16,9 +17,9 @@ export default function Description({ textColor, cx, theme }: DescriptionProps) 
 
   const cellStyle = (theme: string | ThemeProps, level: number) => {
     if (isEmojiTheme(theme)) {
-      return { fontSize: cx }
+      return { width: cx, height: cy, fontSize: cx }
     } else {
-      return { backgroundColor: themeProps[`level${level}`], outline: '1px solid #1b1f230f' }
+      return { width: cx, height: cy, backgroundColor: themeProps[`level${level}`], outline: '1px solid #1b1f230f' }
     }
   }
 

@@ -136,6 +136,7 @@ export default function TableBody({
 
             return (
               <Cell
+                cx={cx}
                 key={colIndex}
                 tabIndex={-1}
                 style={{ width: cx, height: cy, borderRadius: cr }}
