@@ -77,7 +77,7 @@ export default function Cell({
           } else if (ratio > 0.2) {
             offset = Math.max(~~(cellRef.current.cellIndex * -4 * cx) / totalLength, -4 * cx)
           } else {
-            offset = Math.max((~~cellRef.current.cellIndex * -2 * cx) / totalLength, -2 * cx)
+            offset = Math.max((~~cellRef.current.cellIndex * -10 * cx) / totalLength, -10)
           }
           setTooltipOffset(offset)
         }
