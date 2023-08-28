@@ -35,6 +35,10 @@ interface InputData {
 
 interface ThemeProps {
   /**
+   * Option for text theme, defaults to `false`.
+   */
+  isTextTheme?: boolean
+  /**
    * Level 0 color. This is the lowest level of priority.
    */
   level0: string

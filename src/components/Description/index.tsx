@@ -13,7 +13,8 @@ export default function Description({ textColor, cx, cy, theme }: DescriptionPro
   const padding = `4px ${cx + 72}px 0 0`
 
   const isEmojiTheme = (theme: string | ThemeProps): boolean => {
-    return theme === 'emoji_positive' || theme === 'emoji_negative'
+    const isCustomTextTheme = typeof theme === 'string' ? false : theme.isTextTheme || false
+    return theme === 'emoji_positive' || theme === 'emoji_negative' || isCustomTextTheme
   }
 
   const cellStyle = (theme: string | ThemeProps, level: number) => {
