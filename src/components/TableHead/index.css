@@ -5,3 +5,10 @@ thead {
   top: 0;
   width: fit-content;
 }
+
+.day-of-the-week {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}

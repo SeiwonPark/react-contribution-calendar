@@ -20,7 +20,7 @@ export default function TableHead({ start, end, textColor, startsOnSunday, cy }:
   return (
     <thead>
       <tr>
-        <Label textColor={textColor} style={{ fontSize: cy }} colSpan={1}>
+        <Label className='day-of-the-week' textColor={textColor} style={{ fontSize: cy }} colSpan={1}>
           &nbsp;
         </Label>
         {months.map((month, index) => {
