@@ -15,6 +15,7 @@ interface TableBodyProps {
   data: InputData[]
   start: string
   end: string
+  daysOfTheWeek: string[]
   textColor: string
   startsOnSunday: boolean
   includeBoundary: boolean
@@ -29,6 +30,7 @@ export default function TableBody({
   data,
   start,
   end,
+  daysOfTheWeek,
   textColor,
   startsOnSunday,
   includeBoundary,
@@ -48,8 +50,12 @@ export default function TableBody({
   const { colSpans } = getMonthsAndColSpans(start, end, dayArray, startsOnSunday)
 
   const DATES = startsOnSunday
-    ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    ? daysOfTheWeek
+    : (() => {
+        const tempDaysOfTheWeek = [...daysOfTheWeek]
+        tempDaysOfTheWeek.push(tempDaysOfTheWeek.shift() || '')
+        return tempDaysOfTheWeek
+      })()
 
   const themeProps = createTheme(theme)
   const parsedData = parseInputData(data)
