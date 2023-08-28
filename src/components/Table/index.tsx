@@ -34,7 +34,7 @@ export default function Table({
   cy = 10,
   cr = 2,
   theme = 'grass',
-  onCellClick = () => {},
+  onCellClick = (_, data) => console.log(data),
   style,
 }: TableProps) {
   const padding = `0 ${cx + 70}px 0 ${cx + 10}px`

@@ -135,8 +135,8 @@ declare module 'react-contribution-calendar' {
      */
     theme?: string | ThemeProps
     /**
-     * Click event handler for table cells. This takes `cellData` as optional value
-     * and returns callback function.
+     * Click event handler for table cells. This takes `data` as optional value 
+     * of each cell and returns callback function.
      * @example
      * ```tsx
      * <ContributionCalendar onCellClick={(e, data) => console.log(data)} />
