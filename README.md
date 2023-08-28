@@ -30,20 +30,13 @@ import { ContributionCalendar } from 'react-contribution-calendar'
 
 const data = [
   {
-    '2020-04-20': {
-      level: 2,
-    }
+    '2020-04-20': { level: 2 }
   },
   {
-    '2023-07-08': {
-      level: 1,
-    },
+    '2023-07-08': { level: 1 },
   },
   {
-    '2023-07-09': {
-      level: 4,
-      data: {},
-    },
+    '2023-07-09': { level: 4, data: {} },
   },
   {
     '2023-03-31': {
