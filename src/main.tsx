@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { ContributionCalendar } from './components'
-import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -15,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       cr={2}
       theme="grass"
       onCellClick={(_, data) => console.log(data)}
+      scroll={false}
       style={{}}
     />
   </React.StrictMode>
