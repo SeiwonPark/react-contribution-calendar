@@ -79,7 +79,7 @@ export default function TableBody({
   return (
     <tbody>
       {DATES.map((date, rowIndex) => (
-        <tr key={date}>
+        <tr key={`${date}-${rowIndex}`}>
           <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'left', fontSize: cy, lineHeight: 0 }}>
             {date}
           </Label>
