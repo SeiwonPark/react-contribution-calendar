@@ -135,7 +135,7 @@ declare module 'react-contribution-calendar' {
      */
     theme?: string | ThemeProps
     /**
-     * Click event handler for table cells. This takes `data` as optional value 
+     * Click event handler for table cells. This takes `data` as optional value
      * of each cell and returns callback function.
      * @example
      * ```tsx
@@ -143,6 +143,10 @@ declare module 'react-contribution-calendar' {
      * ```
      */
     onCellClick?: MouseEventHandler
+    /**
+     * Option for showing scrollbar for the calendar table, defaults to false.
+     */
+    scroll?: boolean
     /**
      * Root styles for the ContributionCalendar.
      * @example

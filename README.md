@@ -61,6 +61,8 @@ const data = [
   cy={10}
   cr={2}
   onCellClick={(e, data) => console.log(data)}
+  scroll={false}
+  style={}
 />
 ```
 
@@ -103,6 +105,7 @@ const data = [
 - **`cx`**: Optional. The pixel size of width of each cell, defaults to `10`.
 - **`cy`**: Optional. The pixel size of height of each cell, defaults to `10`.
 - **`cr`**: Optional. The pixel size of border radius of each cell, defaults to `2`.
+- **`scroll`**: Optional. Whether to show scrollbar or not, defaults to `false`.
 - **`onCellClick`**: Optional. An onClick mouse event on each table cell.
 
 <br />
@@ -192,29 +195,9 @@ You can customize the appearance of the `<ContributionCalendar />` with the them
 
 <img src="./images/emoji_positive.png" alt="emoji_positive" with=600 />
 
-```tsx
-emoji_positive: {
-  level0: '🫥',
-  level1: '😢',
-  level2: '😞',
-  level3: '🙂',
-  level4: '😃',
-},
-```
-
 #### `emoji_negative`
 
 <img src="./images/emoji_negative.png" alt="emoji_negative" with=600 />
-
-```tsx
-emoji_negative: {
-  level0: '😃',
-  level1: '🙂',
-  level2: '😕',
-  level3: '😢',
-  level4: '🫥',
-},
-```
 
 <br />
 
@@ -320,6 +303,27 @@ function App() {
         level2: '#40c463',
         level3: '#30a14e',
         level4: '#216e39',
+      }}
+    />
+  )
+}
+```
+
+And say if you'd like to set text theme like emoji, then you could add `isTextTheme` property as follows:
+
+```javascript
+import { ContributionCalendar } from 'react-contribution-calendar'
+
+function App() {
+  return (
+    <ContributionCalendar
+      theme={{
+        isTextTheme: true, // <--- Must be added if it's a text theme.
+        level0: '🙂',
+        level1: '🤔',
+        level2: '😎',
+        level3: 'A',
+        level4: 'B',
       }}
     />
   )
