@@ -40,7 +40,7 @@ export default function Cell({
     return count
   }
 
-  const getVisibleCellIndex = (cell: HTMLTableCellElement | null) => {
+  const getNumOfVisibleCells = (cell: HTMLTableCellElement | null): number => {
     if (!cell || !cell.parentNode) return -1
 
     const allCells: HTMLElement[] = Array.from(cell.parentNode.childNodes) as HTMLElement[]
@@ -60,11 +60,11 @@ export default function Cell({
     const handleMouseOver = () => {
       if (cellRef.current) {
         const totalLength = getVisibleChildren(cellRef.current?.parentNode)
-        const cellIndex = getVisibleCellIndex(cellRef.current)
+        const numOfVisibleCells = getNumOfVisibleCells(cellRef.current)
 
         if (totalLength) {
           let offset = -10
-          const ratio = cellIndex / totalLength
+          const ratio = numOfVisibleCells / totalLength
 
           if (ratio > 0.33) {
             offset = Math.max(~~(cellRef.current.cellIndex * -9 * cx) / totalLength, -9 * cx)
