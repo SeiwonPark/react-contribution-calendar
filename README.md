@@ -30,20 +30,13 @@ import { ContributionCalendar } from 'react-contribution-calendar'
 
 const data = [
   {
-    '2020-04-20': {
-      level: 2,
-    }
+    '2020-04-20': { level: 2 }
   },
   {
-    '2023-07-08': {
-      level: 1,
-    },
+    '2023-07-08': { level: 1 },
   },
   {
-    '2023-07-09': {
-      level: 4,
-      data: {},
-    },
+    '2023-07-09': { level: 4, data: {} },
   },
   {
     '2023-03-31': {
@@ -59,6 +52,7 @@ const data = [
   data={data}
   start="2020-04-04"
   end="2023-05-19"
+  daysOfTheWeek={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
   textColor="#1F2328"
   startsOnSunday={true}
   includeBoundary={true}
@@ -101,6 +95,7 @@ const data = [
 
 - **`start`**: Optional. The starting date for the calendar to start, defaults to current year's January 1st(`YYYY-MM-DD` format).
 - **`end`**: Optional. The ending date for the calendar to end, defaults to current year's December 31st(`YYYY-MM-DD` format).
+- **`daysOfTheWeek`**: Optional. The days of the week, which will be the head column of each row. The array should start from Sunday so that you can use with `startsOnSunday` option correctly. Defaults to `['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']`.
 - **`textColor`**: Optional. The color of indexes. String color code format, defaults to `#1F2328`.
 - **`startsOnSunday`**: Optional. Whether to start the calendar on Sunday or not, defaults to `true`. If set to false, calendar will start on Monday.
 - **`includeBoundary`**: Optional. Whether to include the boundary cells in the starting or ending date column, defaults to `true`.

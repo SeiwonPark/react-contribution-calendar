@@ -6,6 +6,7 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ContributionCalendar
+      daysOfTheWeek={['', 'Mon', '', 'Wed', '', 'Fri', '']}
       textColor="#1f2328"
       startsOnSunday={true}
       includeBoundary={true}

@@ -2,6 +2,7 @@ import { CSSProperties } from 'react'
 import TableHead from '../TableHead'
 import TableBody from '../TableBody'
 import { getCurrentYear, getDateString } from '../../utils'
+import { customError, ERROR } from '../../exceptions'
 import './index.css'
 import Description from '../Description'
 
@@ -9,6 +10,7 @@ interface TableProps {
   data?: InputData[]
   start?: string
   end?: string
+  daysOfTheWeek?: string[]
   textColor?: string
   startsOnSunday?: boolean
   includeBoundary?: boolean
@@ -24,6 +26,7 @@ export default function Table({
   data = [],
   start = getDateString(getCurrentYear(), 0, 1),
   end = getDateString(getCurrentYear(), 11, 31),
+  daysOfTheWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   textColor = '#1f2328',
   startsOnSunday = true,
   includeBoundary = true,
@@ -31,10 +34,14 @@ export default function Table({
   cy = 10,
   cr = 2,
   theme = 'grass',
-  onCellClick = () => {},
+  onCellClick = (_, data) => console.log(data),
   style,
 }: TableProps) {
   const padding = `0 ${cx + 70}px 0 ${cx + 10}px`
+
+  if (daysOfTheWeek.length !== 7) {
+    throw customError(ERROR.Number, 'The length of the `daysOfTheWeek` should be exact 7.')
+  }
 
   return (
     <div className="container" style={style}>
@@ -45,6 +52,7 @@ export default function Table({
             data={data}
             start={start}
             end={end}
+            daysOfTheWeek={daysOfTheWeek}
             textColor={textColor}
             startsOnSunday={startsOnSunday}
             includeBoundary={includeBoundary}
