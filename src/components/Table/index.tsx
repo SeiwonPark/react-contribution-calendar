@@ -3,8 +3,8 @@ import TableHead from '../TableHead'
 import TableBody from '../TableBody'
 import { getCurrentYear, getDateString } from '../../utils'
 import { customError, ERROR } from '../../exceptions'
-import './index.css'
 import Description from '../Description'
+import './index.css'
 
 interface TableProps {
   data?: InputData[]
@@ -19,6 +19,7 @@ interface TableProps {
   cr?: number
   theme?: string | ThemeProps
   onCellClick?: MouseEventHandler
+  scroll?: boolean
   style?: CSSProperties
 }
 
@@ -35,6 +36,7 @@ export default function Table({
   cr = 2,
   theme = 'grass',
   onCellClick = (_, data) => console.log(data),
+  scroll = false,
   style,
 }: TableProps) {
   const padding = `0 ${cx + 70}px 0 ${cx + 10}px`
@@ -45,7 +47,7 @@ export default function Table({
 
   return (
     <div className="container" style={style}>
-      <div className="calendar" style={{ padding: padding }}>
+      <div className="calendar" style={{ padding: padding, overflowX: scroll ? 'scroll' : 'clip' }}>
         <table>
           <TableHead start={start} end={end} textColor={textColor} startsOnSunday={startsOnSunday} cy={cy} />
           <TableBody
