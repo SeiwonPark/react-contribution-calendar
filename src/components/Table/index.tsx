@@ -2,9 +2,9 @@ import { CSSProperties } from 'react'
 import TableHead from '../TableHead'
 import TableBody from '../TableBody'
 import { getCurrentYear, getDateString } from '../../utils'
-import { customError, ERROR } from '../../exceptions'
 import Description from '../Description'
 import './index.css'
+import { isValidDateFormat, isValidDateRange, isValidDaysOfTheWeek } from '../../validators'
 
 interface TableProps {
   data?: InputData[]
@@ -41,9 +41,13 @@ export default function Table({
 }: TableProps) {
   const padding = `0 ${cx + 70}px 0 ${cx + 10}px`
 
-  if (daysOfTheWeek.length !== 7) {
-    throw customError(ERROR.Number, 'The length of the `daysOfTheWeek` should be exact 7.')
-  }
+  isValidDateFormat(start)
+
+  isValidDateFormat(end)
+
+  isValidDateRange(start, end)
+
+  isValidDaysOfTheWeek(daysOfTheWeek)
 
   return (
     <div className="container" style={style}>
