@@ -49,14 +49,6 @@ export default function TableBody({
   const dayArray = getDayArray(start, end, startsOnSunday)
   const { colSpans } = getMonthsAndColSpans(start, end, dayArray, startsOnSunday)
 
-  const DATES = startsOnSunday
-    ? daysOfTheWeek
-    : (() => {
-        const tempDaysOfTheWeek = [...daysOfTheWeek]
-        tempDaysOfTheWeek.push(tempDaysOfTheWeek.shift() || '')
-        return tempDaysOfTheWeek
-      })()
-
   const themeProps = createTheme(theme)
   const parsedData = parseInputData(data)
 
@@ -75,6 +67,14 @@ export default function TableBody({
   const isWithin7Days = (): boolean => {
     return startCol === endCol || endDay - startDay <= 7
   }
+
+  const convertToStartsOnMonday = (): string[] => {
+    const tempDaysOfTheWeek = [...daysOfTheWeek]
+    tempDaysOfTheWeek.push(tempDaysOfTheWeek.shift() || '')
+    return tempDaysOfTheWeek
+  }
+
+  const DATES = startsOnSunday ? daysOfTheWeek : convertToStartsOnMonday()
 
   return (
     <tbody>

@@ -13,4 +13,5 @@ export const customError = (name: string, message: string): Error => {
 export enum ERROR {
   Number = 'Number Error',
   String = 'String Error',
+  Date = 'Date Error',
 }

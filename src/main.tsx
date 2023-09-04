@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       cx={12}
       cy={12}
       cr={2}
-      theme="emoji_negative"
+      theme="grass"
       onCellClick={(_, data) => console.log(data)}
       scroll={false}
       style={{}}

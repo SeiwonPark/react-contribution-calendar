@@ -20,7 +20,7 @@ export default function TableHead({ start, end, textColor, startsOnSunday, cy }:
   return (
     <thead>
       <tr>
-        <Label className='day-of-the-week' textColor={textColor} style={{ fontSize: cy }} colSpan={1}>
+        <Label className="day-of-the-week" textColor={textColor} style={{ fontSize: cy }} colSpan={1}>
           &nbsp;
         </Label>
         {months.map((month, index) => {
@@ -28,9 +28,11 @@ export default function TableHead({ start, end, textColor, startsOnSunday, cy }:
 
           if (colSpans.length === 1 && colSpans[0] === 1) {
             colSpan++
-          } else if (months.length > 1 && endDay < 10 && monthIndexOfEndDay !== 0 && index === months.length - 2) {
+          } else if (months.length > 1 && endDay < 14 && monthIndexOfEndDay !== 0 && index === months.length - 2) {
             colSpan--
-          } else if (months.length > 1 && endDay < 10 && monthIndexOfEndDay !== 0 && index === months.length - 1) {
+          } else if (months.length > 1 && endDay < 14 && monthIndexOfEndDay !== 0 && index === months.length - 1) {
+            colSpan++
+          } else if (months.length > 1 && endDay < 14 && index === months.length - 1) {
             colSpan++
           }
 

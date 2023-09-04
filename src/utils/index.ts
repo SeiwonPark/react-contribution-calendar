@@ -442,14 +442,15 @@ export const getRowAndColumnIndexFromDate = (startYear: number, targetDate: stri
 
 /**
  * Gets date difference in days.
- * @param {string} startDate - The starting date to be calculated from.
- * @param {string} targetDate - The target date to calculate.
+ * @param {string} date1 - The starting date to be calculated from.
+ * @param {string} date2 - The target date to calculate.
  * @returns The date difference between two dates.
+ * @example
+ * // Returns 2
+ * getDaysBetween('2023-01-01', '2023-01-02')
  */
-export const getDaysBetween = (startDate: string, targetDate: string): number => {
-  const from = new Date(startDate)
-  const to = new Date(targetDate)
-  const timeDifference = to.getTime() - from.getTime()
+export const getDaysBetween = (date1: string, date2: string): number => {
+  const timeDifference = Math.abs(new Date(date1).getTime() - new Date(date2).getTime())
   return timeDifference / (1000 * 60 * 60 * 24) + 1
 }
 
