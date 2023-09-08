@@ -1,5 +1,5 @@
 // Type definitions for react-contribution-calendar 1.3.3
-// Project: https://github.com/encaffeine/react-contribution-calendar
+// Project: https://github.com/SeiwonPark/react-contribution-calendar
 // Definitions by: Seiwon Park <https://github.com/SeiwonPark>
 //                 Yaehee Choe <https://github.com/YaeheeChoe>
 
@@ -197,7 +197,7 @@ declare module 'react-contribution-calendar' {
    * ```
    *
    * @version 1.3.3
-   * @see {@link https://github.com/encaffeine/react-contribution-calendar#apis}
+   * @see {@link https://github.com/SeiwonPark/react-contribution-calendar#apis}
    */
   export const ContributionCalendar: FunctionComponent<ContributionCalendarProps>
 }

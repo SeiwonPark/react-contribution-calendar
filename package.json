@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/encaffeine/react-contribution-calendar.git"
+    "url": "git+https://github.com/SeiwonPark/react-contribution-calendar.git"
   },
   "keywords": [
     "react-contribution-calendar",
@@ -34,9 +34,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/encaffeine/react-contribution-calendar/issues"
+    "url": "https://github.com/SeiwonPark/react-contribution-calendar/issues"
   },
-  "homepage": "https://github.com/encaffeine/react-contribution-calendar#readme",
+  "homepage": "https://github.com/SeiwonPark/react-contribution-calendar#readme",
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
