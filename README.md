@@ -19,7 +19,8 @@ $ npm i react-contribution-calendar
 
 ## Demo
 
-[Live Demo](https://codepen.io/yaeheechoe/pen/wvRwJbP)
+- [codepen](https://codepen.io/yaeheechoe/pen/wvRwJbP)
+- [codesandbox](https://codesandbox.io/p/sandbox/react-contribution-calendar-sxn32g)
 
 <br/>
 
