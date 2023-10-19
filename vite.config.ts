@@ -31,6 +31,7 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'jsxRuntime',
         },
         assetFileNames: 'styles/[name].[ext]',
       },
