@@ -1,6 +1,6 @@
 import Label from '../Label'
 import { getDayArray, getDayIndexFromDateString, getMonthsAndColSpans, parseDateFromDateString } from '../../utils'
-import './index.css'
+import styles from './index.module.css'
 
 interface TableHeadProps {
   start: string
@@ -18,9 +18,9 @@ export default function TableHead({ start, end, textColor, startsOnSunday, cy }:
   const { months, colSpans } = getMonthsAndColSpans(start, end, dayArray, startsOnSunday)
 
   return (
-    <thead>
-      <tr>
-        <Label className="day-of-the-week" textColor={textColor} style={{ fontSize: cy }} colSpan={1}>
+    <thead className={styles.thead}>
+      <tr className={styles.tr}>
+        <Label className={styles.dayOfTheWeek} textColor={textColor} style={{ fontSize: cy }} colSpan={1}>
           &nbsp;
         </Label>
         {months.map((month, index) => {

@@ -1,9 +1,9 @@
-.calendar-label {
+.calendarLabel {
   position: relative;
   padding: 0;
   text-align: left;
 }
 
-.calendar-label-text {
+.calendarLabelText {
   padding-right: 0.5em;
 }

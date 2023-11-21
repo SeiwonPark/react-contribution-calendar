@@ -3,7 +3,7 @@ import TableHead from '../TableHead'
 import TableBody from '../TableBody'
 import { getCurrentYear, getDateString } from '../../utils'
 import Description from '../Description'
-import './index.css'
+import styles from './index.module.css'
 import { isValidDateFormat, isValidDateRange, isValidDaysOfTheWeek } from '../../validators'
 
 interface TableProps {
@@ -50,9 +50,9 @@ export default function Table({
   isValidDaysOfTheWeek(daysOfTheWeek)
 
   return (
-    <div className="container" style={style}>
-      <div className="calendar" style={{ padding: padding, overflowX: scroll ? 'scroll' : 'clip' }}>
-        <table>
+    <div className={styles.container} style={style}>
+      <div className={styles.calendar} style={{ padding: padding, overflowX: scroll ? 'scroll' : 'clip' }}>
+        <table className={styles.table}>
           <TableHead start={start} end={end} textColor={textColor} startsOnSunday={startsOnSunday} cy={cy} />
           <TableBody
             data={data}

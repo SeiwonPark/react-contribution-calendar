@@ -9,7 +9,7 @@ import {
 } from '../../utils'
 import Cell from '../Cell'
 import Label from '../Label'
-import './index.css'
+import styles from './index.module.css'
 
 interface TableBodyProps {
   data: InputData[]
@@ -77,9 +77,9 @@ export default function TableBody({
   const DATES = startsOnSunday ? daysOfTheWeek : convertToStartsOnMonday()
 
   return (
-    <tbody>
+    <tbody className={styles.tbody}>
       {DATES.map((date, rowIndex) => (
-        <tr key={`${date}-${rowIndex}`}>
+        <tr className={styles.tr} key={`${date}-${rowIndex}`}>
           <Label tabIndex={0} textColor={textColor} style={{ textAlign: 'left', fontSize: cy, lineHeight: 0 }}>
             {date}
           </Label>
@@ -87,6 +87,7 @@ export default function TableBody({
             if (endCol === 0 && colIndex === 1) {
               return (
                 <td
+                  className={styles.td}
                   key={colIndex}
                   style={{
                     padding: 0,
@@ -102,12 +103,13 @@ export default function TableBody({
             }
 
             if (isAdditionalCellRequired(rowIndex, colIndex)) {
-              return <td style={{ padding: '0', display: 'block' }} key={colIndex}></td>
+              return <td className={styles.td} style={{ padding: '0', display: 'block' }} key={colIndex}></td>
             }
 
             if (isBoundaryCell(rowIndex, colIndex)) {
               return (
                 <td
+                  className={styles.td}
                   key={colIndex}
                   style={{
                     padding: 0,
@@ -123,7 +125,7 @@ export default function TableBody({
             }
 
             if (isOutRangedCell(rowIndex, colIndex)) {
-              return <td style={{ padding: '0', display: 'none' }} key={colIndex}></td>
+              return <td className={styles.td} style={{ padding: '0', display: 'none' }} key={colIndex}></td>
             }
 
             const data = parsedData.get(day)

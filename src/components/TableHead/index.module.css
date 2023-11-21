@@ -1,4 +1,4 @@
-thead {
+.thead {
   display: table-header-group;
   vertical-align: middle;
   border-color: inherit;
@@ -6,7 +6,13 @@ thead {
   width: fit-content;
 }
 
-.day-of-the-week {
+.tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.dayOfTheWeek {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;

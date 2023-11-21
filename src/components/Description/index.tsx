@@ -1,5 +1,5 @@
 import { createTheme } from '../../utils'
-import './index.css'
+import styles from './index.module.css'
 
 interface DescriptionProps {
   textColor: string
@@ -26,22 +26,22 @@ export default function Description({ textColor, cx, cy, theme }: DescriptionPro
   }
 
   return (
-    <div className="description" style={{ padding: padding }}>
-      <div className="themes">
+    <div className={styles.description} style={{ padding: padding }}>
+      <div className={styles.themes}>
         <span style={{ color: textColor, fontSize: cx }}>Less</span>
-        <div className="cell" style={{ ...cellStyle(theme, 0) }}>
+        <div className={styles.cell} style={{ ...cellStyle(theme, 0) }}>
           {isEmojiTheme(theme) ? themeProps.level0 : undefined}
         </div>
-        <div className="cell" style={{ ...cellStyle(theme, 1) }}>
+        <div className={styles.cell} style={{ ...cellStyle(theme, 1) }}>
           {isEmojiTheme(theme) ? themeProps.level1 : undefined}
         </div>
-        <div className="cell" style={{ ...cellStyle(theme, 2) }}>
+        <div className={styles.cell} style={{ ...cellStyle(theme, 2) }}>
           {isEmojiTheme(theme) ? themeProps.level2 : undefined}
         </div>
-        <div className="cell" style={{ ...cellStyle(theme, 3) }}>
+        <div className={styles.cell} style={{ ...cellStyle(theme, 3) }}>
           {isEmojiTheme(theme) ? themeProps.level3 : undefined}
         </div>
-        <div className="cell" style={{ ...cellStyle(theme, 4) }}>
+        <div className={styles.cell} style={{ ...cellStyle(theme, 4) }}>
           {isEmojiTheme(theme) ? themeProps.level4 : undefined}
         </div>
         <span style={{ color: textColor, fontSize: cx }}>More</span>

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, CSSProperties, HTMLAttributes } from 'react'
-import './index.css'
+import styles from './index.module.css'
 
 interface CellProps extends HTMLAttributes<HTMLTableCellElement> {
   cx: number
@@ -95,7 +95,7 @@ export default function Cell({
   return (
     <td
       ref={cellRef}
-      className="calendar-cell top half-arrow"
+      className={`${styles.calendarCell} ${styles.top}`}
       style={
         {
           ...style,

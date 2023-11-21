@@ -1,14 +1,14 @@
-tbody {
+.tbody {
   width: fit-content;
   overflow: visible;
 }
 
-tr {
+.tr {
   display: table-row;
   vertical-align: inherit;
   border-color: inherit;
 }
 
-td {
+.td {
   padding: 0;
 }
