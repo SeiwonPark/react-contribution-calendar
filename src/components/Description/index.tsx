@@ -5,10 +5,11 @@ interface DescriptionProps {
   textColor: string
   cx: number
   cy: number
+  cr: number
   theme: string | ThemeProps
 }
 
-export default function Description({ textColor, cx, cy, theme }: DescriptionProps) {
+export default function Description({ textColor, cx, cy, cr, theme }: DescriptionProps) {
   const themeProps = createTheme(theme)
   const padding = `4px ${cx + 72}px 0 0`
 
@@ -21,7 +22,13 @@ export default function Description({ textColor, cx, cy, theme }: DescriptionPro
     if (isEmojiTheme(theme)) {
       return { width: cx, height: cy, fontSize: cx }
     } else {
-      return { width: cx, height: cy, backgroundColor: themeProps[`level${level}`], outline: '1px solid #1b1f230f' }
+      return {
+        width: cx,
+        height: cy,
+        borderRadius: cr,
+        backgroundColor: themeProps[`level${level}`],
+        outline: '1px solid #1b1f230f',
+      }
     }
   }
 

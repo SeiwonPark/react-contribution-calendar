@@ -70,7 +70,7 @@ export default function Table({
           />
         </table>
       </div>
-      <Description textColor={textColor} cx={cx} cy={cy} theme={theme} />
+      <Description textColor={textColor} cx={cx} cy={cy} cr={cr} theme={theme} />
     </div>
   )
 }
